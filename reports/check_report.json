@@ -1,9 +1,9 @@
 {
-  "started": "2026-11-19T21:33:10",
+  "started": "2026-11-19T21:42:53",
   "sections": {
     "tests": {
       "ok": true,
-      "summary": "126 passed in 5.15s"
+      "summary": "126 passed in 4.79s"
     },
     "validation": {
       "train": {
@@ -1487,6 +1487,10 @@
         ]
       }
     },
+    "independent_check": {
+      "ok": true,
+      "summary": "20/20 episodes PASS"
+    },
     "fingerprint": {
       "value": "4ba3f209e8189e178b242936733f7f0299475f841247895a80c2fc8a3ce6f4da",
       "ok": true
@@ -1499,7 +1503,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 28,
-              "time_s": 0.10569879900003798,
+              "time_s": 0.07781694899995273,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1535,7 +1539,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 33,
-              "time_s": 0.036278725000101986,
+              "time_s": 0.023259258000052796,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1589,7 +1593,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 11,
-              "time_s": 0.01873803599983148,
+              "time_s": 0.013774689999991097,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1625,7 +1629,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 15,
-              "time_s": 0.016877620000059324,
+              "time_s": 0.01647988200011241,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1670,7 +1674,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 33,
-              "time_s": 0.01905341400015459,
+              "time_s": 0.019758354999794392,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1706,7 +1710,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 21,
-              "time_s": 0.024162359000001743,
+              "time_s": 0.02254074499978742,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1781,7 +1785,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 6,
-              "time_s": 0.018819358999962787,
+              "time_s": 0.01774674199987203,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1852,7 +1856,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 15,
-              "time_s": 0.025219623000111824,
+              "time_s": 0.024262405000172294,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1912,7 +1916,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 31,
-              "time_s": 0.025523953999936566,
+              "time_s": 0.023759750999943208,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1964,7 +1968,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 28,
-              "time_s": 0.020139411999934964,
+              "time_s": 0.018438954999965063,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2033,7 +2037,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 18,
-              "time_s": 0.02522549600007551,
+              "time_s": 0.024470322000070155,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2074,7 +2078,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 15,
-              "time_s": 0.016178274000139936,
+              "time_s": 0.015788131000135763,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2106,7 +2110,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 31,
-              "time_s": 0.015362002000074426,
+              "time_s": 0.015534692000073846,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2154,7 +2158,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 30,
-              "time_s": 0.02426127700005054,
+              "time_s": 0.021196645999680186,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2198,7 +2202,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 38,
-              "time_s": 0.06016697699988072,
+              "time_s": 0.02745344599998134,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2242,7 +2246,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 28,
-              "time_s": 0.043888081999966744,
+              "time_s": 0.024727469999561436,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2283,7 +2287,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 10,
-              "time_s": 0.02735426300000654,
+              "time_s": 0.015017717000318953,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2343,7 +2347,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 25,
-              "time_s": 0.03852151299997786,
+              "time_s": 0.02008913300005588,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2406,7 +2410,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 27,
-              "time_s": 0.030613669000103982,
+              "time_s": 0.017030736999913643,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2447,7 +2451,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 34,
-              "time_s": 0.03989652699988255,
+              "time_s": 0.023525242999767215,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2515,7 +2519,7 @@
             "micro_f1": 0.0,
             "mean_return": -1.0,
             "mean_steps": 23.85,
-            "mean_time_s": 0.0315989690500146,
+            "mean_time_s": 0.023133563449960093,
             "tp": 0,
             "fp": 23,
             "fn": 69,
@@ -2558,7 +2562,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 16,
-              "time_s": 0.09204273099999227,
+              "time_s": 0.0828360620002968,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2729,7 +2733,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 16,
-              "time_s": 0.027322188999960417,
+              "time_s": 0.024616193999918323,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2846,7 +2850,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 12,
-              "time_s": 0.02776163700013967,
+              "time_s": 0.02246347299978879,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2999,7 +3003,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 16,
-              "time_s": 0.035985622999987754,
+              "time_s": 0.023837827000079415,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -3116,7 +3120,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 14,
-              "time_s": 0.023335097999961363,
+              "time_s": 0.02009946399994078,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -3251,7 +3255,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 16,
-              "time_s": 0.03765970300014487,
+              "time_s": 0.031241435000083584,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -3415,7 +3419,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 17,
-              "time_s": 0.03226596600006815,
+              "time_s": 0.028571201999966434,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -3602,7 +3606,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 17,
-              "time_s": 0.036789271000088775,
+              "time_s": 0.036510948999875836,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -3846,7 +3850,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 16,
-              "time_s": 0.027951519999987795,
+              "time_s": 0.02936570900010338,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4058,7 +4062,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 15,
-              "time_s": 0.024357578000035573,
+              "time_s": 0.02546601099993495,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -4270,7 +4274,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 16,
-              "time_s": 0.027198850000104358,
+              "time_s": 0.03068353600019691,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4424,7 +4428,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 13,
-              "time_s": 0.025317210999901363,
+              "time_s": 0.022193243999936385,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4550,7 +4554,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 12,
-              "time_s": 0.019105209000144896,
+              "time_s": 0.018286400999841135,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -4713,7 +4717,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 15,
-              "time_s": 0.025027196000110052,
+              "time_s": 0.025080834000164032,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -4876,7 +4880,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 17,
-              "time_s": 0.027742427000021053,
+              "time_s": 0.026574320999770862,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -5054,7 +5058,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 14,
-              "time_s": 0.02901978499994584,
+              "time_s": 0.028691189999790367,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -5232,7 +5236,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 15,
-              "time_s": 0.027126287000101,
+              "time_s": 0.027177573000244593,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -5457,7 +5461,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 13,
-              "time_s": 0.025304249000100754,
+              "time_s": 0.02340530600031343,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -5614,7 +5618,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 12,
-              "time_s": 0.02421163299982254,
+              "time_s": 0.022754717999760032,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -5774,7 +5778,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 16,
-              "time_s": 0.030143106999958036,
+              "time_s": 0.03094658400004846,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -6005,7 +6009,7 @@
             "micro_f1": 0.20725388601036268,
             "mean_return": -0.657925071591635,
             "mean_steps": 14.9,
-            "mean_time_s": 0.031283363500028825,
+            "mean_time_s": 0.029040101650002724,
             "tp": 40,
             "fp": 277,
             "fn": 29,
@@ -6049,7 +6053,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 3,
-              "time_s": 0.09771258800014948,
+              "time_s": 0.08481110000002445,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6356,7 +6360,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 3,
-              "time_s": 0.01831741000000875,
+              "time_s": 0.017252243000257295,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6663,7 +6667,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 3,
-              "time_s": 0.017661011999962284,
+              "time_s": 0.015819331999864517,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6970,7 +6974,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 3,
-              "time_s": 0.018419315000073766,
+              "time_s": 0.01709181099977286,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7277,7 +7281,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 3,
-              "time_s": 0.014852562999976726,
+              "time_s": 0.013629349999973783,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7584,7 +7588,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 3,
-              "time_s": 0.022584879000078217,
+              "time_s": 0.021228264999990643,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7912,7 +7916,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 3,
-              "time_s": 0.02160163200005627,
+              "time_s": 0.020593699000073684,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8245,7 +8249,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 3,
-              "time_s": 0.02602384599981633,
+              "time_s": 0.02447705400027189,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8576,7 +8580,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 3,
-              "time_s": 0.025394155999947543,
+              "time_s": 0.019467303000055836,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8909,7 +8913,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 3,
-              "time_s": 0.018257740000080958,
+              "time_s": 0.01651130700020076,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9240,7 +9244,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 3,
-              "time_s": 0.02218495800002529,
+              "time_s": 0.019238746000155516,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9562,7 +9566,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 3,
-              "time_s": 0.01690596799994637,
+              "time_s": 0.015005676000328094,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9875,7 +9879,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 3,
-              "time_s": 0.014286374999983309,
+              "time_s": 0.013275949999751901,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10194,7 +10198,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 3,
-              "time_s": 0.019078273000104673,
+              "time_s": 0.01685231500005102,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10519,7 +10523,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 3,
-              "time_s": 0.021564353000030678,
+              "time_s": 0.019467287000225042,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10844,7 +10848,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 3,
-              "time_s": 0.019652671000130795,
+              "time_s": 0.018998274000296078,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11166,7 +11170,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 3,
-              "time_s": 0.023486663999847224,
+              "time_s": 0.018197954000243044,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11488,7 +11492,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 3,
-              "time_s": 0.018248825999990004,
+              "time_s": 0.017300424000040948,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11813,7 +11817,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 3,
-              "time_s": 0.0181609500000377,
+              "time_s": 0.015835611000056815,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12135,7 +12139,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 3,
-              "time_s": 0.026059739999936937,
+              "time_s": 0.019614541000009922,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12465,7 +12469,7 @@
             "micro_f1": 0.0,
             "mean_return": -1.0,
             "mean_steps": 3,
-            "mean_time_s": 0.024022695950009165,
+            "mean_time_s": 0.021233412100082207,
             "tp": 0,
             "fp": 600,
             "fn": 69,
@@ -12510,7 +12514,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 1,
-              "time_s": 0.11169432599990614,
+              "time_s": 0.0734351159999278,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12536,7 +12540,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 1,
-              "time_s": 0.015091680000068664,
+              "time_s": 0.014100284000051033,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12562,7 +12566,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 1,
-              "time_s": 0.0135539789998802,
+              "time_s": 0.012333970999861776,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12588,7 +12592,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 1,
-              "time_s": 0.016623082000023714,
+              "time_s": 0.01281860900007814,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12614,7 +12618,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 1,
-              "time_s": 0.016326975999845672,
+              "time_s": 0.00949705500033815,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12640,7 +12644,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 1,
-              "time_s": 0.020005544000014197,
+              "time_s": 0.01797132399997281,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -12702,7 +12706,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 1,
-              "time_s": 0.01761768000005759,
+              "time_s": 0.016716317999907915,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12772,7 +12776,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 1,
-              "time_s": 0.0220028490000459,
+              "time_s": 0.022971335000420368,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12840,7 +12844,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 1,
-              "time_s": 0.027201306999813823,
+              "time_s": 0.016298348999953305,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12910,7 +12914,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 1,
-              "time_s": 0.02228627499994218,
+              "time_s": 0.019891198000095756,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12978,7 +12982,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 1,
-              "time_s": 0.028369065000106275,
+              "time_s": 0.016910130999804096,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13031,7 +13035,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 1,
-              "time_s": 0.018683974999930797,
+              "time_s": 0.012245134000295366,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -13066,7 +13070,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 1,
-              "time_s": 0.016746453999985533,
+              "time_s": 0.013516051999886258,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -13113,7 +13117,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 1,
-              "time_s": 0.017880695000030755,
+              "time_s": 0.014312490000065736,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13172,7 +13176,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 1,
-              "time_s": 0.025691103999861298,
+              "time_s": 0.019591763999869727,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13231,7 +13235,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 1,
-              "time_s": 0.023856765000118685,
+              "time_s": 0.016807201000119676,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13284,7 +13288,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 1,
-              "time_s": 0.020432749999827138,
+              "time_s": 0.01778058699983376,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13337,7 +13341,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 1,
-              "time_s": 0.019573770000079094,
+              "time_s": 0.01867691100005686,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13396,7 +13400,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 1,
-              "time_s": 0.013013265999916257,
+              "time_s": 0.015844868999920436,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13449,7 +13453,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 1,
-              "time_s": 0.017074526999977024,
+              "time_s": 0.021695009000268328,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13513,7 +13517,7 @@
             "micro_f1": 1.0,
             "mean_return": 1.0,
             "mean_steps": 1,
-            "mean_time_s": 0.024186303449971545,
+            "mean_time_s": 0.019170685350036364,
             "tp": 69,
             "fp": 0,
             "fn": 0,
@@ -13549,7 +13553,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 16,
-              "time_s": 0.09498486699999376,
+              "time_s": 0.09073609699998997,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13575,7 +13579,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 16,
-              "time_s": 0.031952854000110165,
+              "time_s": 0.024960601000202587,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13601,7 +13605,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 12,
-              "time_s": 0.02309713699992244,
+              "time_s": 0.021032362999903853,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13627,7 +13631,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 16,
-              "time_s": 0.026920988000028956,
+              "time_s": 0.02492880799991326,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13653,7 +13657,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 14,
-              "time_s": 0.02962445299999672,
+              "time_s": 0.01992334499982462,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13679,7 +13683,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 16,
-              "time_s": 0.03141122100009852,
+              "time_s": 0.03175971800010302,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13741,7 +13745,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 17,
-              "time_s": 0.03727127799993468,
+              "time_s": 0.030051839999941876,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13811,7 +13815,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 17,
-              "time_s": 0.04732065899997906,
+              "time_s": 0.039578676000019186,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13879,7 +13883,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 16,
-              "time_s": 0.031271186999902056,
+              "time_s": 0.030734551000023203,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13949,7 +13953,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 15,
-              "time_s": 0.03726638099988122,
+              "time_s": 0.027092885000001843,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -14017,7 +14021,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 16,
-              "time_s": 0.048405635000108305,
+              "time_s": 0.031343182000000525,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14070,7 +14074,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 13,
-              "time_s": 0.025116552000099546,
+              "time_s": 0.022912326000096073,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -14105,7 +14109,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 12,
-              "time_s": 0.02204359199981809,
+              "time_s": 0.020746641000187083,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -14152,7 +14156,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 15,
-              "time_s": 0.02725909099990531,
+              "time_s": 0.02725769400012723,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14211,7 +14215,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 17,
-              "time_s": 0.030305000999987897,
+              "time_s": 0.03353497399984917,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14270,7 +14274,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 14,
-              "time_s": 0.027381504000004497,
+              "time_s": 0.028395335999903182,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14323,7 +14327,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 15,
-              "time_s": 0.031032173000085095,
+              "time_s": 0.02717737600005421,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14376,7 +14380,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 13,
-              "time_s": 0.03198626499988677,
+              "time_s": 0.025977229999625706,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14435,7 +14439,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 12,
-              "time_s": 0.0323361109999496,
+              "time_s": 0.023778013000082865,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14488,7 +14492,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 16,
-              "time_s": 0.03768864099993152,
+              "time_s": 0.028371147999678215,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14552,7 +14556,7 @@
             "micro_f1": 1.0,
             "mean_return": 0.9722,
             "mean_steps": 14.9,
-            "mean_time_s": 0.03523377949998121,
+            "mean_time_s": 0.030514640199976385,
             "tp": 69,
             "fp": 0,
             "fn": 0,
@@ -14899,5 +14903,5 @@
     }
   },
   "ok": true,
-  "elapsed_s": 14.03
+  "elapsed_s": 13.27
 }
