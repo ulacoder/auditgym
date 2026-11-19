@@ -1,0 +1,56 @@
+{
+  "episode_id": "EP-7FE4F6C4C55B",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-75B69A6C",
+        "INV-984AE86B"
+      ],
+      "expected_amount_minor": 524142,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-F887EE57",
+          "L-B911403C"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-766CB840",
+        "INV-FA4BFAB3"
+      ],
+      "expected_amount_minor": 550238,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-E8699A86",
+          "L-4275BCC6"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-C0E53EEB",
+        "INV-6ECDD55D"
+      ],
+      "expected_amount_minor": 1212129,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-6C30CAC0",
+          "L-DB83B0D0"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

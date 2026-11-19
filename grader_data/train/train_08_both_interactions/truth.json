@@ -1,0 +1,148 @@
+{
+  "episode_id": "EP-BC2E136B1BD3",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-64185175"
+      ],
+      "expected_amount_minor": 796439,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-E1791856",
+          "L-E499BF31"
+        ],
+        [
+          "D-E1791856",
+          "L-7C26AFA8"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-BD779E4E",
+        "INV-64185175"
+      ],
+      "expected_amount_minor": 405465498,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-C3E000A9",
+          "L-86823833"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "PAY-1F133B41"
+      ],
+      "expected_amount_minor": 5192924,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-F9F449B6",
+          "L-1A82DC8A"
+        ]
+      ],
+      "interaction": "partial_fx_payment_at_boundary"
+    },
+    {
+      "issue_id": "ISS-04",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-1F133B41",
+        "INV-F8FDC8D7"
+      ],
+      "expected_amount_minor": 942601621,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-F9F449B6",
+          "L-30568A86"
+        ]
+      ],
+      "interaction": "partial_fx_payment_at_boundary"
+    },
+    {
+      "issue_id": "ISS-05",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "INV-8C253817"
+      ],
+      "expected_amount_minor": 620843100,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-77BD3FD5",
+          "D-96E0913E"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-06",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-36203CE4"
+      ],
+      "expected_amount_minor": 9809190,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-94593890",
+          "L-676B2544"
+        ],
+        [
+          "D-94593890",
+          "L-DE3DB362"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-07",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-D66A6573",
+        "INV-B14827D5"
+      ],
+      "expected_amount_minor": 747928905,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-3FB0D958",
+          "L-838D6954"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-08",
+      "type": "period_cutoff",
+      "affected_ids": [
+        "INV-4EDC02BA"
+      ],
+      "expected_amount_minor": 258504000,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-737D2F7D",
+          "L-F1AE0861"
+        ],
+        [
+          "D-737D2F7D",
+          "L-5FE3C526"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

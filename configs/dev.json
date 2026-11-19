@@ -1,0 +1,173 @@
+{
+  "config_version": "dev-v1",
+  "env_version": "1.0.0",
+  "note": "open dev split",
+  "episodes": [
+    {
+      "name": "dev_00_clean",
+      "seed": 2001,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "id_salt": "dev"
+      }
+    },
+    {
+      "name": "dev_01_clean_eur",
+      "seed": 2002,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "base_currency": "EUR",
+        "timezone": "-05:00"
+      }
+    },
+    {
+      "name": "dev_02_dup_only",
+      "seed": 2003,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 2,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "dev_03_alloc_only",
+      "seed": 2004,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 3,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "dev_04_fx_only",
+      "seed": 2005,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 3,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "dev_05_cutoff_only",
+      "seed": 2006,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 2
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "timezone": "+09:00"
+      }
+    },
+    {
+      "name": "dev_06_mixed",
+      "seed": 2007,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 2,
+          "fx_conversion": 1,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "order_seed": 5
+      }
+    },
+    {
+      "name": "dev_07_interaction_fx_partial",
+      "seed": 2008,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 1,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 2,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "dev_08_interaction_boundary",
+      "seed": 2009,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 1,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 2
+        }
+      }
+    },
+    {
+      "name": "dev_09_max_issues",
+      "seed": 2010,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 2,
+          "payment_allocation": 2,
+          "fx_conversion": 2,
+          "period_cutoff": 2
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 1,
+          "partial_fx_payment_at_boundary": 1
+        },
+        "id_salt": "dev9"
+      }
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "episode_id": "EP-118B4BBF49B6",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "INV-D0BF4C40"
+      ],
+      "expected_amount_minor": 2555254,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-08AA1439",
+          "D-D63494A6"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-5ADEB425"
+      ],
+      "expected_amount_minor": 11746,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-35935FC8",
+          "L-A8DE59B3"
+        ],
+        [
+          "D-35935FC8",
+          "L-2B7891E4"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-22B9C0B2",
+        "INV-240DB755"
+      ],
+      "expected_amount_minor": 176885,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-48BA908C",
+          "L-C5AA2A16"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-04",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-1F4B43BD",
+        "INV-185826F7"
+      ],
+      "expected_amount_minor": 28636,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-888228A7",
+          "L-1AA9B053"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-05",
+      "type": "period_cutoff",
+      "affected_ids": [
+        "INV-AAD9258E"
+      ],
+      "expected_amount_minor": 642700,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-774B178A",
+          "L-402329B6"
+        ],
+        [
+          "D-774B178A",
+          "L-1F4E4D74"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

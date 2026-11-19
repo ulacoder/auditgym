@@ -1,0 +1,38 @@
+{
+  "episode_id": "EP-D6DAE1DBEA2D",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "INV-558234D7"
+      ],
+      "expected_amount_minor": 572000,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-01112A16",
+          "D-AEBA7F45"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-F0DA0FD5",
+        "INV-38B038BE"
+      ],
+      "expected_amount_minor": 550148,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-4792A43A",
+          "L-D2ADD1E6"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

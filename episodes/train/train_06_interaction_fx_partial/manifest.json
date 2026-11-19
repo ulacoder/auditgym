@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-A19610216274",
+  "company": "Quartz Media LLP",
+  "base_currency": "GBP",
+  "currency_exponents": {
+    "GBP": 2,
+    "USD": 2
+  },
+  "period_start": "2025-06-01T00:00:00+01:00",
+  "period_end": "2025-07-01T00:00:00+01:00",
+  "period_end_exclusive": true,
+  "timezone": "+01:00",
+  "counts": {
+    "ledger_rows": 321,
+    "invoices": 59,
+    "payments": 58,
+    "fx_rates": 37,
+    "documents": 117
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

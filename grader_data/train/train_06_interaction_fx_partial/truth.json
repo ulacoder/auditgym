@@ -1,0 +1,58 @@
+{
+  "episode_id": "EP-A19610216274",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-5604F82F"
+      ],
+      "expected_amount_minor": 14936,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-102733FE",
+          "L-060D96B6"
+        ],
+        [
+          "D-102733FE",
+          "L-D519986A"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-418EE7DE",
+        "INV-5604F82F"
+      ],
+      "expected_amount_minor": 1541070,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-DE057B1A",
+          "L-9271F362"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "duplicate_invoice",
+      "affected_ids": [
+        "INV-34D63D90"
+      ],
+      "expected_amount_minor": 1508156,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-34D89B04",
+          "D-E3C01B16"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

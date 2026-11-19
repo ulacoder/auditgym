@@ -1,0 +1,99 @@
+{
+  "episode_id": "EP-3CE76B222A27",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-92FC5F28"
+      ],
+      "expected_amount_minor": 1256932,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-C02E44E6",
+          "L-A730F8ED"
+        ],
+        [
+          "D-C02E44E6",
+          "L-BB0525AB"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-63578031",
+        "INV-92FC5F28"
+      ],
+      "expected_amount_minor": 356329093,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-9F87F882",
+          "L-0B4946AF"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-FEDFBF10"
+      ],
+      "expected_amount_minor": 12467300,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-4BC0511E",
+          "L-C26F8577"
+        ],
+        [
+          "D-4BC0511E",
+          "L-E2912699"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-04",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-3313CB91",
+        "INV-FEDFBF10"
+      ],
+      "expected_amount_minor": 802913695,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-9746EAFD",
+          "L-76F3BB8F"
+        ]
+      ],
+      "interaction": "fx_invoice_with_partial_payment"
+    },
+    {
+      "issue_id": "ISS-05",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "INV-4CF3D5CF"
+      ],
+      "expected_amount_minor": 8647098,
+      "currency": "KZT",
+      "evidence_sets": [
+        [
+          "D-3C0C1774",
+          "L-2FB10C33"
+        ],
+        [
+          "D-3C0C1774",
+          "L-BBEC726C"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

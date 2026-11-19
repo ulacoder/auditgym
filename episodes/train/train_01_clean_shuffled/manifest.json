@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-FC2B40851BD5",
+  "company": "Delta Motors LLP",
+  "base_currency": "GBP",
+  "currency_exponents": {
+    "CHF": 2,
+    "EUR": 2,
+    "GBP": 2
+  },
+  "period_start": "2026-12-01T00:00:00+09:00",
+  "period_end": "2027-01-01T00:00:00+09:00",
+  "period_end_exclusive": true,
+  "timezone": "+09:00",
+  "counts": {
+    "ledger_rows": 347,
+    "invoices": 54,
+    "payments": 56,
+    "fx_rates": 72,
+    "documents": 110
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

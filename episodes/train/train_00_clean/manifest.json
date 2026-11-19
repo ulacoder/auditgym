@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-8F66C09145F0",
+  "company": "Arman Motors LLP",
+  "base_currency": "GBP",
+  "currency_exponents": {
+    "CNY": 2,
+    "GBP": 2
+  },
+  "period_start": "2025-12-01T00:00:00+03:00",
+  "period_end": "2026-01-01T00:00:00+03:00",
+  "period_end_exclusive": true,
+  "timezone": "+03:00",
+  "counts": {
+    "ledger_rows": 293,
+    "invoices": 53,
+    "payments": 47,
+    "fx_rates": 36,
+    "documents": 100
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

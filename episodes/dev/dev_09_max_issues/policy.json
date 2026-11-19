@@ -1,0 +1,43 @@
+{
+  "rate_source": "fx.csv; rate = units of target_currency per 1 unit of source_currency",
+  "rate_date_rule": "calendar date of the transaction instant in the company timezone (manifest.timezone); if fx.csv has no rate for that date, use the latest earlier date",
+  "invoice_rate_event": "issued_at",
+  "payment_rate_event": "timestamp",
+  "ar_credit_rule": "AR is credited for each invoice_ref at the invoice's policy rate; difference with the cash debit is posted to fx_gain_loss",
+  "unreferenced_payments": "payments with invoice_refs = null are posted to unapplied_cash; negative amount = refund (debit unapplied_cash, credit cash)",
+  "period_boundary": "an event belongs to the period iff period_start <= instant < period_end (instants compared with their offsets)",
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency",
+    "stage": "once per converted document total or per invoice_ref allocation"
+  },
+  "money": "integer minor units; exponent per currency in manifest.currency_exponents",
+  "ledger_currency": "all ledger rows are in base currency",
+  "accounts": [
+    "cash",
+    "accounts_receivable",
+    "revenue",
+    "unapplied_cash",
+    "fx_gain_loss",
+    "rent_expense",
+    "payroll_expense",
+    "software_expense",
+    "utilities_expense",
+    "travel_expense"
+  ],
+  "reporting": {
+    "claimed_amount_minor": "absolute misstatement in base-currency minor units",
+    "currency": "base currency",
+    "affected_ids": {
+      "duplicate_invoice": "[invoice_id of the later-issued copy]",
+      "payment_allocation": "[payment_id, invoice_id]",
+      "fx_conversion": "[invoice_id] or [payment_id] whose conversion is wrong",
+      "period_cutoff": "[invoice_id]"
+    },
+    "evidence_ids": "doc_id and/or ledger row_id values that prove the finding"
+  },
+  "tolerance": {
+    "amount_abs_minor": 1,
+    "amount_rel": "0.0005"
+  }
+}

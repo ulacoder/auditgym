@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-9E49D419E057",
+  "company": "Polar Trading LLP",
+  "base_currency": "KZT",
+  "currency_exponents": {
+    "CHF": 2,
+    "KWD": 3,
+    "KZT": 2
+  },
+  "period_start": "2026-02-01T00:00:00+05:00",
+  "period_end": "2026-03-01T00:00:00+05:00",
+  "period_end_exclusive": true,
+  "timezone": "+05:00",
+  "counts": {
+    "ledger_rows": 296,
+    "invoices": 56,
+    "payments": 46,
+    "fx_rates": 70,
+    "documents": 102
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

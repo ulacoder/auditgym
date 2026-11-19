@@ -1,0 +1,25 @@
+episode EP-BC2E136B1BD3  company=Orion Pharma LLP  base=KZT  tz=-03:00
+period [2026-12-01T00:00:00-03:00, 2027-01-01T00:00:00-03:00)  counts={'ledger_rows': 361, 'invoices': 73, 'payments': 62, 'fx_rates': 36, 'documents': 135}
+step   1: list_records(invoices, cursor=None) -> 50 rows, next=invoices@50
+step   2: list_records(invoices, cursor=invoices@50) -> 23 rows, next=None
+step   3: list_records(payments, cursor=None) -> 50 rows, next=payments@50
+step   4: list_records(payments, cursor=payments@50) -> 12 rows, next=None
+step   5: list_records(fx, cursor=None) -> 36 rows, next=None
+step   6: list_records(ledger, cursor=None) -> 50 rows, next=ledger@50
+step   7: list_records(ledger, cursor=ledger@50) -> 50 rows, next=ledger@100
+step   8: list_records(ledger, cursor=ledger@100) -> 50 rows, next=ledger@150
+step   9: list_records(ledger, cursor=ledger@150) -> 50 rows, next=ledger@200
+step  10: list_records(ledger, cursor=ledger@200) -> 50 rows, next=ledger@250
+step  11: list_records(ledger, cursor=ledger@250) -> 50 rows, next=ledger@300
+step  12: list_records(ledger, cursor=ledger@300) -> 50 rows, next=ledger@350
+step  13: list_records(ledger, cursor=ledger@350) -> 11 rows, next=None
+step  14: submit 8 findings
+         - fx_conversion       INV-36203CE4                      9809190 KZT  evidence=['D-94593890', 'L-676B2544']
+         - period_cutoff       INV-4EDC02BA                    258504000 KZT  evidence=['D-737D2F7D', 'L-F1AE0861']
+         - fx_conversion       INV-64185175                       796439 KZT  evidence=['D-E1791856', 'L-E499BF31']
+         - duplicate_invoice   INV-8C253817                    620843100 KZT  evidence=['D-77BD3FD5', 'D-96E0913E']
+         - fx_conversion       PAY-1F133B41                      5192924 KZT  evidence=['D-F9F449B6', 'L-1A82DC8A']
+         - payment_allocation  PAY-1F133B41,INV-F8FDC8D7       942601621 KZT  evidence=['D-F9F449B6', 'L-30568A86']
+         - payment_allocation  PAY-BD779E4E,INV-64185175       405465498 KZT  evidence=['D-C3E000A9', 'L-86823833']
+         - payment_allocation  PAY-D66A6573,INV-B14827D5       747928905 KZT  evidence=['D-3FB0D958', 'L-838D6954']
+reward=+0.974  P=1.00 R=1.00 F1=1.00  TP=8 FP=0 FN=0  inspection_steps=13

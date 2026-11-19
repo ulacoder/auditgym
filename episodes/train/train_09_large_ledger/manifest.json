@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-7E6741540854",
+  "company": "Lumen Build LLP",
+  "base_currency": "KZT",
+  "currency_exponents": {
+    "CNY": 2,
+    "EUR": 2,
+    "KZT": 2,
+    "USD": 2
+  },
+  "period_start": "2025-02-01T00:00:00+09:00",
+  "period_end": "2025-03-01T00:00:00+09:00",
+  "period_end_exclusive": true,
+  "timezone": "+09:00",
+  "counts": {
+    "ledger_rows": 1816,
+    "invoices": 77,
+    "payments": 70,
+    "fx_rates": 105,
+    "documents": 147
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

@@ -1,0 +1,173 @@
+{
+  "config_version": "train-v1",
+  "env_version": "1.0.0",
+  "note": "open train split",
+  "episodes": [
+    {
+      "name": "train_00_clean",
+      "seed": 1001,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_01_clean_shuffled",
+      "seed": 1002,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "order_seed": 11
+      }
+    },
+    {
+      "name": "train_02_dup_alloc",
+      "seed": 1003,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 1,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_03_fx_cutoff",
+      "seed": 1004,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 2,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_04_all_types",
+      "seed": 1005,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 1,
+          "fx_conversion": 1,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_05_all_types_x2",
+      "seed": 1006,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 2,
+          "payment_allocation": 2,
+          "fx_conversion": 2,
+          "period_cutoff": 2
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_06_interaction_fx_partial",
+      "seed": 1007,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 0
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 1,
+          "partial_fx_payment_at_boundary": 0
+        }
+      }
+    },
+    {
+      "name": "train_07_interaction_boundary",
+      "seed": 1008,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 0,
+          "payment_allocation": 0,
+          "fx_conversion": 0,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 1
+        }
+      }
+    },
+    {
+      "name": "train_08_both_interactions",
+      "seed": 1009,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 1,
+          "fx_conversion": 1,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 1,
+          "partial_fx_payment_at_boundary": 1
+        }
+      }
+    },
+    {
+      "name": "train_09_large_ledger",
+      "seed": 1010,
+      "config": {
+        "errors": {
+          "duplicate_invoice": 1,
+          "payment_allocation": 2,
+          "fx_conversion": 1,
+          "period_cutoff": 1
+        },
+        "interactions": {
+          "fx_invoice_with_partial_payment": 0,
+          "partial_fx_payment_at_boundary": 0
+        },
+        "n_expenses": [
+          700,
+          760
+        ],
+        "order_seed": 19
+      }
+    }
+  ]
+}

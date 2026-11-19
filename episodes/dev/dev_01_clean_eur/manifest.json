@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-3C6719B07AD2",
+  "company": "Silk Media LLP",
+  "base_currency": "EUR",
+  "currency_exponents": {
+    "CHF": 2,
+    "EUR": 2,
+    "USD": 2
+  },
+  "period_start": "2026-03-01T00:00:00-05:00",
+  "period_end": "2026-04-01T00:00:00-05:00",
+  "period_end_exclusive": true,
+  "timezone": "-05:00",
+  "counts": {
+    "ledger_rows": 406,
+    "invoices": 67,
+    "payments": 60,
+    "fx_rates": 74,
+    "documents": 127
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

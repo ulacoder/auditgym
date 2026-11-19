@@ -1,0 +1,58 @@
+{
+  "episode_id": "EP-B511C228CA28",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "fx_conversion",
+      "affected_ids": [
+        "PAY-981D291C"
+      ],
+      "expected_amount_minor": 17021,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-2521BF5D",
+          "L-5FBC79DA"
+        ]
+      ],
+      "interaction": "partial_fx_payment_at_boundary"
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "payment_allocation",
+      "affected_ids": [
+        "PAY-981D291C",
+        "INV-5FAFC0AD"
+      ],
+      "expected_amount_minor": 2140954,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-2521BF5D",
+          "L-99FA0C76"
+        ]
+      ],
+      "interaction": "partial_fx_payment_at_boundary"
+    },
+    {
+      "issue_id": "ISS-03",
+      "type": "period_cutoff",
+      "affected_ids": [
+        "INV-32C4E1E3"
+      ],
+      "expected_amount_minor": 792000,
+      "currency": "EUR",
+      "evidence_sets": [
+        [
+          "D-305052EE",
+          "L-F6E7E6D9"
+        ],
+        [
+          "D-305052EE",
+          "L-1AF521AE"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

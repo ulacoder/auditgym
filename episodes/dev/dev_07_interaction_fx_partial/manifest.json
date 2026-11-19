@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-3CE76B222A27",
+  "company": "Saryarka Textiles LLP",
+  "base_currency": "KZT",
+  "currency_exponents": {
+    "GBP": 2,
+    "KWD": 3,
+    "KZT": 2
+  },
+  "period_start": "2026-09-01T00:00:00+03:00",
+  "period_end": "2026-10-01T00:00:00+03:00",
+  "period_end_exclusive": true,
+  "timezone": "+03:00",
+  "counts": {
+    "ledger_rows": 426,
+    "invoices": 83,
+    "payments": 74,
+    "fx_rates": 70,
+    "documents": 157
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

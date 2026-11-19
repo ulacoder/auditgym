@@ -1,0 +1,417 @@
+{
+  "seed": 1003,
+  "env_version": "1.0.0",
+  "config": {
+    "config_version": "train-v1",
+    "base_currency": null,
+    "timezone": null,
+    "period": null,
+    "n_foreign_currencies": [
+      1,
+      3
+    ],
+    "foreign_customer_share": 0.4,
+    "n_customers": [
+      8,
+      18
+    ],
+    "n_invoices": [
+      35,
+      65
+    ],
+    "n_expenses": [
+      25,
+      60
+    ],
+    "errors": {
+      "duplicate_invoice": 1,
+      "payment_allocation": 1,
+      "fx_conversion": 0,
+      "period_cutoff": 0
+    },
+    "interactions": {
+      "fx_invoice_with_partial_payment": 0,
+      "partial_fx_payment_at_boundary": 0
+    },
+    "error_options": {
+      "payment_allocation_modes": [
+        "partial",
+        "missing"
+      ],
+      "fx_targets": [
+        "invoice",
+        "payment"
+      ],
+      "fx_kinds": [
+        "prev_business_day",
+        "next_business_day",
+        "due_date",
+        "naive_date"
+      ],
+      "cutoff_tz_trap_share": 0.5
+    },
+    "distractors": {
+      "recurring_amounts": [
+        2,
+        4
+      ],
+      "legit_partial_share": 0.12,
+      "split_payment_share": 0.13,
+      "multi_invoice_payment_share": 0.3,
+      "unreferenced_payments": [
+        2,
+        5
+      ],
+      "refund_share": 0.5,
+      "next_period_unposted": [
+        1,
+        3
+      ],
+      "tz_boundary_invoices": [
+        2,
+        4
+      ]
+    },
+    "id_salt": "",
+    "order_seed": null
+  },
+  "episode_id": "EP-D6DAE1DBEA2D",
+  "setting": {
+    "base": "EUR",
+    "foreign": [
+      "CNY",
+      "JPY"
+    ],
+    "timezone": "-03:00",
+    "period_start": "2026-09-01T00:00:00-03:00",
+    "period_end": "2026-10-01T00:00:00-03:00"
+  },
+  "history": {
+    "invoices": 65,
+    "payments": 60,
+    "expenses": 43,
+    "unposted_next_period": 1
+  },
+  "changes": [
+    {
+      "type": "duplicate_invoice",
+      "interaction": null,
+      "cause": "invoice entered twice; later copy posted to AR/revenue",
+      "original": "INV-9CDD73AE",
+      "duplicate": "INV-558234D7",
+      "delay_minutes": 1004,
+      "rows_before": [
+        {
+          "row_id": "L-57F0BFE2",
+          "account": "accounts_receivable",
+          "debit_minor": 572000,
+          "credit_minor": 0,
+          "timestamp": "2026-09-08T20:28:17-03:00"
+        },
+        {
+          "row_id": "L-0BC77916",
+          "account": "revenue",
+          "debit_minor": 0,
+          "credit_minor": 572000,
+          "timestamp": "2026-09-08T20:28:17-03:00"
+        }
+      ],
+      "rows_after": [
+        {
+          "row_id": "L-57F0BFE2",
+          "account": "accounts_receivable",
+          "debit_minor": 572000,
+          "credit_minor": 0,
+          "timestamp": "2026-09-08T20:28:17-03:00"
+        },
+        {
+          "row_id": "L-0BC77916",
+          "account": "revenue",
+          "debit_minor": 0,
+          "credit_minor": 572000,
+          "timestamp": "2026-09-08T20:28:17-03:00"
+        },
+        {
+          "row_id": "L-20C1F1EC",
+          "account": "accounts_receivable",
+          "debit_minor": 572000,
+          "credit_minor": 0,
+          "timestamp": "2026-09-09T13:12:17-03:00"
+        },
+        {
+          "row_id": "L-EFBAFF52",
+          "account": "revenue",
+          "debit_minor": 0,
+          "credit_minor": 572000,
+          "timestamp": "2026-09-09T13:12:17-03:00"
+        }
+      ],
+      "issue_id": "ISS-01"
+    },
+    {
+      "type": "payment_allocation",
+      "interaction": null,
+      "cause": "partial allocation: part of AR credit posted to unapplied_cash",
+      "mode": "partial",
+      "payment": "PAY-F0DA0FD5",
+      "invoice": "INV-38B038BE",
+      "expected_ar_credit": 971200,
+      "posted_ar_credit": 421052,
+      "rows_before": [
+        {
+          "row_id": "L-E08F779C",
+          "account": "accounts_receivable",
+          "debit_minor": 971200,
+          "credit_minor": 0,
+          "timestamp": "2026-09-22T05:13:58-03:00"
+        },
+        {
+          "row_id": "L-695C3417",
+          "account": "revenue",
+          "debit_minor": 0,
+          "credit_minor": 971200,
+          "timestamp": "2026-09-22T05:13:58-03:00"
+        },
+        {
+          "row_id": "L-801E45FD",
+          "account": "accounts_receivable",
+          "debit_minor": 0,
+          "credit_minor": 971200,
+          "timestamp": "2026-09-23T14:01:27-03:00"
+        },
+        {
+          "row_id": "L-4C279E4E",
+          "account": "cash",
+          "debit_minor": 971200,
+          "credit_minor": 0,
+          "timestamp": "2026-09-23T14:01:27-03:00"
+        }
+      ],
+      "rows_after": [
+        {
+          "row_id": "L-E08F779C",
+          "account": "accounts_receivable",
+          "debit_minor": 971200,
+          "credit_minor": 0,
+          "timestamp": "2026-09-22T05:13:58-03:00"
+        },
+        {
+          "row_id": "L-695C3417",
+          "account": "revenue",
+          "debit_minor": 0,
+          "credit_minor": 971200,
+          "timestamp": "2026-09-22T05:13:58-03:00"
+        },
+        {
+          "row_id": "L-801E45FD",
+          "account": "accounts_receivable",
+          "debit_minor": 0,
+          "credit_minor": 421052,
+          "timestamp": "2026-09-23T14:01:27-03:00"
+        },
+        {
+          "row_id": "L-4C279E4E",
+          "account": "cash",
+          "debit_minor": 971200,
+          "credit_minor": 0,
+          "timestamp": "2026-09-23T14:01:27-03:00"
+        },
+        {
+          "row_id": "L-D2ADD1E6",
+          "account": "unapplied_cash",
+          "debit_minor": 0,
+          "credit_minor": 550148,
+          "timestamp": "2026-09-23T14:01:27-03:00"
+        }
+      ],
+      "issue_id": "ISS-02"
+    }
+  ],
+  "distractors": [
+    {
+      "kind": "tz_boundary_invoice",
+      "invoice": "INV-2D773286"
+    },
+    {
+      "kind": "tz_boundary_invoice",
+      "invoice": "INV-4A93C035"
+    },
+    {
+      "kind": "recurring_amount",
+      "invoices": [
+        "INV-0093C652",
+        "INV-3B8E0CA2"
+      ]
+    },
+    {
+      "kind": "recurring_amount",
+      "invoices": [
+        "INV-E0B9FFB1",
+        "INV-8542DDC7",
+        "INV-B462A327"
+      ]
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-4578CE5D",
+        "PAY-E95E9791"
+      ],
+      "invoice": "INV-FA574AE4"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-2B491AB1",
+      "invoice": "INV-B949EAB8"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-53FE8A66",
+        "PAY-73267CA4"
+      ],
+      "invoice": "INV-06F83F41"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-08356DC5",
+      "invoice": "INV-73968F69"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-CE43CCEF",
+      "invoice": "INV-8314B9B9"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-4D2FA464",
+        "PAY-71A00443"
+      ],
+      "invoice": "INV-4B99AD88"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-75484051",
+      "invoice": "INV-754D876C"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-1F92839C",
+        "PAY-00780F90"
+      ],
+      "invoice": "INV-14AE05E3"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-29185B81",
+        "PAY-5BD197E5"
+      ],
+      "invoice": "INV-B299BD91"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-19FAC9ED",
+        "PAY-79D0476A"
+      ],
+      "invoice": "INV-E99FEC00"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-572B185C",
+      "invoice": "INV-58AE9F0C"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-A60D52C0",
+        "PAY-FC44003B"
+      ],
+      "invoice": "INV-0633593B"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-5DC5AFC1",
+        "PAY-55EF4ABF"
+      ],
+      "invoice": "INV-1F29EB98"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-49AAC482",
+      "invoice": "INV-D973C96B"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-AD6BA06E",
+      "invoice": "INV-3271FBDD"
+    },
+    {
+      "kind": "legit_partial_payment",
+      "payment": "PAY-DD1EE56E",
+      "invoice": "INV-0093C652"
+    },
+    {
+      "kind": "split_payment",
+      "payments": [
+        "PAY-0B15C927",
+        "PAY-78E2065E"
+      ],
+      "invoice": "INV-3B8E0CA2"
+    },
+    {
+      "kind": "multi_invoice_payment",
+      "payment": "PAY-5624854E"
+    },
+    {
+      "kind": "multi_invoice_payment",
+      "payment": "PAY-F23A920B"
+    },
+    {
+      "kind": "multi_invoice_payment",
+      "payment": "PAY-00DC679A"
+    },
+    {
+      "kind": "multi_invoice_payment",
+      "payment": "PAY-F403F651"
+    },
+    {
+      "kind": "multi_invoice_payment",
+      "payment": "PAY-DE304024"
+    },
+    {
+      "kind": "unreferenced_payment",
+      "payment": "PAY-6226EEFB"
+    },
+    {
+      "kind": "refund",
+      "payment": "PAY-1A6F9D4D",
+      "of": "PAY-6226EEFB"
+    },
+    {
+      "kind": "unreferenced_payment",
+      "payment": "PAY-CC37C32B"
+    },
+    {
+      "kind": "unreferenced_payment",
+      "payment": "PAY-1059ADCA"
+    },
+    {
+      "kind": "refund",
+      "payment": "PAY-DA6D44D5",
+      "of": "PAY-1059ADCA"
+    },
+    {
+      "kind": "unreferenced_payment",
+      "payment": "PAY-9CC19DBB"
+    },
+    {
+      "kind": "next_period_unposted_invoice",
+      "invoice": "INV-BB451756"
+    }
+  ]
+}

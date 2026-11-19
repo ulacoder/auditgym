@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-B511C228CA28",
+  "company": "Maple Trading LLP",
+  "base_currency": "EUR",
+  "currency_exponents": {
+    "CHF": 2,
+    "EUR": 2
+  },
+  "period_start": "2026-12-01T00:00:00+05:00",
+  "period_end": "2027-01-01T00:00:00+05:00",
+  "period_end_exclusive": true,
+  "timezone": "+05:00",
+  "counts": {
+    "ledger_rows": 313,
+    "invoices": 58,
+    "payments": 42,
+    "fx_rates": 36,
+    "documents": 100
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-37052C106E97",
+  "company": "Vega Motors LLP",
+  "base_currency": "EUR",
+  "currency_exponents": {
+    "EUR": 2,
+    "GBP": 2,
+    "JPY": 0
+  },
+  "period_start": "2025-03-01T00:00:00+09:00",
+  "period_end": "2025-04-01T00:00:00+09:00",
+  "period_end_exclusive": true,
+  "timezone": "+09:00",
+  "counts": {
+    "ledger_rows": 285,
+    "invoices": 49,
+    "payments": 45,
+    "fx_rates": 76,
+    "documents": 94
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

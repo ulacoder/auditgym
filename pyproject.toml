@@ -1,0 +1,13 @@
+[project]
+name = "auditgym"
+version = "1.0.0"
+description = "Reproducible RL environment for training financial-audit agents (synthetic companies, hidden errors, grader)"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest==8.3.3"]
+
+[tool.setuptools]
+packages = ["auditgym", "auditgym.policies"]

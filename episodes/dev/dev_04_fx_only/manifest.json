@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-9515271FBB4B",
+  "company": "Tengri Agro LLP",
+  "base_currency": "GBP",
+  "currency_exponents": {
+    "EUR": 2,
+    "GBP": 2,
+    "KWD": 3
+  },
+  "period_start": "2026-07-01T00:00:00+06:00",
+  "period_end": "2026-08-01T00:00:00+06:00",
+  "period_end_exclusive": true,
+  "timezone": "+06:00",
+  "counts": {
+    "ledger_rows": 353,
+    "invoices": 62,
+    "payments": 54,
+    "fx_rates": 74,
+    "documents": 116
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

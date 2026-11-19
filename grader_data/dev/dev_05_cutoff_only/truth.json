@@ -1,0 +1,45 @@
+{
+  "episode_id": "EP-EAA7D84D0791",
+  "issues": [
+    {
+      "issue_id": "ISS-01",
+      "type": "period_cutoff",
+      "affected_ids": [
+        "INV-8657E658"
+      ],
+      "expected_amount_minor": 1023209,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-72C313AE",
+          "L-23FEB032"
+        ],
+        [
+          "D-72C313AE",
+          "L-0C83C05C"
+        ]
+      ],
+      "interaction": null
+    },
+    {
+      "issue_id": "ISS-02",
+      "type": "period_cutoff",
+      "affected_ids": [
+        "INV-BD14989C"
+      ],
+      "expected_amount_minor": 531000,
+      "currency": "GBP",
+      "evidence_sets": [
+        [
+          "D-644AFB15",
+          "L-4E57A5B6"
+        ],
+        [
+          "D-644AFB15",
+          "L-FF0456CA"
+        ]
+      ],
+      "interaction": null
+    }
+  ]
+}

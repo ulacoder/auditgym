@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-118B4BBF49B6",
+  "company": "Lumen Labs LLP",
+  "base_currency": "GBP",
+  "currency_exponents": {
+    "GBP": 2,
+    "JPY": 0
+  },
+  "period_start": "2026-02-01T00:00:00-05:00",
+  "period_end": "2026-03-01T00:00:00-05:00",
+  "period_end_exclusive": true,
+  "timezone": "-05:00",
+  "counts": {
+    "ledger_rows": 346,
+    "invoices": 59,
+    "payments": 50,
+    "fx_rates": 35,
+    "documents": 109
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}

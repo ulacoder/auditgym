@@ -1,0 +1,4395 @@
+{
+  "random_explorer": {
+    "episodes": [
+      {
+        "name": "dev_00_clean",
+        "episode_id": "EP-37052C106E97",
+        "steps": 14,
+        "time_s": 0.067411031000006,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 1.0,
+          "reward": 0.974,
+          "inspection_steps": 13,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_01_clean_eur",
+        "episode_id": "EP-3C6719B07AD2",
+        "steps": 27,
+        "time_s": 0.01980479999997442,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 2,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 26,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_02_dup_only",
+        "episode_id": "EP-04A6C1FB5615",
+        "steps": 18,
+        "time_s": 0.01499026600004072,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 2,
+          "fn": 2,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 17,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "duplicate_invoice"
+        }
+      },
+      {
+        "name": "dev_03_alloc_only",
+        "episode_id": "EP-7FE4F6C4C55B",
+        "steps": 9,
+        "time_s": 0.015324175000046125,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 3,
+          "fn": 3,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 8,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "payment_allocation",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_04_fx_only",
+        "episode_id": "EP-9515271FBB4B",
+        "steps": 32,
+        "time_s": 0.01688299099998858,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 1,
+          "fn": 3,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 31,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_05_cutoff_only",
+        "episode_id": "EP-EAA7D84D0791",
+        "steps": 13,
+        "time_s": 0.015988041000014164,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02"
+          ],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 12,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "period_cutoff",
+          "ISS-02": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_06_mixed",
+        "episode_id": "EP-118B4BBF49B6",
+        "steps": 31,
+        "time_s": 0.018733778000068924,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 30,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "payment_allocation",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_07_interaction_fx_partial",
+        "episode_id": "EP-3CE76B222A27",
+        "steps": 32,
+        "time_s": 0.022947032999923067,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 3,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 31,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_08_interaction_boundary",
+        "episode_id": "EP-3ACF2B2D3050",
+        "steps": 36,
+        "time_s": 0.0187813150000693,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 3,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 35,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_09_max_issues",
+        "episode_id": "EP-7F4140A604B3",
+        "steps": 20,
+        "time_s": 0.018637314999978116,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 1,
+          "fn": 12,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05",
+            "ISS-06",
+            "ISS-07",
+            "ISS-08",
+            "ISS-09",
+            "ISS-10",
+            "ISS-11",
+            "ISS-12"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 19,
+          "outcome": "submitted"
+        },
+        "n_issues": 12,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "duplicate_invoice",
+          "ISS-06": "duplicate_invoice",
+          "ISS-07": "fx_conversion",
+          "ISS-08": "fx_conversion",
+          "ISS-09": "payment_allocation",
+          "ISS-10": "payment_allocation",
+          "ISS-11": "period_cutoff",
+          "ISS-12": "period_cutoff"
+        }
+      }
+    ],
+    "summary": {
+      "episodes": 10,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.1,
+      "micro_f1": 0.0,
+      "mean_return": -0.8026,
+      "mean_steps": 23.2,
+      "mean_time_s": 0.022950074500010943,
+      "tp": 0,
+      "fp": 15,
+      "fn": 37,
+      "invalid_submissions": 0,
+      "failure_reasons": {
+        "no_issue_with_these_ids": 15
+      },
+      "per_type": {
+        "duplicate_invoice": {
+          "found": 0,
+          "total": 5,
+          "fp": 3
+        },
+        "fx_conversion": {
+          "found": 0,
+          "total": 13,
+          "fp": 4
+        },
+        "payment_allocation": {
+          "found": 0,
+          "total": 14,
+          "fp": 2
+        },
+        "period_cutoff": {
+          "found": 0,
+          "total": 5,
+          "fp": 6
+        }
+      }
+    }
+  },
+  "naive_reconciler": {
+    "episodes": [
+      {
+        "name": "dev_00_clean",
+        "episode_id": "EP-37052C106E97",
+        "steps": 11,
+        "time_s": 0.06447968999998466,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 12,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 10,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_01_clean_eur",
+        "episode_id": "EP-3C6719B07AD2",
+        "steps": 16,
+        "time_s": 0.02108696499999496,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 16,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 15,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_02_dup_only",
+        "episode_id": "EP-04A6C1FB5615",
+        "steps": 14,
+        "time_s": 0.021979987000008805,
+        "result": {
+          "valid": true,
+          "tp": 2,
+          "fp": 11,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 5,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.15384615384615385,
+          "recall": 1.0,
+          "f1": 0.26666666666666666,
+          "reward": -0.4926666666666667,
+          "inspection_steps": 13,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "duplicate_invoice"
+        }
+      },
+      {
+        "name": "dev_03_alloc_only",
+        "episode_id": "EP-7FE4F6C4C55B",
+        "steps": 14,
+        "time_s": 0.01996718600003078,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 12,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 11,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 13,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 14,
+              "issue_id": "ISS-01"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.3333333333333333,
+          "reward": -0.3593333333333334,
+          "inspection_steps": 13,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "payment_allocation",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_04_fx_only",
+        "episode_id": "EP-9515271FBB4B",
+        "steps": 15,
+        "time_s": 0.01969221199999538,
+        "result": {
+          "valid": true,
+          "tp": 1,
+          "fp": 14,
+          "fn": 2,
+          "pairs": [
+            {
+              "finding_index": 5,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "amount"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.06666666666666667,
+          "recall": 0.3333333333333333,
+          "f1": 0.1111111111111111,
+          "reward": -0.8057777777777778,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_05_cutoff_only",
+        "episode_id": "EP-EAA7D84D0791",
+        "steps": 15,
+        "time_s": 0.021156262000090464,
+        "result": {
+          "valid": true,
+          "tp": 1,
+          "fp": 13,
+          "fn": 1,
+          "pairs": [
+            {
+              "finding_index": 11,
+              "issue_id": "ISS-01"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.07142857142857142,
+          "recall": 0.5,
+          "f1": 0.125,
+          "reward": -0.778,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "period_cutoff",
+          "ISS-02": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_06_mixed",
+        "episode_id": "EP-118B4BBF49B6",
+        "steps": 12,
+        "time_s": 0.019834643000081087,
+        "result": {
+          "valid": true,
+          "tp": 4,
+          "fp": 10,
+          "fn": 1,
+          "pairs": [
+            {
+              "finding_index": 6,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 9,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 10,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 12,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.2857142857142857,
+          "recall": 0.8,
+          "f1": 0.42105263157894735,
+          "reward": -0.1798947368421053,
+          "inspection_steps": 11,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "payment_allocation",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_07_interaction_fx_partial",
+        "episode_id": "EP-3CE76B222A27",
+        "steps": 16,
+        "time_s": 0.02770139899996593,
+        "result": {
+          "valid": true,
+          "tp": 4,
+          "fp": 18,
+          "fn": 1,
+          "pairs": [
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 6,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 18,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 21,
+              "issue_id": "ISS-04"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.18181818181818182,
+          "recall": 0.8,
+          "f1": 0.2962962962962963,
+          "reward": -0.4374074074074074,
+          "inspection_steps": 15,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_08_interaction_boundary",
+        "episode_id": "EP-3ACF2B2D3050",
+        "steps": 15,
+        "time_s": 0.020148604000041814,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 12,
+          "fn": 2,
+          "pairs": [
+            {
+              "finding_index": 12,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 13,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 14,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-03"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.2,
+          "recall": 0.6,
+          "f1": 0.3,
+          "reward": -0.428,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_09_max_issues",
+        "episode_id": "EP-7F4140A604B3",
+        "steps": 15,
+        "time_s": 0.02655447000006461,
+        "result": {
+          "valid": true,
+          "tp": 7,
+          "fp": 17,
+          "fn": 5,
+          "pairs": [
+            {
+              "finding_index": 5,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 11,
+              "issue_id": "ISS-06"
+            },
+            {
+              "finding_index": 16,
+              "issue_id": "ISS-11"
+            },
+            {
+              "finding_index": 19,
+              "issue_id": "ISS-10"
+            },
+            {
+              "finding_index": 20,
+              "issue_id": "ISS-09"
+            },
+            {
+              "finding_index": 22,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 23,
+              "issue_id": "ISS-04"
+            }
+          ],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-03",
+            "ISS-07",
+            "ISS-08",
+            "ISS-12"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.2916666666666667,
+          "recall": 0.5833333333333334,
+          "f1": 0.3888888888888889,
+          "reward": -0.2502222222222222,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 12,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "duplicate_invoice",
+          "ISS-06": "duplicate_invoice",
+          "ISS-07": "fx_conversion",
+          "ISS-08": "fx_conversion",
+          "ISS-09": "payment_allocation",
+          "ISS-10": "payment_allocation",
+          "ISS-11": "period_cutoff",
+          "ISS-12": "period_cutoff"
+        }
+      }
+    ],
+    "summary": {
+      "episodes": 10,
+      "mean_precision": 0.1451140526140526,
+      "mean_recall": 0.5616666666666666,
+      "mean_f1": 0.22423489278752437,
+      "micro_f1": 0.25380710659898476,
+      "mean_return": -0.5731302144249513,
+      "mean_steps": 14.3,
+      "mean_time_s": 0.02626014180002585,
+      "tp": 25,
+      "fp": 135,
+      "fn": 12,
+      "invalid_submissions": 0,
+      "failure_reasons": {
+        "amount": 1,
+        "no_issue_with_these_ids": 134
+      },
+      "per_type": {
+        "duplicate_invoice": {
+          "found": 5,
+          "total": 5,
+          "fp": 46
+        },
+        "fx_conversion": {
+          "found": 3,
+          "total": 13,
+          "fp": 33
+        },
+        "payment_allocation": {
+          "found": 14,
+          "total": 14,
+          "fp": 34
+        },
+        "period_cutoff": {
+          "found": 3,
+          "total": 5,
+          "fp": 22
+        }
+      }
+    }
+  },
+  "flag_all": {
+    "episodes": [
+      {
+        "name": "dev_00_clean",
+        "episode_id": "EP-37052C106E97",
+        "steps": 3,
+        "time_s": 0.05586666800002149,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_01_clean_eur",
+        "episode_id": "EP-3C6719B07AD2",
+        "steps": 3,
+        "time_s": 0.01619139499996436,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_02_dup_only",
+        "episode_id": "EP-04A6C1FB5615",
+        "steps": 3,
+        "time_s": 0.015615419000027941,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 2,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "duplicate_invoice"
+        }
+      },
+      {
+        "name": "dev_03_alloc_only",
+        "episode_id": "EP-7FE4F6C4C55B",
+        "steps": 3,
+        "time_s": 0.015878393999969376,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 3,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "payment_allocation",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_04_fx_only",
+        "episode_id": "EP-9515271FBB4B",
+        "steps": 3,
+        "time_s": 0.01708314600000449,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 3,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_05_cutoff_only",
+        "episode_id": "EP-EAA7D84D0791",
+        "steps": 3,
+        "time_s": 0.01482488400006332,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 2,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "period_cutoff",
+          "ISS-02": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_06_mixed",
+        "episode_id": "EP-118B4BBF49B6",
+        "steps": 3,
+        "time_s": 0.016015154999990955,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "payment_allocation",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_07_interaction_fx_partial",
+        "episode_id": "EP-3CE76B222A27",
+        "steps": 3,
+        "time_s": 0.02297365100002935,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "amount"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_08_interaction_boundary",
+        "episode_id": "EP-3ACF2B2D3050",
+        "steps": 3,
+        "time_s": 0.015217297999924995,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 5,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_09_max_issues",
+        "episode_id": "EP-7F4140A604B3",
+        "steps": 3,
+        "time_s": 0.01722133400005532,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 30,
+          "fn": 12,
+          "pairs": [],
+          "missed_issue_ids": [
+            "ISS-01",
+            "ISS-02",
+            "ISS-03",
+            "ISS-04",
+            "ISS-05",
+            "ISS-06",
+            "ISS-07",
+            "ISS-08",
+            "ISS-09",
+            "ISS-10",
+            "ISS-11",
+            "ISS-12"
+          ],
+          "unmatched_findings": [
+            {
+              "finding_index": 0,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 1,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 2,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 3,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 4,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 5,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 6,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 7,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 8,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 9,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 10,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 11,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 12,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 13,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 14,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 15,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 16,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 17,
+              "type": "period_cutoff",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 18,
+              "type": "duplicate_invoice",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 19,
+              "type": "fx_conversion",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 20,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 21,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 22,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 23,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 24,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 25,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 26,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 27,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 28,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            },
+            {
+              "finding_index": 29,
+              "type": "payment_allocation",
+              "reason": "no_issue_with_these_ids"
+            }
+          ],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "reward": -1.0,
+          "inspection_steps": 2,
+          "outcome": "submitted"
+        },
+        "n_issues": 12,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "duplicate_invoice",
+          "ISS-06": "duplicate_invoice",
+          "ISS-07": "fx_conversion",
+          "ISS-08": "fx_conversion",
+          "ISS-09": "payment_allocation",
+          "ISS-10": "payment_allocation",
+          "ISS-11": "period_cutoff",
+          "ISS-12": "period_cutoff"
+        }
+      }
+    ],
+    "summary": {
+      "episodes": 10,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0,
+      "mean_f1": 0.0,
+      "micro_f1": 0.0,
+      "mean_return": -1.0,
+      "mean_steps": 3,
+      "mean_time_s": 0.02068873440000516,
+      "tp": 0,
+      "fp": 300,
+      "fn": 37,
+      "invalid_submissions": 0,
+      "failure_reasons": {
+        "amount": 1,
+        "no_issue_with_these_ids": 299
+      },
+      "per_type": {
+        "duplicate_invoice": {
+          "found": 0,
+          "total": 5,
+          "fp": 70
+        },
+        "fx_conversion": {
+          "found": 0,
+          "total": 13,
+          "fp": 70
+        },
+        "payment_allocation": {
+          "found": 0,
+          "total": 14,
+          "fp": 100
+        },
+        "period_cutoff": {
+          "found": 0,
+          "total": 5,
+          "fp": 60
+        }
+      }
+    }
+  },
+  "oracle": {
+    "episodes": [
+      {
+        "name": "dev_00_clean",
+        "episode_id": "EP-37052C106E97",
+        "steps": 1,
+        "time_s": 0.06834542500007501,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_01_clean_eur",
+        "episode_id": "EP-3C6719B07AD2",
+        "steps": 1,
+        "time_s": 0.023819981000087864,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_02_dup_only",
+        "episode_id": "EP-04A6C1FB5615",
+        "steps": 1,
+        "time_s": 0.01781975500000499,
+        "result": {
+          "valid": true,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "duplicate_invoice"
+        }
+      },
+      {
+        "name": "dev_03_alloc_only",
+        "episode_id": "EP-7FE4F6C4C55B",
+        "steps": 1,
+        "time_s": 0.018277913000019907,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "payment_allocation",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_04_fx_only",
+        "episode_id": "EP-9515271FBB4B",
+        "steps": 1,
+        "time_s": 0.020663958000000093,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_05_cutoff_only",
+        "episode_id": "EP-EAA7D84D0791",
+        "steps": 1,
+        "time_s": 0.014734243000020797,
+        "result": {
+          "valid": true,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "period_cutoff",
+          "ISS-02": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_06_mixed",
+        "episode_id": "EP-118B4BBF49B6",
+        "steps": 1,
+        "time_s": 0.012231119000034596,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-05"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "payment_allocation",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_07_interaction_fx_partial",
+        "episode_id": "EP-3CE76B222A27",
+        "steps": 1,
+        "time_s": 0.01663610000002791,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-05"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_08_interaction_boundary",
+        "episode_id": "EP-3ACF2B2D3050",
+        "steps": 1,
+        "time_s": 0.012860490999969443,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-05"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_09_max_issues",
+        "episode_id": "EP-7F4140A604B3",
+        "steps": 1,
+        "time_s": 0.017428169000027083,
+        "result": {
+          "valid": true,
+          "tp": 12,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 5,
+              "issue_id": "ISS-06"
+            },
+            {
+              "finding_index": 6,
+              "issue_id": "ISS-07"
+            },
+            {
+              "finding_index": 7,
+              "issue_id": "ISS-08"
+            },
+            {
+              "finding_index": 8,
+              "issue_id": "ISS-09"
+            },
+            {
+              "finding_index": 9,
+              "issue_id": "ISS-10"
+            },
+            {
+              "finding_index": 10,
+              "issue_id": "ISS-11"
+            },
+            {
+              "finding_index": 11,
+              "issue_id": "ISS-12"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 1.0,
+          "inspection_steps": 0,
+          "outcome": "submitted"
+        },
+        "n_issues": 12,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "duplicate_invoice",
+          "ISS-06": "duplicate_invoice",
+          "ISS-07": "fx_conversion",
+          "ISS-08": "fx_conversion",
+          "ISS-09": "payment_allocation",
+          "ISS-10": "payment_allocation",
+          "ISS-11": "period_cutoff",
+          "ISS-12": "period_cutoff"
+        }
+      }
+    ],
+    "summary": {
+      "episodes": 10,
+      "mean_precision": 0.8,
+      "mean_recall": 0.8,
+      "mean_f1": 1.0,
+      "micro_f1": 1.0,
+      "mean_return": 1.0,
+      "mean_steps": 1,
+      "mean_time_s": 0.02228171540002677,
+      "tp": 37,
+      "fp": 0,
+      "fn": 0,
+      "invalid_submissions": 0,
+      "failure_reasons": {},
+      "per_type": {
+        "duplicate_invoice": {
+          "found": 5,
+          "total": 5,
+          "fp": 0
+        },
+        "fx_conversion": {
+          "found": 13,
+          "total": 13,
+          "fp": 0
+        },
+        "payment_allocation": {
+          "found": 14,
+          "total": 14,
+          "fp": 0
+        },
+        "period_cutoff": {
+          "found": 5,
+          "total": 5,
+          "fp": 0
+        }
+      }
+    }
+  },
+  "scripted_auditor": {
+    "episodes": [
+      {
+        "name": "dev_00_clean",
+        "episode_id": "EP-37052C106E97",
+        "steps": 11,
+        "time_s": 0.06592354999997951,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 1.0,
+          "reward": 0.98,
+          "inspection_steps": 10,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_01_clean_eur",
+        "episode_id": "EP-3C6719B07AD2",
+        "steps": 16,
+        "time_s": 0.02375690899998517,
+        "result": {
+          "valid": true,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 1.0,
+          "reward": 0.97,
+          "inspection_steps": 15,
+          "outcome": "submitted"
+        },
+        "n_issues": 0,
+        "issue_types": {}
+      },
+      {
+        "name": "dev_02_dup_only",
+        "episode_id": "EP-04A6C1FB5615",
+        "steps": 14,
+        "time_s": 0.021661870000002637,
+        "result": {
+          "valid": true,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-01"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.974,
+          "inspection_steps": 13,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "duplicate_invoice"
+        }
+      },
+      {
+        "name": "dev_03_alloc_only",
+        "episode_id": "EP-7FE4F6C4C55B",
+        "steps": 14,
+        "time_s": 0.022402600999953393,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.974,
+          "inspection_steps": 13,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "payment_allocation",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_04_fx_only",
+        "episode_id": "EP-9515271FBB4B",
+        "steps": 15,
+        "time_s": 0.02141785300000265,
+        "result": {
+          "valid": true,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-01"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.972,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 3,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_05_cutoff_only",
+        "episode_id": "EP-EAA7D84D0791",
+        "steps": 15,
+        "time_s": 0.021303948999957356,
+        "result": {
+          "valid": true,
+          "tp": 2,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.972,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 2,
+        "issue_types": {
+          "ISS-01": "period_cutoff",
+          "ISS-02": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_06_mixed",
+        "episode_id": "EP-118B4BBF49B6",
+        "steps": 12,
+        "time_s": 0.021717208000040955,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-02"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-03"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.978,
+          "inspection_steps": 11,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "duplicate_invoice",
+          "ISS-02": "fx_conversion",
+          "ISS-03": "payment_allocation",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "period_cutoff"
+        }
+      },
+      {
+        "name": "dev_07_interaction_fx_partial",
+        "episode_id": "EP-3CE76B222A27",
+        "steps": 16,
+        "time_s": 0.026505402999987382,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.97,
+          "inspection_steps": 15,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "fx_conversion"
+        }
+      },
+      {
+        "name": "dev_08_interaction_boundary",
+        "episode_id": "EP-3ACF2B2D3050",
+        "steps": 15,
+        "time_s": 0.020189938999919832,
+        "result": {
+          "valid": true,
+          "tp": 5,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.972,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 5,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "payment_allocation"
+        }
+      },
+      {
+        "name": "dev_09_max_issues",
+        "episode_id": "EP-7F4140A604B3",
+        "steps": 15,
+        "time_s": 0.024466726000014205,
+        "result": {
+          "valid": true,
+          "tp": 12,
+          "fp": 0,
+          "fn": 0,
+          "pairs": [
+            {
+              "finding_index": 0,
+              "issue_id": "ISS-11"
+            },
+            {
+              "finding_index": 1,
+              "issue_id": "ISS-12"
+            },
+            {
+              "finding_index": 2,
+              "issue_id": "ISS-01"
+            },
+            {
+              "finding_index": 3,
+              "issue_id": "ISS-05"
+            },
+            {
+              "finding_index": 4,
+              "issue_id": "ISS-06"
+            },
+            {
+              "finding_index": 5,
+              "issue_id": "ISS-03"
+            },
+            {
+              "finding_index": 6,
+              "issue_id": "ISS-04"
+            },
+            {
+              "finding_index": 7,
+              "issue_id": "ISS-09"
+            },
+            {
+              "finding_index": 8,
+              "issue_id": "ISS-07"
+            },
+            {
+              "finding_index": 9,
+              "issue_id": "ISS-08"
+            },
+            {
+              "finding_index": 10,
+              "issue_id": "ISS-10"
+            },
+            {
+              "finding_index": 11,
+              "issue_id": "ISS-02"
+            }
+          ],
+          "missed_issue_ids": [],
+          "unmatched_findings": [],
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "reward": 0.972,
+          "inspection_steps": 14,
+          "outcome": "submitted"
+        },
+        "n_issues": 12,
+        "issue_types": {
+          "ISS-01": "fx_conversion",
+          "ISS-02": "payment_allocation",
+          "ISS-03": "fx_conversion",
+          "ISS-04": "payment_allocation",
+          "ISS-05": "duplicate_invoice",
+          "ISS-06": "duplicate_invoice",
+          "ISS-07": "fx_conversion",
+          "ISS-08": "fx_conversion",
+          "ISS-09": "payment_allocation",
+          "ISS-10": "payment_allocation",
+          "ISS-11": "period_cutoff",
+          "ISS-12": "period_cutoff"
+        }
+      }
+    ],
+    "summary": {
+      "episodes": 10,
+      "mean_precision": 0.8,
+      "mean_recall": 0.8,
+      "mean_f1": 1.0,
+      "micro_f1": 1.0,
+      "mean_return": 0.9733999999999999,
+      "mean_steps": 14.3,
+      "mean_time_s": 0.02693460079998431,
+      "tp": 37,
+      "fp": 0,
+      "fn": 0,
+      "invalid_submissions": 0,
+      "failure_reasons": {},
+      "per_type": {
+        "duplicate_invoice": {
+          "found": 5,
+          "total": 5,
+          "fp": 0
+        },
+        "fx_conversion": {
+          "found": 13,
+          "total": 13,
+          "fp": 0
+        },
+        "payment_allocation": {
+          "found": 14,
+          "total": 14,
+          "fp": 0
+        },
+        "period_cutoff": {
+          "found": 5,
+          "total": 5,
+          "fp": 0
+        }
+      }
+    }
+  }
+}

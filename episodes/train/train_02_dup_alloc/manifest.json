@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "env_version": "1.0.0",
+  "episode_id": "EP-D6DAE1DBEA2D",
+  "company": "Tengri Motors LLP",
+  "base_currency": "EUR",
+  "currency_exponents": {
+    "CNY": 2,
+    "EUR": 2,
+    "JPY": 0
+  },
+  "period_start": "2026-09-01T00:00:00-03:00",
+  "period_end": "2026-10-01T00:00:00-03:00",
+  "period_end_exclusive": true,
+  "timezone": "-03:00",
+  "counts": {
+    "ledger_rows": 354,
+    "invoices": 66,
+    "payments": 60,
+    "fx_rates": 70,
+    "documents": 126
+  },
+  "rounding": {
+    "mode": "ROUND_HALF_UP",
+    "unit": "minor unit of base currency"
+  },
+  "null_encoding": "JSON null; empty field in CSV"
+}
