@@ -1,29 +1,31 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-A00B98E4AFCD",
-  "company": "Orion Build LLP",
-  "base_currency": "GBP",
+  "episode_id": "EP-806C4410A8A1",
+  "company": "Altyn Retail LLP",
+  "base_currency": "KZT",
   "currency_exponents": {
+    "CNY": 2,
     "EUR": 2,
     "GBP": 2,
-    "KWD": 3,
-    "USD": 2
+    "KZT": 2
   },
-  "period_start": "2025-11-01T00:00:00+09:00",
-  "period_end": "2025-12-01T00:00:00+09:00",
+  "period_start": "2026-10-01T00:00:00+00:00",
+  "period_end": "2026-11-01T00:00:00+00:00",
   "period_end_exclusive": true,
-  "timezone": "+09:00",
+  "timezone": "+00:00",
   "counts": {
-    "ledger_rows": 348,
-    "invoices": 67,
-    "payments": 63,
-    "fx_rates": 111,
-    "documents": 130
+    "ledger_rows": 371,
+    "invoices": 52,
+    "payments": 46,
+    "fx_rates": 114,
+    "documents": 98
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

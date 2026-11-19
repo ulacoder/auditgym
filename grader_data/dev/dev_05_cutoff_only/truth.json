@@ -1,22 +1,22 @@
 {
-  "episode_id": "EP-EAA7D84D0791",
+  "episode_id": "EP-D0E2AF428537",
   "issues": [
     {
       "issue_id": "ISS-01",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-8657E658"
+        "INV-36A30D06"
       ],
-      "expected_amount_minor": 1023209,
+      "expected_amount_minor": 102500,
       "currency": "GBP",
       "evidence_sets": [
         [
-          "D-72C313AE",
-          "L-23FEB032"
+          "D-B36169B8",
+          "L-920CA074"
         ],
         [
-          "D-72C313AE",
-          "L-0C83C05C"
+          "D-B36169B8",
+          "L-C6412A28"
         ]
       ],
       "interaction": null
@@ -25,18 +25,18 @@
       "issue_id": "ISS-02",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-BD14989C"
+        "INV-5CC8BFB7"
       ],
-      "expected_amount_minor": 531000,
+      "expected_amount_minor": 2324700,
       "currency": "GBP",
       "evidence_sets": [
         [
-          "D-644AFB15",
-          "L-4E57A5B6"
+          "D-E5DF9B18",
+          "L-D45B9256"
         ],
         [
-          "D-644AFB15",
-          "L-FF0456CA"
+          "D-E5DF9B18",
+          "L-3D9C1760"
         ]
       ],
       "interaction": null

@@ -8,6 +8,8 @@ from decimal import Decimal, DivisionByZero, InvalidOperation, localcontext
 _ALLOWED = re.compile(r"[0-9.\s+\-*/%()]*")
 MAX_LEN = 300
 MAX_ABS = Decimal("1e30")
+MIN_ABS = Decimal("1e-30")      # ненулевые результаты меньше по модулю — ошибка (иначе огромный вывод)
+MAX_DIGITS = 30                 # значащих цифр в константе
 
 
 class CalcError(ValueError):
@@ -32,8 +34,13 @@ def evaluate(expression) -> str:
         if isinstance(node, ast.Expression):
             return ev(node.body, depth + 1)
         if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)) and not isinstance(node.value, bool):
-            seg = ast.get_source_segment(expression, node)
-            return Decimal(seg.strip())
+            seg = ast.get_source_segment(expression, node).strip()
+            if len(seg.replace(".", "").lstrip("0")) > MAX_DIGITS:
+                raise CalcError(f"numbers are limited to {MAX_DIGITS} significant digits")
+            v = Decimal(seg)
+            if abs(v) > MAX_ABS:
+                raise CalcError("number too large")
+            return v
         if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub)):
             v = ev(node.operand, depth + 1)
             return v if isinstance(node.op, ast.UAdd) else -v
@@ -60,6 +67,8 @@ def evaluate(expression) -> str:
                 raise CalcError("operator not allowed")
             if abs(r) > MAX_ABS:
                 raise CalcError("result too large")
+            if r != 0 and abs(r) < MIN_ABS:
+                raise CalcError("result too small")
             return r
         raise CalcError("only arithmetic on decimal numbers is allowed")
 

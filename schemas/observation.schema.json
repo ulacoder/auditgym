@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Наблюдение шага (первое наблюдение reset описано в README)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "step",
+    "steps_remaining",
+    "tool",
+    "result",
+    "error"
+  ],
+  "properties": {
+    "step": {
+      "type": "integer"
+    },
+    "steps_remaining": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tool": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "result": {
+      "anyOf": [
+        {
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "code",
+            "message"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "code": {
+              "enum": [
+                "invalid_action",
+                "unknown_tool",
+                "invalid_args",
+                "unknown_table",
+                "unknown_id",
+                "invalid_cursor",
+                "calculator_error",
+                "invalid_submission",
+                "time_limit",
+                "episode_finished"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  }
+}

@@ -24,7 +24,7 @@ AMOUNT_ABS_TOL = 1
 AMOUNT_REL_TOL = Decimal("0.0005")
 MAX_FINDINGS = 30
 MAX_EVIDENCE = 10
-MAX_AFFECTED = 10
+MAX_AFFECTED = 30
 MAX_EXPLANATION = 1000
 STEP_COST = Decimal("0.002")
 
@@ -135,7 +135,7 @@ def match(findings: list[dict], issues: list[dict]) -> dict:
             reason = "duplicate_of_matched"
         else:
             reason = reasons[0]
-        near.append({"finding_index": i, "type": f["type"], "reason": reason})
+        near.append({"finding_index": i, "type": f["type"], "reason": reason, "affected_ids": f["affected_ids"]})
     return {"tp": tp, "fp": fp, "fn": fn,
             "pairs": [{"finding_index": i, "issue_id": issues[j]["issue_id"]} for i, j in sorted(matched.items())],
             "missed_issue_ids": [issues[j]["issue_id"] for j in range(len(issues)) if owner[j] == -1],

@@ -1,28 +1,31 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-9515271FBB4B",
-  "company": "Tengri Agro LLP",
-  "base_currency": "GBP",
+  "episode_id": "EP-A93C64BEE889",
+  "company": "Kite Motors LLP",
+  "base_currency": "KZT",
   "currency_exponents": {
-    "EUR": 2,
-    "GBP": 2,
-    "KWD": 3
+    "CHF": 2,
+    "CNY": 2,
+    "KWD": 3,
+    "KZT": 2
   },
-  "period_start": "2026-07-01T00:00:00+06:00",
-  "period_end": "2026-08-01T00:00:00+06:00",
+  "period_start": "2026-03-01T00:00:00+06:00",
+  "period_end": "2026-04-01T00:00:00+06:00",
   "period_end_exclusive": true,
   "timezone": "+06:00",
   "counts": {
-    "ledger_rows": 353,
-    "invoices": 62,
-    "payments": 54,
-    "fx_rates": 74,
-    "documents": 116
+    "ledger_rows": 299,
+    "invoices": 55,
+    "payments": 46,
+    "fx_rates": 111,
+    "documents": 101
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

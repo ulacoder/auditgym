@@ -1,28 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-04A6C1FB5615",
-  "company": "Silk Labs LLP",
-  "base_currency": "KZT",
+  "episode_id": "EP-0A2D0D4F4650",
+  "company": "Zenit Studio LLP",
+  "base_currency": "USD",
   "currency_exponents": {
-    "CHF": 2,
+    "KWD": 3,
     "KZT": 2,
     "USD": 2
   },
-  "period_start": "2025-06-01T00:00:00+03:00",
-  "period_end": "2025-07-01T00:00:00+03:00",
+  "period_start": "2026-07-01T00:00:00+05:00",
+  "period_end": "2026-08-01T00:00:00+05:00",
   "period_end_exclusive": true,
-  "timezone": "+03:00",
+  "timezone": "+05:00",
   "counts": {
-    "ledger_rows": 328,
+    "ledger_rows": 393,
     "invoices": 64,
-    "payments": 63,
+    "payments": 55,
     "fx_rates": 74,
-    "documents": 127
+    "documents": 119
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

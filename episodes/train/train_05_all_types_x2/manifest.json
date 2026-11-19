@@ -1,29 +1,31 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-2AD5FD7A7E36",
-  "company": "Vega Textiles LLP",
-  "base_currency": "EUR",
+  "episode_id": "EP-9269A20E1FB5",
+  "company": "Lumen Pharma LLP",
+  "base_currency": "GBP",
   "currency_exponents": {
-    "CHF": 2,
     "EUR": 2,
+    "GBP": 2,
     "JPY": 0,
     "KWD": 3
   },
-  "period_start": "2025-12-01T00:00:00+05:00",
-  "period_end": "2026-01-01T00:00:00+05:00",
+  "period_start": "2026-06-01T00:00:00+00:00",
+  "period_end": "2026-07-01T00:00:00+00:00",
   "period_end_exclusive": true,
-  "timezone": "+05:00",
+  "timezone": "+00:00",
   "counts": {
-    "ledger_rows": 414,
-    "invoices": 70,
-    "payments": 65,
+    "ledger_rows": 398,
+    "invoices": 76,
+    "payments": 67,
     "fx_rates": 108,
-    "documents": 135
+    "documents": 143
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

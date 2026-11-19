@@ -65,7 +65,7 @@ def test_flag_everything_with_all_evidence_still_needs_exact_ids_and_amounts(ep_
     all_ids = [r["row_id"] for r in ep_all.tables["ledger"]][:10]
     fs = oracle_findings(ep_all)
     for f in fs:
-        f["claimed_amount_minor"] += 10_000
+        f["claimed_amount_minor"] += max(10_000, f["claimed_amount_minor"] // 100)   # 1 % > допуска
     assert R(ep_all, fs)["tp"] == 0
     fs = oracle_findings(ep_all)
     for f in fs:
@@ -125,7 +125,7 @@ def test_explanation_text_does_not_affect_reward(ep_all):
     assert R(ep_all, fs)["reward"] == a
     bad = copy.deepcopy(fs)
     for f in bad:
-        f["claimed_amount_minor"] += 5000
+        f["claimed_amount_minor"] += max(5000, f["claimed_amount_minor"] // 100)
     assert R(ep_all, bad)["tp"] == 0
 
 

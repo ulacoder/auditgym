@@ -1,27 +1,31 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-BC2E136B1BD3",
-  "company": "Orion Pharma LLP",
+  "episode_id": "EP-70D4C1995817",
+  "company": "Tengri Agro LLP",
   "base_currency": "KZT",
   "currency_exponents": {
-    "GBP": 2,
-    "KZT": 2
+    "CHF": 2,
+    "JPY": 0,
+    "KZT": 2,
+    "USD": 2
   },
-  "period_start": "2026-12-01T00:00:00-03:00",
-  "period_end": "2027-01-01T00:00:00-03:00",
+  "period_start": "2026-07-01T00:00:00+05:00",
+  "period_end": "2026-08-01T00:00:00+05:00",
   "period_end_exclusive": true,
-  "timezone": "-03:00",
+  "timezone": "+05:00",
   "counts": {
-    "ledger_rows": 361,
-    "invoices": 73,
-    "payments": 62,
-    "fx_rates": 36,
-    "documents": 135
+    "ledger_rows": 370,
+    "invoices": 48,
+    "payments": 48,
+    "fx_rates": 111,
+    "documents": 96
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

@@ -1,18 +1,24 @@
 {
-  "episode_id": "EP-9E49D419E057",
+  "episode_id": "EP-E57893713CC8",
   "issues": [
     {
       "issue_id": "ISS-01",
       "type": "duplicate_invoice",
       "affected_ids": [
-        "INV-27775CEF"
+        "INV-EA3FED18"
       ],
-      "expected_amount_minor": 421739413,
-      "currency": "KZT",
+      "expected_amount_minor": 26500,
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "D-181E3B8B",
-          "D-BA722C28"
+          "D-4FC32840",
+          "D-AEE0004B",
+          "L-906220A7"
+        ],
+        [
+          "D-4FC32840",
+          "D-AEE0004B",
+          "L-1BD23B64"
         ]
       ],
       "interaction": null
@@ -21,14 +27,15 @@
       "issue_id": "ISS-02",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-70549DEF"
+        "PAY-D66B4AFE"
       ],
-      "expected_amount_minor": 7113434,
-      "currency": "KZT",
+      "expected_amount_minor": 8121,
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "D-B1B246CA",
-          "L-C20BA2AB"
+          "D-4861B917",
+          "L-257B5C6B",
+          "2025-03-20:CHF:EUR"
         ]
       ],
       "interaction": null
@@ -37,15 +44,17 @@
       "issue_id": "ISS-03",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-BCAA11A0",
-        "INV-E9089533"
+        "PAY-56762F47",
+        "INV-A6D90516"
       ],
-      "expected_amount_minor": 76019184,
-      "currency": "KZT",
+      "expected_amount_minor": 165442,
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "D-1740A908",
-          "L-B7574233"
+          "D-C43AE524",
+          "D-4657648E",
+          "L-B128C136",
+          "L-A20B84AE"
         ]
       ],
       "interaction": null
@@ -54,18 +63,18 @@
       "issue_id": "ISS-04",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-8F553B14"
+        "INV-CFCBD76B"
       ],
-      "expected_amount_minor": 253828800,
-      "currency": "KZT",
+      "expected_amount_minor": 662100,
+      "currency": "EUR",
       "evidence_sets": [
         [
-          "D-D19230B6",
-          "L-1F843AFB"
+          "D-B3BD475B",
+          "L-37E75D03"
         ],
         [
-          "D-D19230B6",
-          "L-8513079C"
+          "D-B3BD475B",
+          "L-403F6E57"
         ]
       ],
       "interaction": null

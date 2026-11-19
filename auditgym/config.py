@@ -16,8 +16,8 @@ DEFAULT_CONFIG: dict = {
     "n_foreign_currencies": [1, 3],
     "foreign_customer_share": 0.4,
     "n_customers": [8, 18],
-    "n_invoices": [35, 65],
-    "n_expenses": [25, 60],
+    "n_invoices": [30, 55],
+    "n_expenses": [45, 85],
     "errors": {t: 0 for t in ERROR_TYPES},
     "interactions": {k: 0 for k in INTERACTIONS},
     "error_options": {
@@ -68,6 +68,11 @@ def resolve_config(config: dict | None) -> dict:
         raise ValueError(f"too many issues: {n} > {MAX_ISSUES}")
     if any(int(v) < 0 for v in list(cfg["errors"].values()) + list(cfg["interactions"].values())):
         raise ValueError("negative error count")
+    # границы размеров: эпизод остаётся в масштабе кейса и не может «повесить» сервер
+    for key, hi in (("n_customers", 80), ("n_invoices", 160), ("n_expenses", 800), ("n_foreign_currencies", 6)):
+        lo_v, hi_v = (cfg[key] if isinstance(cfg[key], (list, tuple)) else (cfg[key], cfg[key]))
+        if not (type(lo_v) is int and type(hi_v) is int) or not (1 <= lo_v <= hi_v <= hi):
+            raise ValueError(f"{key} must be integers within 1..{hi}")
     return cfg
 
 

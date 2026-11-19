@@ -8,7 +8,6 @@
 """
 from __future__ import annotations
 
-import json
 import random
 from collections import defaultdict
 from decimal import ROUND_HALF_UP, Decimal
@@ -99,20 +98,30 @@ class NaiveReconciler(_Reader):
             exp = conv(inv["total_minor"], inv["currency"], d)
             if exp is not None and exp != ar["debit_minor"]:
                 out.append(_mk("fx_conversion", [inv["invoice_id"]], abs(exp - ar["debit_minor"]), base,
-                               [inv["doc_id"], ar["row_id"]], "rate mismatch"))
+                               [inv["doc_id"], ar["row_id"], f"{d}:{inv['currency']}:{base}"], "rate mismatch"))
             k = (inv["entity_id"], inv["currency"], inv["total_minor"])
             if k in seen:
                 out.append(_mk("duplicate_invoice", [inv["invoice_id"]], ar["debit_minor"], base,
-                               [seen[k], inv["doc_id"]], "same amount"))
+                               [seen[k], inv["doc_id"], ar["row_id"]], "same amount"))
             else:
                 seen[k] = inv["doc_id"]
         pays = {p["payment_id"]: p for p in self.tables["payments"]}
+        invs = {i["invoice_id"]: i for i in self.tables["invoices"]}
         for r in led:
             if r["account"] == "unapplied_cash" and r["credit_minor"] > 0 and r["payment_id"] in pays:
                 p = pays[r["payment_id"]]
-                aff = [p["payment_id"]] + ([p["invoice_refs"][0]["invoice_id"]] if p["invoice_refs"] else [])
-                out.append(_mk("payment_allocation", aff, r["credit_minor"], base, [p["doc_id"], r["row_id"]],
-                               "unapplied cash"))
+                ev = [p["doc_id"], r["row_id"]]
+                aff = [p["payment_id"]]
+                if p["invoice_refs"]:
+                    inv = invs.get(p["invoice_refs"][0]["invoice_id"])
+                    aff.append(p["invoice_refs"][0]["invoice_id"])
+                    if inv:
+                        ev.append(inv["doc_id"])
+                        ev += [x["row_id"] for x in led if x["payment_id"] == p["payment_id"]
+                               and x["invoice_id"] == inv["invoice_id"]][:1]
+                        if inv["currency"] != base:
+                            ev.append(f"{inv['issued_at'][:10]}:{inv['currency']}:{base}")
+                out.append(_mk("payment_allocation", aff, r["credit_minor"], base, ev, "unapplied cash"))
         return out
 
 
@@ -199,6 +208,7 @@ class RandomExplorer(Policy):
 class Oracle(Policy):
     """Только для оценщика: получает эталон от харнесса, не из наблюдений."""
     name = "oracle"
+    grader_only = True
 
     def __init__(self, truth_provider):
         self.truth_provider = truth_provider
@@ -219,6 +229,17 @@ BASELINES = ("random_explorer", "naive_reconciler", "flag_all", "oracle")
 
 
 def make_policy(name: str, truth_provider=None) -> Policy:
+    """Встроенная политика по имени или внешний адаптер "package.module:ClassName".
+
+    Протокол адаптера: метод reset(observation, info) и метод act(observation) -> action (dict).
+    Если у класса атрибут grader_only = True, он конструируется как Class(truth_provider),
+    где truth_provider(episode_id) -> truth (так подключается oracle жюри; эталон передаёт
+    харнесс оценщика, а не среда)."""
+    if ":" in name:
+        import importlib
+        mod, cls = name.split(":", 1)
+        C = getattr(importlib.import_module(mod), cls)
+        return C(truth_provider) if getattr(C, "grader_only", False) else C()
     if name == "random_explorer":
         return RandomExplorer()
     if name == "naive_reconciler":

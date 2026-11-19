@@ -1,27 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-118B4BBF49B6",
-  "company": "Lumen Labs LLP",
-  "base_currency": "GBP",
+  "episode_id": "EP-109D2EF808C9",
+  "company": "Delta Logistics LLP",
+  "base_currency": "KZT",
   "currency_exponents": {
-    "GBP": 2,
-    "JPY": 0
+    "CHF": 2,
+    "KWD": 3,
+    "KZT": 2
   },
-  "period_start": "2026-02-01T00:00:00-05:00",
-  "period_end": "2026-03-01T00:00:00-05:00",
+  "period_start": "2025-04-01T00:00:00-05:00",
+  "period_end": "2025-05-01T00:00:00-05:00",
   "period_end_exclusive": true,
   "timezone": "-05:00",
   "counts": {
-    "ledger_rows": 346,
-    "invoices": 59,
-    "payments": 50,
-    "fx_rates": 35,
-    "documents": 109
+    "ledger_rows": 424,
+    "invoices": 66,
+    "payments": 54,
+    "fx_rates": 70,
+    "documents": 120
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

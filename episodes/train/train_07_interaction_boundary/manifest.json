@@ -1,27 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-B511C228CA28",
-  "company": "Maple Trading LLP",
-  "base_currency": "EUR",
+  "episode_id": "EP-9AC2DFDC0492",
+  "company": "Vega Pharma LLP",
+  "base_currency": "GBP",
   "currency_exponents": {
-    "CHF": 2,
-    "EUR": 2
+    "EUR": 2,
+    "GBP": 2,
+    "KZT": 2
   },
-  "period_start": "2026-12-01T00:00:00+05:00",
-  "period_end": "2027-01-01T00:00:00+05:00",
+  "period_start": "2026-05-01T00:00:00+00:00",
+  "period_end": "2026-06-01T00:00:00+00:00",
   "period_end_exclusive": true,
-  "timezone": "+05:00",
+  "timezone": "+00:00",
   "counts": {
-    "ledger_rows": 313,
-    "invoices": 58,
-    "payments": 42,
-    "fx_rates": 36,
-    "documents": 100
+    "ledger_rows": 459,
+    "invoices": 70,
+    "payments": 64,
+    "fx_rates": 76,
+    "documents": 134
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

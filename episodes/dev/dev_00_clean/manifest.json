@@ -1,28 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-37052C106E97",
-  "company": "Vega Motors LLP",
-  "base_currency": "EUR",
+  "episode_id": "EP-5AACAF896384",
+  "company": "Quartz Labs LLP",
+  "base_currency": "USD",
   "currency_exponents": {
-    "EUR": 2,
-    "GBP": 2,
-    "JPY": 0
+    "CHF": 2,
+    "KZT": 2,
+    "USD": 2
   },
-  "period_start": "2025-03-01T00:00:00+09:00",
-  "period_end": "2025-04-01T00:00:00+09:00",
+  "period_start": "2025-11-01T00:00:00-03:00",
+  "period_end": "2025-12-01T00:00:00-03:00",
   "period_end_exclusive": true,
-  "timezone": "+09:00",
+  "timezone": "-03:00",
   "counts": {
-    "ledger_rows": 285,
-    "invoices": 49,
-    "payments": 45,
-    "fx_rates": 76,
-    "documents": 94
+    "ledger_rows": 380,
+    "invoices": 64,
+    "payments": 59,
+    "fx_rates": 74,
+    "documents": 123
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

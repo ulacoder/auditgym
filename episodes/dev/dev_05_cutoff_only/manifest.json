@@ -1,29 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-EAA7D84D0791",
-  "company": "Arman Studio LLP",
+  "episode_id": "EP-D0E2AF428537",
+  "company": "Quartz Logistics LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "CHF": 2,
-    "EUR": 2,
     "GBP": 2,
     "KZT": 2
   },
-  "period_start": "2025-08-01T00:00:00+09:00",
-  "period_end": "2025-09-01T00:00:00+09:00",
+  "period_start": "2025-06-01T00:00:00+09:00",
+  "period_end": "2025-07-01T00:00:00+09:00",
   "period_end_exclusive": true,
   "timezone": "+09:00",
   "counts": {
-    "ledger_rows": 344,
-    "invoices": 62,
-    "payments": 51,
-    "fx_rates": 114,
-    "documents": 113
+    "ledger_rows": 364,
+    "invoices": 61,
+    "payments": 43,
+    "fx_rates": 74,
+    "documents": 104
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

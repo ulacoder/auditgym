@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "manifest.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "env_version",
+    "episode_id",
+    "base_currency",
+    "currency_exponents",
+    "period_start",
+    "period_end",
+    "period_end_exclusive",
+    "timezone",
+    "counts",
+    "rounding"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "env_version": {
+      "type": "string"
+    },
+    "episode_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "company": {
+      "type": "string"
+    },
+    "base_currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "currency_exponents": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "period_start": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$"
+    },
+    "period_end": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[+-]\\d{2}:\\d{2}$"
+    },
+    "period_end_exclusive": {
+      "const": true
+    },
+    "timezone": {
+      "type": "string",
+      "pattern": "^[+-]\\d{2}:\\d{2}$"
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "ledger_rows",
+        "invoices",
+        "payments",
+        "fx_rates",
+        "documents"
+      ],
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "rounding": {
+      "type": "object",
+      "required": [
+        "mode",
+        "unit"
+      ]
+    }
+  }
+}

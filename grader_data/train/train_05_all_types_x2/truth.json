@@ -1,18 +1,24 @@
 {
-  "episode_id": "EP-2AD5FD7A7E36",
+  "episode_id": "EP-9269A20E1FB5",
   "issues": [
     {
       "issue_id": "ISS-01",
       "type": "duplicate_invoice",
       "affected_ids": [
-        "INV-A6C842AF"
+        "INV-611390C0"
       ],
-      "expected_amount_minor": 1800317,
-      "currency": "EUR",
+      "expected_amount_minor": 1923200,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-6746BBC5",
-          "D-7E4136EE"
+          "D-4416AC0B",
+          "D-D6DF5521",
+          "L-2D8FCC21"
+        ],
+        [
+          "D-4416AC0B",
+          "D-D6DF5521",
+          "L-9C034CF0"
         ]
       ],
       "interaction": null
@@ -21,14 +27,20 @@
       "issue_id": "ISS-02",
       "type": "duplicate_invoice",
       "affected_ids": [
-        "INV-253B1097"
+        "INV-A25F3DC2"
       ],
-      "expected_amount_minor": 1421589,
-      "currency": "EUR",
+      "expected_amount_minor": 146300,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-54F36512",
-          "D-9F0B3B57"
+          "D-7A1BE364",
+          "D-986F9652",
+          "L-7DDFD09F"
+        ],
+        [
+          "D-7A1BE364",
+          "D-986F9652",
+          "L-979020CE"
         ]
       ],
       "interaction": null
@@ -37,14 +49,15 @@
       "issue_id": "ISS-03",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-1E9D2DF1"
+        "PAY-AE2FC8AF"
       ],
-      "expected_amount_minor": 22918,
-      "currency": "EUR",
+      "expected_amount_minor": 39987,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-A5D2851D",
-          "L-CB6D003D"
+          "D-5EE58287",
+          "L-8291BB91",
+          "2026-06-22:KWD:GBP"
         ]
       ],
       "interaction": null
@@ -53,14 +66,15 @@
       "issue_id": "ISS-04",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-6523A1AE"
+        "PAY-BE39AB36"
       ],
-      "expected_amount_minor": 16635,
-      "currency": "EUR",
+      "expected_amount_minor": 9320,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-E0B7C307",
-          "L-01BFAFC8"
+          "D-575602B3",
+          "L-8EF180DA",
+          "2026-06-24:JPY:GBP"
         ]
       ],
       "interaction": null
@@ -69,15 +83,17 @@
       "issue_id": "ISS-05",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-05A19BE6",
-        "INV-798AA0AC"
+        "PAY-90384557",
+        "INV-84DBFDB5"
       ],
-      "expected_amount_minor": 219628,
-      "currency": "EUR",
+      "expected_amount_minor": 496827,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-AA92DDBC",
-          "L-0CA34876"
+          "D-40B5631E",
+          "D-78D18037",
+          "L-42F0E0F9",
+          "L-547DC84E"
         ]
       ],
       "interaction": null
@@ -86,15 +102,16 @@
       "issue_id": "ISS-06",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-7EAA6A02",
-        "INV-815008AF"
+        "PAY-8B2370ED",
+        "INV-5931688B"
       ],
-      "expected_amount_minor": 37600,
-      "currency": "EUR",
+      "expected_amount_minor": 467700,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-CB5B0D13",
-          "L-4BB1A515"
+          "D-5C5C4408",
+          "D-1DCB497D",
+          "L-61F7983E"
         ]
       ],
       "interaction": null
@@ -103,18 +120,18 @@
       "issue_id": "ISS-07",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-A9C6CEBA"
+        "INV-EB0C8D46"
       ],
-      "expected_amount_minor": 2376700,
-      "currency": "EUR",
+      "expected_amount_minor": 693200,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-28D24D2B",
-          "L-87F0DA03"
+          "D-A82CD8B7",
+          "L-A6E6315E"
         ],
         [
-          "D-28D24D2B",
-          "L-5083D8C7"
+          "D-A82CD8B7",
+          "L-35ABF040"
         ]
       ],
       "interaction": null
@@ -123,18 +140,18 @@
       "issue_id": "ISS-08",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-A322E09B"
+        "INV-D484AA72"
       ],
-      "expected_amount_minor": 1008900,
-      "currency": "EUR",
+      "expected_amount_minor": 1493800,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-34E1445B",
-          "L-2EF186DE"
+          "D-24510326",
+          "L-C2DCA3CB"
         ],
         [
-          "D-34E1445B",
-          "L-74CC5F7F"
+          "D-24510326",
+          "L-709ABD3D"
         ]
       ],
       "interaction": null

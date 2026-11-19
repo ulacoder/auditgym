@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import os
 import random
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
@@ -49,8 +50,18 @@ ACCOUNTS = ["cash", "accounts_receivable", "revenue", "unapplied_cash", "fx_gain
 MIN_MATERIAL_MINOR = 100
 
 
+DEFAULT_SECRET = "auditgym-open-v1"
+
+
+def grader_secret() -> str:
+    """Секрет оценщика. Без него по публичному ID можно было бы перебором найти seed
+    и восстановить эталон. Открытые сплиты используют значение по умолчанию; закрытый
+    прогон задаёт свой AUDITGYM_SECRET, который агент не видит."""
+    return os.environ.get("AUDITGYM_SECRET") or DEFAULT_SECRET
+
+
 def sub_rng(seed: int, stream: str) -> random.Random:
-    h = hashlib.sha256(f"{int(seed)}|{stream}".encode()).hexdigest()
+    h = hashlib.sha256(f"{grader_secret()}|{int(seed)}|{stream}".encode()).hexdigest()
     return random.Random(int(h[:16], 16))
 
 
@@ -140,7 +151,9 @@ class _Gen:
         if cfg["period"]:
             y, m = (int(x) for x in cfg["period"].split("-"))
         else:
-            y, m = R.choice([2025, 2026]), R.randint(1, 12)
+            # только завершённые периоды (до 2026-10 включительно): никаких дат в будущем
+            y = R.choice([2025, 2026])
+            m = R.randint(1, 12 if y == 2025 else 10)
         self.start = datetime(y, m, 1, tzinfo=self.tz)
         self.end = datetime(y + (m == 12), m % 12 + 1, 1, tzinfo=self.tz)
         nf = R.randint(*_rng_pair(cfg["n_foreign_currencies"]))
@@ -230,6 +243,16 @@ class _Gen:
                     currency=currency, amount=amount, refs=refs, tags=list(tags))
         self.payments[p.key] = p
         return p
+
+    def _usd_to_base_minor(self, usd: int) -> int:
+        """Сумма «в долларах» в минимальных единицах базовой валюты, округлённая до целых."""
+        major = (Decimal(usd) / USD_ANCHOR[self.base]).quantize(Decimal(1))
+        return int(major) * 10 ** CURRENCY_EXPONENT[self.base]
+
+    def fx_key(self, cur: str, instant: datetime) -> str:
+        """ID строки fx.csv, по которой политика конвертирует момент instant: 'DATE:SRC:TGT'."""
+        d = self.fx.rate_on_or_before(cur, self.base, policy_rate_date(instant, self.tz))[0]
+        return f"{d.isoformat()}:{cur}:{self.base}"
 
     def rate(self, cur: str, instant: datetime) -> Decimal:
         if cur == self.base:
@@ -365,7 +388,7 @@ class _Gen:
             v = R.choice(vendors)
             self.expenses.append(Expense(self._next("exp"), v.key, self._instant(R, self.start, self.end),
                                          R.choice(EXPENSE_ACCOUNTS),
-                                         R.randint(20, 4000) * 10 ** CURRENCY_EXPONENT[self.base]))
+                                         self._usd_to_base_minor(R.randint(20, 4000))))
 
         # счета следующего периода в выгрузке документов, корректно не проведённые
         self.unposted: set[str] = set()
@@ -499,7 +522,8 @@ class _Gen:
         self.error_invoices[dup.key] = dup
         amt = convert_minor(dup.total, dup.currency, self.rate(dup.currency, dup.issued_at), self.base)
         self._issue("duplicate_invoice", [("invoice", dup.key)], amt,
-                    [[("doc", orig.key), ("doc", dup.key)]], interaction,
+                    [[("doc", orig.key), ("doc", dup.key), ("row", f"{dup.key}:ar")],
+                     [("doc", orig.key), ("doc", dup.key), ("row", f"{dup.key}:rev")]], interaction,
                     cause="invoice entered twice; later copy posted to AR/revenue",
                     original=orig.key, duplicate=dup.key, delay_minutes=int((t1 - orig.issued_at).total_seconds() // 60))
         return True
@@ -535,8 +559,13 @@ class _Gen:
         if shift > credit or shift < MIN_MATERIAL_MINOR:
             return False
         self.ov.alloc_shift[(p.key, inv.key)] = shift
+        ev = [("doc", p.key), ("doc", inv.key), ("row", f"{p.key}:unapplied")]
+        if shift < credit:                               # частичное: строка AR с недокредитом
+            ev.append(("row", f"{p.key}:ar:{inv.key}"))
+        if inv.currency != self.base:                    # курс счёта по политике
+            ev.append(("fx", self.fx_key(inv.currency, inv.issued_at)))
         self._issue("payment_allocation", [("payment", p.key), ("invoice", inv.key)], shift,
-                    [[("doc", p.key), ("row", f"{p.key}:unapplied")]], interaction,
+                    [ev], interaction,
                     cause=f"{mode} allocation: part of AR credit posted to unapplied_cash",
                     mode=mode, payment=p.key, invoice=inv.key, expected_ar_credit=credit,
                     posted_ar_credit=credit - shift)
@@ -557,8 +586,9 @@ class _Gen:
         if not self._material(good, bad):
             return False
         self.ov.inv_rate[inv.key] = wr
+        fxk = ("fx", self.fx_key(inv.currency, inv.issued_at))
         self._issue("fx_conversion", [("invoice", inv.key)], abs(bad - good),
-                    [[("doc", inv.key), ("row", f"{inv.key}:ar")], [("doc", inv.key), ("row", f"{inv.key}:rev")]],
+                    [[("doc", inv.key), ("row", f"{inv.key}:ar"), fxk], [("doc", inv.key), ("row", f"{inv.key}:rev"), fxk]],
                     interaction, cause=f"invoice converted at wrong rate ({kind})", kind=kind, invoice=inv.key,
                     wrong_rate_date=wd.isoformat(), wrong_rate=fmt_rate(wr),
                     correct_rate_date=self.fx.rate_on_or_before(inv.currency, self.base,
@@ -577,7 +607,7 @@ class _Gen:
             return False
         self.ov.pay_rate[p.key] = wr
         self._issue("fx_conversion", [("payment", p.key)], abs(bad - good),
-                    [[("doc", p.key), ("row", f"{p.key}:cash")]], interaction,
+                    [[("doc", p.key), ("row", f"{p.key}:cash"), ("fx", self.fx_key(p.currency, p.timestamp))]], interaction,
                     cause=f"payment converted at wrong rate ({kind})", kind=kind, payment=p.key,
                     wrong_rate_date=wd.isoformat(), wrong_rate=fmt_rate(wr), posted_minor=bad, correct_minor=good)
         return True
@@ -706,7 +736,7 @@ class IdMapper:
     def get(self, kind: str, canon: str) -> str:
         k = (kind, canon)
         if k not in self.map:
-            h = hashlib.sha256(f"{self.seed}|{self.salt}|{kind}|{canon}".encode()).hexdigest().upper()
+            h = hashlib.sha256(f"{grader_secret()}|{self.seed}|{self.salt}|{kind}|{canon}".encode()).hexdigest().upper()
             n = 8
             while f"{self.PREFIX[kind]}-{h[:n]}" in self.used:
                 n += 1
@@ -781,7 +811,17 @@ def build_policy(g: _Gen | None = None) -> dict:
                 "fx_conversion": "[invoice_id] or [payment_id] whose conversion is wrong",
                 "period_cutoff": "[invoice_id]",
             },
-            "evidence_ids": "doc_id and/or ledger row_id values that prove the finding",
+            "evidence_ids": {
+                "rule": "ids of records that together prove the finding: doc_id, ledger row_id, "
+                        "fx rate key 'DATE:SRC:TGT' (the rate the policy prescribes); max 10; supersets are fine",
+                "duplicate_invoice": "doc_id of the original + doc_id of the later copy + the copy's AR (or revenue) row_id",
+                "payment_allocation": "payment doc_id + invoice doc_id + the payment's unapplied_cash row_id "
+                                      "+ the AR credit row_id if any part was credited "
+                                      "+ fx key of the invoice policy rate if the invoice is in foreign currency",
+                "fx_conversion": "document doc_id + its AR/revenue (invoice) or cash (payment) row_id "
+                                 "+ fx key of the policy rate",
+                "period_cutoff": "invoice doc_id + its AR (or revenue) row_id",
+            },
         },
         "tolerance": {"amount_abs_minor": 1, "amount_rel": "0.0005"},
     }
@@ -795,7 +835,8 @@ TASK_TEXT = (
     "Some companies are clean; legitimate split payments, refunds, unreferenced payments and "
     "recurring amounts are not errors. Submit findings once: "
     "{episode_id, findings:[{type, affected_ids, claimed_amount_minor, currency, evidence_ids, explanation}]}. "
-    "Limits: 30 findings, 10 evidence ids, 1000 explanation chars. Budget: 100 steps including submit."
+    "Limits: 30 findings, 10 evidence ids, 1000 explanation chars. Budget: 100 steps including submit. "
+    "Reporting conventions (canonical affected_ids, amounts, evidence) are in policy.reporting."
 )
 
 
@@ -813,9 +854,11 @@ def generate(seed: int, config: dict | None = None) -> Episode:
     tables = _render(g, err_rows, inv_err, list(g.payments.values()), M, cfg["order_seed"])
     clean_tables = _render(g, clean_rows, list(g.invoices.values()), list(g.payments.values()), M, None)
 
-    episode_id = "EP-" + hashlib.sha256(f"{seed}|{canonical_json(cfg)}".encode()).hexdigest()[:12].upper()
+    episode_id = "EP-" + hashlib.sha256(f"{grader_secret()}|{seed}|{canonical_json(cfg)}".encode()).hexdigest()[:12].upper()
 
     def pub(kind, canon):
+        if kind == "fx":
+            return canon          # ID строки курса: 'DATE:SRC:TGT'
         return M.get({"invoice": "invoice", "payment": "payment", "doc": "doc", "row": "row"}[kind], canon)
 
     issues = []
@@ -881,6 +924,8 @@ def generate(seed: int, config: dict | None = None) -> Episode:
         },
         "rounding": {"mode": "ROUND_HALF_UP", "unit": "minor unit of base currency"},
         "null_encoding": "JSON null; empty field in CSV",
+        "synthetic": True,
+        "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion.",
     }
     provenance = {
         "seed": int(seed), "env_version": ENV_VERSION, "config": cfg, "episode_id": episode_id,

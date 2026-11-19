@@ -58,6 +58,10 @@ def audit(tables: dict, manifest: dict) -> list[dict]:
     def rate(cur, ts):
         return policy_rate(fx, cur, base, parse_iso(ts), tz)
 
+    def fx_key(cur, ts):
+        d = fx.rate_on_or_before(cur, base, parse_iso(ts).astimezone(tz).date())[0]
+        return f"{d.isoformat()}:{cur}:{base}"
+
     out: list[dict] = []
     cutoff: set[str] = set()
     posted: list[tuple] = []
@@ -78,7 +82,8 @@ def audit(tables: dict, manifest: dict) -> list[dict]:
         expected = convert_minor(inv["total_minor"], inv["currency"], rate(inv["currency"], inv["issued_at"]), base)
         if ar["debit_minor"] != expected:
             out.append(_f("fx_conversion", [iid], abs(ar["debit_minor"] - expected), base,
-                          [inv["doc_id"], ar["row_id"]],
+                          [inv["doc_id"], ar["row_id"]] + ([fx_key(inv["currency"], inv["issued_at"])]
+                                                           if inv["currency"] != base else []),
                           f"AR posted {ar['debit_minor']} but policy-rate conversion gives {expected}."))
         posted.append((inv, ar))
 
@@ -91,7 +96,7 @@ def audit(tables: dict, manifest: dict) -> list[dict]:
         first = g[0][0]
         for inv, ar in g[1:]:
             out.append(_f("duplicate_invoice", [inv["invoice_id"]], ar["debit_minor"], base,
-                          [first["doc_id"], inv["doc_id"]],
+                          [first["doc_id"], inv["doc_id"], ar["row_id"]],
                           f"Same entity, currency, total and line items (incl. PO) as {first['invoice_id']}; later copy."))
 
     for pid in sorted(payments):
@@ -104,7 +109,8 @@ def audit(tables: dict, manifest: dict) -> list[dict]:
             exp_cash = convert_minor(p["amount_minor"], p["currency"], rate(p["currency"], p["timestamp"]), base)
             if cash[0]["debit_minor"] != exp_cash:
                 out.append(_f("fx_conversion", [pid], abs(cash[0]["debit_minor"] - exp_cash), base,
-                              [p["doc_id"], cash[0]["row_id"]],
+                              [p["doc_id"], cash[0]["row_id"]] + ([fx_key(p["currency"], p["timestamp"])]
+                                                                  if p["currency"] != base else []),
                               f"Cash posted {cash[0]['debit_minor']} but policy-rate conversion gives {exp_cash}."))
         unapplied = [r for r in rows if r["account"] == "unapplied_cash"]
         for ref in p["invoice_refs"]:
@@ -115,7 +121,10 @@ def audit(tables: dict, manifest: dict) -> list[dict]:
             got = sum(r["credit_minor"] - r["debit_minor"] for r in rows
                       if r["account"] == "accounts_receivable" and r["invoice_id"] == ref["invoice_id"])
             if got < exp:
-                ev = [p["doc_id"]] + ([unapplied[0]["row_id"]] if unapplied else [])
+                ar_rows = [r["row_id"] for r in rows
+                           if r["account"] == "accounts_receivable" and r["invoice_id"] == ref["invoice_id"]]
+                ev = ([p["doc_id"], inv["doc_id"]] + ([unapplied[0]["row_id"]] if unapplied else []) + ar_rows[:1]
+                      + ([fx_key(inv["currency"], inv["issued_at"])] if inv["currency"] != base else []))
                 out.append(_f("payment_allocation", [pid, ref["invoice_id"]], exp - got, base, ev,
                               f"Remittance applies {ref['amount_minor']} {inv['currency']} to {ref['invoice_id']}; "
                               f"AR credited {got} vs {exp} expected."))

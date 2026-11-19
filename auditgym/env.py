@@ -61,8 +61,20 @@ class AuditEnv:
         self._done = True
 
     # ------------------------------------------------------------------ API
-    def reset(self, seed: int, config: dict | None = None):
-        ep = generate(int(seed), config or {})
+    def reset(self, seed: int | None = None, config: dict | None = None, options: dict | None = None):
+        """reset(seed, config). Совместимо с Gymnasium: config можно передать как options={"config": ...}.
+        seed=None выбирает случайный seed (эпизод тогда невоспроизводим). Особый config
+        {"episode_dir": <открытая папка>, "grader_dir": <закрытая папка>} загружает эпизод с диска."""
+        if config is None and options:
+            config = options.get("config", {k: v for k, v in options.items() if k != "config"})
+        config = dict(config or {})
+        if "episode_dir" in config:
+            from .episode_io import load_episode
+            return self._start(load_episode(config["episode_dir"], config.get("grader_dir") or config["episode_dir"]))
+        if seed is None:
+            import secrets
+            seed = secrets.randbits(62)
+        ep = generate(int(seed), config)
         return self._start(ep)
 
     def reset_episode(self, ep: Episode):
@@ -103,6 +115,9 @@ class AuditEnv:
         self._tables = ep.tables
         self._index = {t: {r[_ID_FIELD[t]]: r for r in ep.tables[t]} for t in _ID_FIELD}
         self._index["fx"] = {_fx_id(r): r for r in ep.tables["fx"]}
+        # документы можно искать и по doc_id
+        self._index["invoices"].update({r["doc_id"]: r for r in ep.tables["invoices"]})
+        self._index["payments"].update({r["doc_id"]: r for r in ep.tables["payments"]})
         self._docs = {r["doc_id"]: ("invoice", r) for r in ep.tables["invoices"]}
         self._docs.update({r["doc_id"]: ("payment", r) for r in ep.tables["payments"]})
         self._steps = 0
@@ -200,10 +215,11 @@ class AuditEnv:
         if isinstance(sub, str):
             try:
                 sub = json.loads(sub)
-            except ValueError:
+            except (ValueError, RecursionError):
                 sub = None
         res = grade(sub, self._ep.truth, inspection_steps=self._steps - 1)
         res["outcome"] = "submitted"
+        self._diagnose(res)
         self._result = res
         self._done, self._terminated = True, True
         msg = {"accepted": res["valid"]}   # без подсказок о правильности
@@ -217,6 +233,7 @@ class AuditEnv:
         res = grade({"episode_id": self._ep.episode_id, "findings": []}, self._ep.truth,
                     inspection_steps=self._steps)
         res["outcome"] = why
+        self._diagnose(res)
         self._result = res
         self._done, self._truncated = True, True
         if why == "time_limit":
@@ -226,6 +243,32 @@ class AuditEnv:
         self._record(action, obs, reward, False, True)
         return obs, reward, False, True, info
 
+    def _diagnose(self, res):
+        """Только для журнала оценщика: типы эталонных ошибок и к чему относятся ложные выводы."""
+        ep = self._ep
+        res["episode_id"] = ep.episode_id
+        res["issue_types"] = {t["issue_id"]: t["type"] for t in ep.truth["issues"]}
+        res["interactions"] = {t["issue_id"]: t["interaction"] for t in ep.truth["issues"] if t.get("interaction")}
+        kind_of: dict[str, str] = {}
+        for d in (ep.provenance or {}).get("distractors", []):
+            for k, v in d.items():
+                if k == "kind":
+                    continue
+                for x in (v if isinstance(v, list) else [v]):
+                    if isinstance(x, str):
+                        kind_of.setdefault(x, d["kind"])
+        known = set(self._index["invoices"]) | set(self._index["payments"])
+        for u in res.get("unmatched_findings", []):
+            ids = u.get("affected_ids", [])
+            if u["reason"] in ("duplicate_of_matched", "amount", "evidence", "currency"):
+                u["attribution"] = "real_issue_wrong_details" if u["reason"] != "duplicate_of_matched" else "repeat"
+            elif any(i in kind_of for i in ids):
+                u["attribution"] = "distractor:" + next(kind_of[i] for i in ids if i in kind_of)
+            elif ids and all(i in known for i in ids):
+                u["attribution"] = "clean_record"
+            else:
+                u["attribution"] = "unknown_id"
+
     def _reward_info(self, res):
         if self.mode == "train":
             keys = ("valid", "tp", "fp", "fn", "precision", "recall", "f1", "reward", "inspection_steps", "outcome")
@@ -233,7 +276,8 @@ class AuditEnv:
         return 0.0, {}
 
     def _obs(self, tool, result, err):
-        return {"step": getattr(self, "_steps", 0), "steps_remaining": max(0, self.max_steps - self._steps),
+        remaining = 0 if self._done else max(0, self.max_steps - self._steps)
+        return {"step": getattr(self, "_steps", 0), "steps_remaining": remaining,
                 "tool": tool, "result": result,
                 "error": None if err is None else {"code": err.code, "message": err.message}}
 
@@ -242,8 +286,9 @@ class AuditEnv:
             return
         try:
             act = action if not isinstance(action, str) else json.loads(action)
-        except ValueError:
-            act = action
+            json.dumps(act)
+        except (ValueError, TypeError, RecursionError):
+            act = {"unparseable_action": True}
         self.recorder({"episode_id": self._ep.episode_id, "step": self._steps if step is None else step,
                        "action": act, "observation": obs, "reward": reward,
                        "terminated": terminated, "truncated": truncated})

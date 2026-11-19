@@ -1,22 +1,24 @@
 {
-  "episode_id": "EP-7F4140A604B3",
+  "episode_id": "EP-33159D6DFFC9",
   "issues": [
     {
       "issue_id": "ISS-01",
       "type": "fx_conversion",
       "affected_ids": [
-        "INV-AFBE71A0"
+        "INV-573C15DF"
       ],
-      "expected_amount_minor": 47708,
-      "currency": "GBP",
+      "expected_amount_minor": 8596391,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-45550056",
-          "L-D7D36C0A"
+          "D-F29B3AD3",
+          "L-375CC685",
+          "2026-09-07:USD:KZT"
         ],
         [
-          "D-45550056",
-          "L-0015F3A2"
+          "D-F29B3AD3",
+          "L-8ABBB10D",
+          "2026-09-07:USD:KZT"
         ]
       ],
       "interaction": "fx_invoice_with_partial_payment"
@@ -25,15 +27,18 @@
       "issue_id": "ISS-02",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-F653008E",
-        "INV-AFBE71A0"
+        "PAY-10F2BA23",
+        "INV-573C15DF"
       ],
-      "expected_amount_minor": 2333462,
-      "currency": "GBP",
+      "expected_amount_minor": 917210386,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-585E5785",
-          "L-BA8C32C5"
+          "D-46305F8A",
+          "D-F29B3AD3",
+          "L-5F7B0078",
+          "L-0B8CD665",
+          "2026-09-07:USD:KZT"
         ]
       ],
       "interaction": "fx_invoice_with_partial_payment"
@@ -42,14 +47,15 @@
       "issue_id": "ISS-03",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-0276AA45"
+        "PAY-9E774058"
       ],
-      "expected_amount_minor": 29961,
-      "currency": "GBP",
+      "expected_amount_minor": 12001176,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-C76DF795",
-          "L-B2FDED31"
+          "D-AA1F633F",
+          "L-F3405F42",
+          "2026-09-30:USD:KZT"
         ]
       ],
       "interaction": "partial_fx_payment_at_boundary"
@@ -58,15 +64,18 @@
       "issue_id": "ISS-04",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-0276AA45",
-        "INV-5078DBAA"
+        "PAY-9E774058",
+        "INV-BB939429"
       ],
-      "expected_amount_minor": 3618752,
-      "currency": "GBP",
+      "expected_amount_minor": 1526891609,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-C76DF795",
-          "L-6B126891"
+          "D-AA1F633F",
+          "D-ADE9576D",
+          "L-54DB92C8",
+          "L-519EB0C9",
+          "2026-09-22:USD:KZT"
         ]
       ],
       "interaction": "partial_fx_payment_at_boundary"
@@ -75,14 +84,20 @@
       "issue_id": "ISS-05",
       "type": "duplicate_invoice",
       "affected_ids": [
-        "INV-9B50B0FB"
+        "INV-DFD85792"
       ],
-      "expected_amount_minor": 2034000,
-      "currency": "GBP",
+      "expected_amount_minor": 174982300,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-1F0134AE",
-          "D-6B969495"
+          "D-00A3B435",
+          "D-AA9C60F8",
+          "L-AEFBFC84"
+        ],
+        [
+          "D-00A3B435",
+          "D-AA9C60F8",
+          "L-12159A3C"
         ]
       ],
       "interaction": null
@@ -91,14 +106,20 @@
       "issue_id": "ISS-06",
       "type": "duplicate_invoice",
       "affected_ids": [
-        "INV-6DD40276"
+        "INV-EDA77A97"
       ],
-      "expected_amount_minor": 1002851,
-      "currency": "GBP",
+      "expected_amount_minor": 117528800,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-EB1501F0",
-          "D-4CB962A1"
+          "D-8D151FC3",
+          "D-DDB45174",
+          "L-991224A7"
+        ],
+        [
+          "D-8D151FC3",
+          "D-DDB45174",
+          "L-FAA55631"
         ]
       ],
       "interaction": null
@@ -107,14 +128,20 @@
       "issue_id": "ISS-07",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-3356B373"
+        "INV-7399C16E"
       ],
-      "expected_amount_minor": 8573,
-      "currency": "GBP",
+      "expected_amount_minor": 22408936,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-14D09959",
-          "L-9970B1BE"
+          "D-DDABBE6F",
+          "L-0B818344",
+          "2026-09-03:USD:KZT"
+        ],
+        [
+          "D-DDABBE6F",
+          "L-40A761ED",
+          "2026-09-03:USD:KZT"
         ]
       ],
       "interaction": null
@@ -123,14 +150,20 @@
       "issue_id": "ISS-08",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-B0BDBFD0"
+        "INV-193BD089"
       ],
-      "expected_amount_minor": 9234,
-      "currency": "GBP",
+      "expected_amount_minor": 4077285,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-8661D59D",
-          "L-E4F146B2"
+          "D-7216FF58",
+          "L-9916B49E",
+          "2026-09-11:USD:KZT"
+        ],
+        [
+          "D-7216FF58",
+          "L-4F42B8ED",
+          "2026-09-11:USD:KZT"
         ]
       ],
       "interaction": null
@@ -139,15 +172,16 @@
       "issue_id": "ISS-09",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-14DBB0DF",
-        "INV-CBB4A1F3"
+        "PAY-35E83501",
+        "INV-4E11F166"
       ],
-      "expected_amount_minor": 351657,
-      "currency": "GBP",
+      "expected_amount_minor": 720521600,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-720A9F04",
-          "L-CF482A72"
+          "D-BEE35120",
+          "D-0538EA5C",
+          "L-38253B4F"
         ]
       ],
       "interaction": null
@@ -156,15 +190,17 @@
       "issue_id": "ISS-10",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-C43D1BC5",
-        "INV-898DA69C"
+        "PAY-17D4C4D5",
+        "INV-573AAFE3"
       ],
-      "expected_amount_minor": 10400,
-      "currency": "GBP",
+      "expected_amount_minor": 15046355,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-8D1C359D",
-          "L-A7FB3340"
+          "D-9C5619CB",
+          "D-6DCBC12B",
+          "L-474BAFF7",
+          "L-3F9420A1"
         ]
       ],
       "interaction": null
@@ -173,18 +209,18 @@
       "issue_id": "ISS-11",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-143C20AD"
+        "INV-A0AC6919"
       ],
-      "expected_amount_minor": 924000,
-      "currency": "GBP",
+      "expected_amount_minor": 901870500,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-C0B4BFA5",
-          "L-38C51822"
+          "D-78F17C20",
+          "L-DB3E69CD"
         ],
         [
-          "D-C0B4BFA5",
-          "L-9976B2DE"
+          "D-78F17C20",
+          "L-B3821331"
         ]
       ],
       "interaction": null
@@ -193,18 +229,18 @@
       "issue_id": "ISS-12",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-4970E1ED"
+        "INV-C4C4C1E8"
       ],
-      "expected_amount_minor": 735500,
-      "currency": "GBP",
+      "expected_amount_minor": 1360578200,
+      "currency": "KZT",
       "evidence_sets": [
         [
-          "D-0C0946AE",
-          "L-8055A058"
+          "D-50064314",
+          "L-FF157BF7"
         ],
         [
-          "D-0C0946AE",
-          "L-5F352DC8"
+          "D-50064314",
+          "L-EB59AD1E"
         ]
       ],
       "interaction": null

@@ -24,13 +24,18 @@ def load_split(path) -> list[dict]:
             for e in data["episodes"]]
 
 
-def run_episode(env, policy, seed, config, max_steps=100):
+def run_episode(env, policy, seed=None, config=None, max_steps=100, index=None):
     t0 = time.perf_counter()
-    obs, info = env.reset(seed, config)
+    obs, info = env.reset(index=index) if index is not None else env.reset(seed, config)
     policy.reset(obs, info)
     done, steps, ret = False, 0, 0.0
     while not done:
-        obs, r, te, tr, inf = env.step(policy.act(obs))
+        try:
+            action = policy.act(obs)
+        except Exception:
+            # упавшая политика = неверная структура ответа (награда −1 у оценщика)
+            action = {"tool": "submit", "args": {"findings": None}}
+        obs, r, te, tr, inf = env.step(action)
         steps += 1
         ret += r
         done = te or tr
@@ -39,40 +44,79 @@ def run_episode(env, policy, seed, config, max_steps=100):
     return info["episode_id"], steps, ret, time.perf_counter() - t0, inf
 
 
-def evaluate(policy_names, episodes, isolated=True, mode="eval") -> dict:
-    """Одинаковые политики на одних эпизодах; награда берётся у оценщика."""
-    truths = {}
+ORACLE_POLICIES = frozenset({"oracle"})
 
-    def truth_provider(eid):
-        return truths[eid]
 
+def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies=ORACLE_POLICIES,
+             allow_public_secret=False) -> dict:
+    """Одинаковые политики на одних эпизодах; награда берётся у оценщика.
+
+    isolated=True — три процесса: оценщик со средой (serve --episodes), политика (policy-worker)
+    и этот харнесс, который пересылает наблюдения и действия. Seed, config и секрет оценщика
+    в процесс политики не попадают; эталон получает только политика из oracle_policies.
+    """
+    if isolated and not os.environ.get("AUDITGYM_SECRET") and not allow_public_secret:
+        raise SystemExit("AUDITGYM_SECRET is not set: a closed run needs a grader secret "
+                         "(or pass allow_public_secret / --allow-public-secret for open splits)")
+    from .policy_worker import RemotePolicy
     out = {}
     for name in policy_names:
         rows = []
+        grader_only = name in oracle_policies
         log = tempfile.NamedTemporaryFile(prefix="grader_", suffix=".jsonl", delete=False).name
-        env = RemoteEnv(mode=mode, grader_log=log) if isolated else AuditEnv(mode=mode)
+        if isolated:
+            split = tempfile.NamedTemporaryFile(prefix="split_", suffix=".json", delete=False, mode="w")
+            json.dump({"config_version": "eval-run", "episodes": episodes}, split)
+            split.close()
+            env = RemoteEnv(mode=mode, grader_log=log, episodes=split.name, allow_oracle=grader_only,
+                            allow_public_secret=allow_public_secret)
+            policy_env = {k: v for k, v in os.environ.items() if k != "AUDITGYM_SECRET"}
+            pol = RemotePolicy(name, policy_env)
+        else:
+            env = AuditEnv(mode=mode)
         try:
-            for e in episodes:
-                ep = generate(e["seed"], e["config"])
-                truths[ep.episode_id] = ep.truth
-                pol = make_policy(name, truth_provider)
-                eid, steps, ret, dt, _ = run_episode(env, pol, e["seed"], e["config"])
-                res = None if isolated else env.grader_result()
-                rows.append({"name": e["name"], "episode_id": eid, "steps": steps, "time_s": dt, "result": res,
-                             "n_issues": len(ep.truth["issues"]),
-                             "issue_types": {t["issue_id"]: t["type"] for t in ep.truth["issues"]}})
+            for k, e in enumerate(episodes):
+                t0 = time.perf_counter()
+                if isolated:
+                    obs, info = env.reset(index=k)
+                    pol.set_truth(env.oracle_truth() if grader_only else None)
+                    policy = pol
+                    res = None
+                else:
+                    ep = generate(e["seed"], e["config"])
+                    obs, info = env.reset_episode(ep)
+                    policy = make_policy(name, (lambda eid, t=ep.truth: t) if grader_only else (lambda eid: None))
+                policy.reset(obs, info)
+                done, steps = False, 0
+                while not done:
+                    try:
+                        action = policy.act(obs)
+                    except Exception:
+                        action = {"tool": "submit", "args": {"findings": None}}
+                    obs, r, te, tr, _ = env.step(action)
+                    steps += 1
+                    done = te or tr
+                if not isolated:
+                    res = env.grader_result()
+                rows.append({"name": e["name"], "episode_id": info["episode_id"], "steps": steps,
+                             "time_s": time.perf_counter() - t0, "result": res})
         finally:
             if isolated:
+                pol.close()
                 env.close()
+                os.unlink(split.name)
         if isolated:
             with open(log, encoding="utf-8") as fh:
                 by_id = {}
                 for line in fh:
                     d = json.loads(line)
                     by_id.setdefault(d["episode_id"], d["result"])
-            os.unlink(log)
             for r in rows:
                 r["result"] = by_id[r["episode_id"]]
+        os.unlink(log)
+        for r in rows:
+            r["n_issues"] = len(r["result"].get("issue_types", {}))
+            r["issue_types"] = r["result"].get("issue_types", {})
         out[name] = {"episodes": rows, "summary": summarize(rows)}
     return out
 
@@ -112,11 +156,13 @@ def _per_type(rows) -> dict:
 
 
 def _reasons(res) -> dict:
+    """Разбор ложных выводов: причина несовпадения и к чему относится вывод (ловушка, чистая запись...)."""
     c: dict[str, int] = {}
     for x in res:
         for u in x.get("unmatched_findings", []):
-            c[u["reason"]] = c.get(u["reason"], 0) + 1
-    return dict(sorted(c.items()))
+            key = u.get("attribution") or u["reason"]
+            c[key] = c.get(key, 0) + 1
+    return dict(sorted(c.items(), key=lambda kv: -kv[1]))
 
 
 def record_trajectories(episodes, policy_names, path) -> int:

@@ -1,18 +1,19 @@
 {
-  "episode_id": "EP-B511C228CA28",
+  "episode_id": "EP-9AC2DFDC0492",
   "issues": [
     {
       "issue_id": "ISS-01",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-981D291C"
+        "PAY-4F56E97F"
       ],
-      "expected_amount_minor": 17021,
-      "currency": "EUR",
+      "expected_amount_minor": 6846,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-2521BF5D",
-          "L-5FBC79DA"
+          "D-8D9A7B8B",
+          "L-1095EF7C",
+          "2026-05-29:KZT:GBP"
         ]
       ],
       "interaction": "partial_fx_payment_at_boundary"
@@ -21,15 +22,18 @@
       "issue_id": "ISS-02",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-981D291C",
-        "INV-5FAFC0AD"
+        "PAY-4F56E97F",
+        "INV-727BAF36"
       ],
-      "expected_amount_minor": 2140954,
-      "currency": "EUR",
+      "expected_amount_minor": 2271884,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-2521BF5D",
-          "L-99FA0C76"
+          "D-8D9A7B8B",
+          "D-3F42CF36",
+          "L-D45E041A",
+          "L-285DBFC2",
+          "2026-05-22:KZT:GBP"
         ]
       ],
       "interaction": "partial_fx_payment_at_boundary"
@@ -38,18 +42,18 @@
       "issue_id": "ISS-03",
       "type": "period_cutoff",
       "affected_ids": [
-        "INV-32C4E1E3"
+        "INV-4E615D2B"
       ],
-      "expected_amount_minor": 792000,
-      "currency": "EUR",
+      "expected_amount_minor": 346700,
+      "currency": "GBP",
       "evidence_sets": [
         [
-          "D-305052EE",
-          "L-F6E7E6D9"
+          "D-0B49433A",
+          "L-7C779DAE"
         ],
         [
-          "D-305052EE",
-          "L-1AF521AE"
+          "D-0B49433A",
+          "L-E678276B"
         ]
       ],
       "interaction": null

@@ -1,29 +1,29 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-3ACF2B2D3050",
-  "company": "Steppe Media LLP",
+  "episode_id": "EP-13EAFF569DD2",
+  "company": "Steppe Retail LLP",
   "base_currency": "KZT",
   "currency_exponents": {
-    "EUR": 2,
-    "JPY": 0,
-    "KZT": 2,
-    "USD": 2
+    "CNY": 2,
+    "KZT": 2
   },
-  "period_start": "2026-03-01T00:00:00+01:00",
-  "period_end": "2026-04-01T00:00:00+01:00",
+  "period_start": "2026-07-01T00:00:00-05:00",
+  "period_end": "2026-08-01T00:00:00-05:00",
   "period_end_exclusive": true,
-  "timezone": "+01:00",
+  "timezone": "-05:00",
   "counts": {
-    "ledger_rows": 317,
-    "invoices": 60,
-    "payments": 52,
-    "fx_rates": 111,
-    "documents": 112
+    "ledger_rows": 453,
+    "invoices": 70,
+    "payments": 72,
+    "fx_rates": 37,
+    "documents": 142
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

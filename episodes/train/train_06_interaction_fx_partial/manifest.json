@@ -1,27 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-A19610216274",
-  "company": "Quartz Media LLP",
-  "base_currency": "GBP",
+  "episode_id": "EP-4D05913B73C0",
+  "company": "Arman Media LLP",
+  "base_currency": "EUR",
   "currency_exponents": {
-    "GBP": 2,
-    "USD": 2
+    "EUR": 2,
+    "JPY": 0,
+    "KZT": 2
   },
-  "period_start": "2025-06-01T00:00:00+01:00",
-  "period_end": "2025-07-01T00:00:00+01:00",
+  "period_start": "2025-07-01T00:00:00-05:00",
+  "period_end": "2025-08-01T00:00:00-05:00",
   "period_end_exclusive": true,
-  "timezone": "+01:00",
+  "timezone": "-05:00",
   "counts": {
-    "ledger_rows": 321,
-    "invoices": 59,
-    "payments": 58,
-    "fx_rates": 37,
-    "documents": 117
+    "ledger_rows": 376,
+    "invoices": 48,
+    "payments": 43,
+    "fx_rates": 72,
+    "documents": 91
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

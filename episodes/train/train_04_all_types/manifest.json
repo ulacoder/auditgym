@@ -1,28 +1,30 @@
 {
   "schema_version": "1.0",
   "env_version": "1.0.0",
-  "episode_id": "EP-9E49D419E057",
-  "company": "Polar Trading LLP",
-  "base_currency": "KZT",
+  "episode_id": "EP-E57893713CC8",
+  "company": "Tengri Foods LLP",
+  "base_currency": "EUR",
   "currency_exponents": {
     "CHF": 2,
-    "KWD": 3,
-    "KZT": 2
+    "EUR": 2,
+    "GBP": 2
   },
-  "period_start": "2026-02-01T00:00:00+05:00",
-  "period_end": "2026-03-01T00:00:00+05:00",
+  "period_start": "2025-03-01T00:00:00+09:00",
+  "period_end": "2025-04-01T00:00:00+09:00",
   "period_end_exclusive": true,
-  "timezone": "+05:00",
+  "timezone": "+09:00",
   "counts": {
-    "ledger_rows": 296,
-    "invoices": 56,
-    "payments": 46,
-    "fx_rates": 70,
-    "documents": 102
+    "ledger_rows": 352,
+    "invoices": 54,
+    "payments": 50,
+    "fx_rates": 76,
+    "documents": 104
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",
     "unit": "minor unit of base currency"
   },
-  "null_encoding": "JSON null; empty field in CSV"
+  "null_encoding": "JSON null; empty field in CSV",
+  "synthetic": true,
+  "disclaimer": "All companies, people, accounts and money are fictional (generated). Not an audit opinion."
 }

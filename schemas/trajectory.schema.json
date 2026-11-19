@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Строка trajectories.jsonl",
+  "type": "object",
+  "required": [
+    "episode_id",
+    "step",
+    "action",
+    "observation",
+    "reward",
+    "terminated",
+    "truncated"
+  ],
+  "properties": {
+    "episode_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "action": {
+      "description": "null for the reset record (step 0)"
+    },
+    "observation": {
+      "type": "object"
+    },
+    "reward": {
+      "type": "number"
+    },
+    "terminated": {
+      "type": "boolean"
+    },
+    "truncated": {
+      "type": "boolean"
+    },
+    "policy": {
+      "type": "string"
+    }
+  }
+}

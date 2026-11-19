@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Действие step(action)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tool"
+  ],
+  "properties": {
+    "tool": {
+      "enum": [
+        "list_records",
+        "get_record",
+        "get_document",
+        "calculator",
+        "submit"
+      ]
+    },
+    "args": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "tool": {
+          "const": "list_records"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "table"
+          ],
+          "properties": {
+            "table": {
+              "enum": [
+                "ledger",
+                "invoices",
+                "payments",
+                "fx"
+              ]
+            },
+            "cursor": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "tool": {
+          "const": "get_record"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "table",
+            "id"
+          ],
+          "properties": {
+            "table": {
+              "enum": [
+                "ledger",
+                "invoices",
+                "payments",
+                "fx"
+              ]
+            },
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "tool": {
+          "const": "get_document"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "doc_id"
+          ],
+          "properties": {
+            "doc_id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "tool": {
+          "const": "calculator"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "expression"
+          ],
+          "properties": {
+            "expression": {
+              "type": "string",
+              "maxLength": 300
+            }
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "tool": {
+          "const": "submit"
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "findings"
+          ],
+          "properties": {
+            "findings": {
+              "$ref": "findings.schema.json"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
