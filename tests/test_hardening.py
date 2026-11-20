@@ -217,12 +217,13 @@ def test_policy_runs_as_separate_os_user_when_available(hostile_env):
     spec = sandbox_spec()
     if spec is None:
         pytest.skip("needs root and the 'auditgym-policy' user (the Docker image has both)")
-    import shutil
-    shutil.rmtree(spec["home"], ignore_errors=True)
-    res = evaluate(["hostile_policies:SandboxProbe", "oracle"], SPLIT, policy_path=HOSTILE)
+    res = evaluate(["hostile_policies:ShadowPlanter", "hostile_policies:SandboxProbe", "oracle", "scripted_auditor"],
+                   SPLIT, policy_path=HOSTILE)
     rows = res["hostile_policies:SandboxProbe"]["episodes"]
     assert all(r["result"]["valid"] for r in rows), "policy could write the repo, read grader /proc or signal it"
+    # политика, подбросившая пакет auditgym в cwd/HOME/tmp, не влияет на следующие политики
     assert all(r["result"]["reward"] == 1.0 for r in res["oracle"]["episodes"])
+    assert all(r["result"]["f1"] == 1.0 for r in res["scripted_auditor"]["episodes"])
 
 
 def test_evaluate_episode_ids_match_export(monkeypatch):

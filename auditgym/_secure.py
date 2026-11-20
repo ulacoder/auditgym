@@ -90,11 +90,45 @@ def sandbox_spec(user: str | None = None):
         return None
     if pw.pw_uid == 0:
         return None
+    return {"user": name, "uid": pw.pw_uid, "gid": pw.pw_gid}
+
+
+def fresh_home(spec) -> str:
+    """Новый пустой HOME (700) для одного процесса политики."""
     import tempfile
     home = tempfile.mkdtemp(prefix="auditgym-policy-")
-    os.chown(home, pw.pw_uid, pw.pw_gid)
+    os.chown(home, spec["uid"], spec["gid"])
     os.chmod(home, 0o700)
-    return {"user": name, "uid": pw.pw_uid, "gid": pw.pw_gid, "home": home}
+    return home
+
+
+def purge_user_files(uid: int, dirs=("/tmp", "/var/tmp", "/dev/shm")) -> int:
+    """Удалить всё, что пользователь политики оставил в общих временных каталогах."""
+    import shutil
+    import stat
+    n = 0
+    for d in dirs:
+        try:
+            names = os.listdir(d)
+        except OSError:
+            continue
+        for name in names:
+            path = os.path.join(d, name)
+            try:
+                st = os.lstat(path)
+            except OSError:
+                continue
+            if st.st_uid != uid:
+                continue
+            try:
+                if stat.S_ISDIR(st.st_mode):
+                    shutil.rmtree(path, ignore_errors=True)
+                else:
+                    os.unlink(path)
+                n += 1
+            except OSError:
+                pass
+    return n
 
 
 def sandbox_preexec():

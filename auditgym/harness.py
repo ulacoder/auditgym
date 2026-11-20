@@ -83,7 +83,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
     if not has_private_secret() and not allow_public_secret:
         raise SystemExit("AUDITGYM_SECRET is not set (or equals the public default): a closed run needs a grader secret "
                          "(or pass allow_public_secret / --allow-public-secret for open splits)")
-    from ._secure import harden, kill_user_processes, package_digest, sandbox_spec
+    from ._secure import harden, kill_user_processes, package_digest, purge_user_files, sandbox_spec
     from .policy_worker import TIMEOUT, RemotePolicy
     sandbox = None
     if isolated:
@@ -164,6 +164,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                 pol.close()
                 if sandbox is not None:
                     kill_user_processes(sandbox["uid"])   # фоновые процессы политики не переживают её прогон
+                    purge_user_files(sandbox["uid"])      # и её файлы во временных каталогах тоже
                 try:
                     env.close()
                 except OSError:
@@ -196,9 +197,6 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
             r["n_issues"] = len(r["result"].get("issue_types", {}))
             r["issue_types"] = r["result"].get("issue_types", {})
         out[name] = {"episodes": rows, "summary": summarize(rows)}
-    if sandbox is not None:
-        import shutil
-        shutil.rmtree(sandbox["home"], ignore_errors=True)
     return out
 
 

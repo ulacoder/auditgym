@@ -82,21 +82,24 @@ class RemotePolicy:
         root = str(Path(__file__).resolve().parent.parent)
         kw = {}
         env = dict(self.env)
-        if self.policy_path:
-            env["PYTHONPATH"] = os.pathsep.join([self.policy_path, env.get("PYTHONPATH", "")]).strip(os.pathsep)
+        # -P убирает cwd из sys.path, поэтому корень репозитория передаётся явно (после пути политик)
+        env["PYTHONPATH"] = os.pathsep.join(x for x in (self.policy_path, env.get("PYTHONPATH", ""), root) if x)
+        argv = [sys.executable, "-P", "-s", "-m", "auditgym", "policy-worker", "--policy", self.policy_name]
         if self.sandbox is not None:
-            # отдельный пользователь ОС: нет записи в репозиторий, нет доступа к /proc и сигналов оценщика
-            home = self.sandbox["home"]
+            # отдельный пользователь ОС: нет записи в репозиторий, нет доступа к /proc и сигналов оценщика.
+            # Свежий HOME на каждый запуск процесса; cwd — недоступный для записи «/»; -P -s: ни cwd,
+            # ни пользовательский site-packages не попадают в sys.path (другие политики их не подменят).
+            from ._secure import fresh_home
+            self._home = home = fresh_home(self.sandbox)
             env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": home, "LANG": "C.UTF-8",
                    "PYTHONDONTWRITEBYTECODE": "1",
                    "PYTHONPATH": os.pathsep.join(x for x in (self.policy_path or os.environ.get("PYTHONPATH", ""),
                                                              root) if x)}
-            kw = dict(user=self.sandbox["uid"], group=self.sandbox["gid"], extra_groups=[], cwd=home,
+            kw = dict(user=self.sandbox["uid"], group=self.sandbox["gid"], extra_groups=[], cwd="/",
                       preexec_fn=sandbox_preexec)
         else:
             kw = dict(start_new_session=True)
-        self.p = subprocess.Popen([sys.executable, "-m", "auditgym", "policy-worker", "--policy", self.policy_name],
-                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=env, **kw)
+        self.p = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=env, **kw)
         self.reader = LineReader(self.p.stdout.fileno())
         self.dead = False
 
@@ -106,6 +109,11 @@ class RemotePolicy:
         if self.p is not None:
             self.p.wait()
         self.dead = True
+        if self.sandbox is not None:
+            from ._secure import kill_user_processes
+            import shutil
+            kill_user_processes(self.sandbox["uid"])
+            shutil.rmtree(getattr(self, "_home", ""), ignore_errors=True) if getattr(self, "_home", None) else None
 
     def ensure_alive(self):
         if self.dead or self.p.poll() is not None:

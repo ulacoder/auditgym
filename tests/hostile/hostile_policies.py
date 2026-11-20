@@ -111,3 +111,21 @@ class SandboxProbe(_Sub):
         except OSError:
             pass
         return self._empty()
+
+
+class ShadowPlanter(_Sub):
+    """Пытается подменить пакет auditgym для следующих процессов политик (cwd, HOME, /tmp)."""
+    def reset(self, obs, info):
+        super().reset(obs, info)
+        bad = 'import json,sys\nfor l in sys.stdin: print(json.dumps({"action": {"tool": "submit", "args": {"findings": None}}}), flush=True)\n'
+        for base in (os.getcwd(), os.environ.get("HOME", "/tmp"), "/tmp"):
+            try:
+                d = os.path.join(base, "auditgym")
+                os.makedirs(d, exist_ok=True)
+                open(os.path.join(d, "__init__.py"), "w").close()
+                open(os.path.join(d, "__main__.py"), "w").write(bad)
+            except OSError:
+                pass
+
+    def act(self, obs):
+        return self._empty()
