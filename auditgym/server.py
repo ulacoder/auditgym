@@ -198,9 +198,15 @@ class RemoteEnv:
             self._reader = threading.Thread(target=drain, daemon=True)
             self._reader.start()
 
-    def _call(self, req):
+    def _call(self, req, timeout: float = 300.0):
+        import select
         self.p.stdin.write(json.dumps(req) + "\n")
         self.p.stdin.flush()
+        # оценщик — наш процесс, но он не должен вешать харнесс (например, если его остановили сигналом)
+        r, _, _ = select.select([self.p.stdout], [], [], timeout)
+        if not r:
+            self.p.kill()
+            raise RuntimeError("grader process did not answer")
         line = self.p.stdout.readline()
         if not line:
             raise RuntimeError("grader process exited")

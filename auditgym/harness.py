@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import statistics
 import time
 from pathlib import Path
@@ -17,11 +18,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def split_from_dict(data: dict) -> list[dict]:
+    """config_version берётся из файла сплита, если у эпизода нет своего: episode_id совпадает с export."""
     from .env import ENV_VERSION
     ev = data.get("env_version")
     if ev is not None and ev != ENV_VERSION:
         raise ValueError(f"split was made for env_version {ev}, this environment is {ENV_VERSION}")
-    return [{**e, "config": {**e.get("config", {}), "config_version": data["config_version"]}}
+    return [{**e, "config": {"config_version": data["config_version"], **e.get("config", {})}}
             for e in data["episodes"]]
 
 
@@ -63,7 +65,7 @@ _PROBE = {"tool": "list_records", "args": {"table": "invoices", "limit": 1}}
 
 
 def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies=ORACLE_POLICIES,
-             allow_public_secret=False, time_limit_s: float = 60.0) -> dict:
+             allow_public_secret=False, time_limit_s: float = 60.0, policy_path: str | None = None) -> dict:
     """Одинаковые политики на одних эпизодах; награда берётся у оценщика.
 
     isolated=True — три процесса: оценщик со средой (serve), политика (policy-worker) и этот
@@ -81,10 +83,15 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
     if not has_private_secret() and not allow_public_secret:
         raise SystemExit("AUDITGYM_SECRET is not set (or equals the public default): a closed run needs a grader secret "
                          "(or pass allow_public_secret / --allow-public-secret for open splits)")
-    from ._secure import harden, package_digest
+    from ._secure import harden, kill_user_processes, package_digest, sandbox_spec
     from .policy_worker import TIMEOUT, RemotePolicy
+    sandbox = None
     if isolated:
         harden()
+        sandbox = sandbox_spec()
+        if sandbox is None:
+            sys.stderr.write("auditgym: policies run as the same OS user as the grader. For full OS isolation run "
+                             "evaluate as root with a user 'auditgym-policy' (the Docker image does this).\n")
     digest = package_digest()
     out = {}
     for name in policy_names:
@@ -95,7 +102,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                             collect_results=True, allow_oracle=grader_only,
                             allow_public_secret=allow_public_secret, time_limit_s=time_limit_s)
             policy_env = {k: v for k, v in os.environ.items() if k != "AUDITGYM_SECRET"}
-            pol = RemotePolicy(name, policy_env)
+            pol = RemotePolicy(name, policy_env, sandbox=sandbox, policy_path=policy_path)
         else:
             env = AuditEnv(mode=mode, time_limit_s=time_limit_s)
         grader_died = False
@@ -107,7 +114,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                 if isolated:
                     try:
                         obs, info = env.reset(index=k)
-                    except RuntimeError:
+                    except (RuntimeError, OSError):
                         grader_died = True      # процесс оценщика убит (например, политикой)
                         break
                     deadline = time.monotonic() + time_limit_s + TIME_GRACE_S
@@ -137,7 +144,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                             action = {"tool": "submit", "args": {"findings": None}}
                     try:
                         obs, r, te, tr, _ = env.step(action)
-                    except RuntimeError:
+                    except (RuntimeError, OSError):
                         if not isolated:
                             raise
                         grader_died = True
@@ -155,7 +162,12 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
         finally:
             if isolated:
                 pol.close()
-                env.close()
+                if sandbox is not None:
+                    kill_user_processes(sandbox["uid"])   # фоновые процессы политики не переживают её прогон
+                try:
+                    env.close()
+                except OSError:
+                    pass
         if isolated:
             by_id = {}
             for d in env.results():
@@ -184,6 +196,9 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
             r["n_issues"] = len(r["result"].get("issue_types", {}))
             r["issue_types"] = r["result"].get("issue_types", {})
         out[name] = {"episodes": rows, "summary": summarize(rows)}
+    if sandbox is not None:
+        import shutil
+        shutil.rmtree(sandbox["home"], ignore_errors=True)
     return out
 
 

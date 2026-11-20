@@ -72,3 +72,56 @@ class LineReader:
                 raise ValueError("line too long")
         line, self.buf = self.buf.split(b"\n", 1)
         return line
+
+
+POLICY_USER_DEFAULT = "auditgym-policy"
+
+
+def sandbox_spec(user: str | None = None):
+    """Если харнесс запущен от root и есть отдельный пользователь политики — запускать политику
+    от его имени (так в Docker-образе). Иначе None: политика работает под тем же пользователем."""
+    if not sys.platform.startswith("linux") or os.geteuid() != 0:
+        return None
+    import pwd
+    name = user or os.environ.get("AUDITGYM_POLICY_USER", POLICY_USER_DEFAULT)
+    try:
+        pw = pwd.getpwnam(name)
+    except KeyError:
+        return None
+    if pw.pw_uid == 0:
+        return None
+    import tempfile
+    home = tempfile.mkdtemp(prefix="auditgym-policy-")
+    os.chown(home, pw.pw_uid, pw.pw_gid)
+    os.chmod(home, 0o700)
+    return {"user": name, "uid": pw.pw_uid, "gid": pw.pw_gid, "home": home}
+
+
+def sandbox_preexec():
+    """В дочернем процессе политики: своя сессия и лимиты ресурсов."""
+    import resource
+    os.setsid()
+    for lim, val in ((resource.RLIMIT_AS, 3 << 30), (resource.RLIMIT_NPROC, 128),
+                     (resource.RLIMIT_FSIZE, 256 << 20), (resource.RLIMIT_CORE, 0)):
+        try:
+            resource.setrlimit(lim, (val, val))
+        except (ValueError, OSError):
+            pass
+
+
+def kill_user_processes(uid: int) -> int:
+    """Убить все процессы пользователя политики (демоны, пережившие эпизод). Только для отдельного uid."""
+    import signal
+    n = 0
+    for d in os.listdir("/proc"):
+        if not d.isdigit():
+            continue
+        try:
+            with open(f"/proc/{d}/status") as fh:
+                uid_line = next(l for l in fh if l.startswith("Uid:"))
+            if int(uid_line.split()[1]) == uid:
+                os.kill(int(d), signal.SIGKILL)
+                n += 1
+        except (OSError, StopIteration, ValueError):
+            pass
+    return n

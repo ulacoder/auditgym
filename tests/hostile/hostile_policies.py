@@ -82,3 +82,32 @@ class Spy(_Sub):
         if hits:
             return {"tool": "submit", "args": {"findings": None}}
         return self._empty()
+
+
+class SandboxProbe(_Sub):
+    """Под отдельным пользователем ни одна из атак не должна удаться; иначе отправляет мусор (−1)."""
+    def act(self, obs):
+        import glob
+        import signal
+        import auditgym
+        root = os.path.dirname(os.path.dirname(auditgym.__file__))
+        for target in (os.path.join(root, "argparse.py"), os.path.join(root, "auditgym", "__pycache__", "x.pyc")):
+            try:
+                open(target, "a").close()
+                return {"tool": "submit", "args": {"findings": None}}
+            except OSError:
+                pass
+        for d in glob.glob("/proc/[0-9]*"):
+            if d.endswith("/" + str(os.getpid())):
+                continue
+            try:
+                if b"AUDITGYM_SECRET" in open(d + "/environ", "rb").read():
+                    return {"tool": "submit", "args": {"findings": None}}
+            except OSError:
+                pass
+        try:
+            os.kill(os.getppid(), 0)
+            return {"tool": "submit", "args": {"findings": None}}
+        except OSError:
+            pass
+        return self._empty()

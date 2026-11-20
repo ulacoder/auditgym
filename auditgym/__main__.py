@@ -80,7 +80,7 @@ def _evaluate_cli(args):
     return evaluate(args.policies, _split(args.split), isolated=not args.in_process,
                    oracle_policies=frozenset(args.oracle_policies),
                    allow_public_secret=args.allow_public_secret or args.split in SPLITS,
-                   time_limit_s=args.time_limit)
+                   time_limit_s=args.time_limit, policy_path=args.policy_path)
 
 
 def cmd_grade(args):
@@ -294,6 +294,8 @@ def main(argv=None):
     p.add_argument("--oracle-policies", nargs="*", default=["oracle"],
                    help="policies the grader may give truth to (e.g. your own pkg.mod:Oracle)")
     p.add_argument("--time-limit", type=float, default=60.0, help="seconds per episode (default 60)")
+    p.add_argument("--policy-path", help="directory with your policy packages; given only to the policy process "
+                                         "(do not put policy code on PYTHONPATH of evaluate itself)")
     p.add_argument("--json")
     p.set_defaults(fn=cmd_evaluate)
     p = sub.add_parser("grade")

@@ -41,8 +41,8 @@ CATALOG = [
     ("SKU-LOG", "Logistics service"), ("SKU-DAT", "Data processing batch"),
 ]
 # Придуманные слова: сочетания не должны совпадать с названиями реальных компаний
-NAMES_A = ["Velmora", "Krastel", "Zunari", "Orvexa", "Taldrin", "Mirelux", "Sarnova", "Tengrava", "Quorvik",
-           "Belvast", "Lumetra", "Darvolin", "Kestrova", "Ylvaro", "Tarkhel", "Vexmund", "Noralin", "Cirvane"]
+NAMES_A = ["Velmora", "Krastel", "Zunari", "Orvexa", "Taldrin", "Mirelux", "Zelvarno", "Tengrava", "Quorvik",
+           "Belvast", "Qumetrix", "Darvolin", "Kestrova", "Ylvaro", "Tarkhel", "Vexmund", "Noralin", "Cirvane"]
 NAMES_B = ["Logistics", "Foods", "Systems", "Trading", "Labs", "Textiles", "Energy", "Retail",
            "Media", "Build", "Agro", "Pharma", "Motors", "Studio"]
 EXPENSE_ACCOUNTS = ["rent_expense", "payroll_expense", "software_expense", "utilities_expense",

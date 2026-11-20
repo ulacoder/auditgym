@@ -53,7 +53,7 @@ class MyPolicy:
 ```
 
 ```bash
-python -m auditgym evaluate --split /path/hidden.json --policies mypkg.mod:MyPolicy oracle
+python -m auditgym evaluate --split /path/hidden.json --policy-path /path/to/policies --policies mypkg.mod:MyPolicy oracle
 python -m auditgym run --policy mypkg.mod:MyPolicy --seed 918273 --config '{"errors":{"duplicate_invoice":1}}'
 ```
 
@@ -80,9 +80,14 @@ python -m auditgym run --policy mypkg.mod:MyPolicy --seed 918273 --config '{"err
 - Политика в режиме eval получает награду 0 и пустой info.
 - Хеш кода пакета `auditgym` проверяется после каждой политики; изменение кода останавливает
   прогон с ошибкой.
-- Ограничение: политика работает под тем же пользователем ОС и может сигналом завершить процесс
-  оценщика — это засчитывается ей как −1 на оставшихся эпизодах. Для полной изоляции ОС
-  запускайте политику под отдельным пользователем или в отдельном контейнере.
+- **Отдельный пользователь ОС.** В Docker-образе (`evaluate` от root, есть пользователь
+  `auditgym-policy`) политика запускается от этого пользователя: без записи в `/app`, без доступа
+  к `/proc` и сигналам оценщика, с лимитами ресурсов; её процессы убиваются после прогона.
+  Вне Docker от обычного пользователя такой границы нет (харнесс выводит предупреждение):
+  тогда политика может, например, убить процесс оценщика — это засчитывается ей как −1.
+- Код своих политик подключайте через `--policy-path DIR` (путь получает только процесс
+  политики), а не через `PYTHONPATH` процесса `evaluate`. Файл сплита лучше держать с правами
+  600 (`chmod 600 hidden.json`).
 
 Агент на любом языке может говорить с сервером напрямую, по JSON-строкам через stdin/stdout
 (протокол описан в `auditgym/server.py`):

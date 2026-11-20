@@ -10,8 +10,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY . .
-RUN useradd --create-home auditor && chown -R auditor /app
-USER auditor
+# Разделение привилегий: оценщик и харнесс работают от root внутри контейнера, а каждая
+# политика — от отдельного непривилегированного пользователя auditgym-policy. Он не может писать
+# в /app, читать /proc процессов оценщика, посылать им сигналы и переживать свой прогон.
+RUN useradd --system --no-create-home --shell /usr/sbin/nologin auditgym-policy \
+    && chown -R root:root /app && chmod -R u+rwX,go+rX,go-w /app
 
 # Единая команда проверки. Сеть не нужна: запускайте с --network none.
 CMD ["python", "-m", "auditgym", "check"]

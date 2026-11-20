@@ -111,7 +111,8 @@ def resolve_config(config: dict | None) -> dict:
     if tz is not None:
         import re
         m = re.fullmatch(r"([+-])(\d\d):(\d\d)", tz) if isinstance(tz, str) else None
-        if not m or int(m.group(2)) > 14 or int(m.group(3)) not in (0, 15, 30, 45):
+        if not m or int(m.group(2)) > 14 or int(m.group(3)) not in (0, 15, 30, 45) \
+                or (int(m.group(2)) == 14 and int(m.group(3)) != 0) or (tz == "-00:00"):
             raise ValueError("timezone must look like +05:00 (UTC offset, up to ±14:00)")
     per = cfg["period"]
     if per is not None:

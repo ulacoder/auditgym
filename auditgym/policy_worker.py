@@ -13,6 +13,7 @@ import json
 import os
 import sys
 import time
+from pathlib import Path
 
 INVALID = {"tool": "submit", "args": {"findings": None}}
 TIMEOUT = object()   # политика не ответила до крайнего срока эпизода
@@ -68,17 +69,34 @@ class RemotePolicy:
     (EOF, мусор вместо JSON) даёт неверную отправку (INVALID), как исключение в политике.
     """
 
-    def __init__(self, policy_name: str, env: dict):
+    def __init__(self, policy_name: str, env: dict, sandbox=None, policy_path: str | None = None):
         self.policy_name, self.env = policy_name, env
+        self.sandbox, self.policy_path = sandbox, policy_path
         self._truth = None
         self.p = None
         self._spawn()
 
     def _spawn(self):
         import subprocess
-        from ._secure import LineReader
+        from ._secure import LineReader, sandbox_preexec
+        root = str(Path(__file__).resolve().parent.parent)
+        kw = {}
+        env = dict(self.env)
+        if self.policy_path:
+            env["PYTHONPATH"] = os.pathsep.join([self.policy_path, env.get("PYTHONPATH", "")]).strip(os.pathsep)
+        if self.sandbox is not None:
+            # отдельный пользователь ОС: нет записи в репозиторий, нет доступа к /proc и сигналов оценщика
+            home = self.sandbox["home"]
+            env = {"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "HOME": home, "LANG": "C.UTF-8",
+                   "PYTHONDONTWRITEBYTECODE": "1",
+                   "PYTHONPATH": os.pathsep.join(x for x in (self.policy_path or os.environ.get("PYTHONPATH", ""),
+                                                             root) if x)}
+            kw = dict(user=self.sandbox["uid"], group=self.sandbox["gid"], extra_groups=[], cwd=home,
+                      preexec_fn=sandbox_preexec)
+        else:
+            kw = dict(start_new_session=True)
         self.p = subprocess.Popen([sys.executable, "-m", "auditgym", "policy-worker", "--policy", self.policy_name],
-                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=self.env)
+                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=env, **kw)
         self.reader = LineReader(self.p.stdout.fileno())
         self.dead = False
 
@@ -117,7 +135,7 @@ class RemotePolicy:
         try:
             r = json.loads(line)
             return r if isinstance(r, dict) else None
-        except ValueError:
+        except (ValueError, RecursionError, MemoryError):   # мусор или слишком глубокий JSON
             self._kill()
             return None
 
