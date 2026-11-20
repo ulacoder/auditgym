@@ -22,7 +22,8 @@
 # Docker (официальная проверка без сети)
 docker build -t auditgym:1.1.0 .
 docker run --rm --network none --cpus 2 --memory 4g auditgym:1.1.0
-# свой закрытый прогон: docker run --rm --network none -e AUDITGYM_SECRET=... -v $PWD/jury:/jury:ro \
+# свой закрытый прогон (каталог политик должен читаться всеми: chmod -R a+rX jury/policies):
+# docker run --rm --network none -e AUDITGYM_SECRET=... -v $PWD/jury:/jury:ro \
 #   auditgym:1.1.0 python -m auditgym evaluate --split /jury/hidden.json --policy-path /jury/policies --policies mypkg.mod:MyPolicy
 
 # или локально (Python 3.11+)
@@ -179,8 +180,8 @@ obs, reward, terminated, truncated, info = env.step(
 ## Данные эпизода
 
 Эпизод описывает одну компанию за один отчётный период (месяц): при настройках по умолчанию
-примерно 240–480 проводок, 70–150 документов и от 0 до 12 ошибок (сплиты с крупными книгами —
-до ~620 проводок и ~200 документов). Конфиг допускает и стресс-размеры
+примерно 240–480 проводок, 70–150 документов и от 0 до 12 ошибок (в открытых сплитах есть и стресс-эпизод
+`train_09_large_ledger` на 1 706 проводок). Конфиг допускает и стресс-размеры
 (до 160 счетов и 800 расходов, то есть больше 2 000 проводок). Принимаются только завершённые
 периоды (до 2026-10); неверный или противоречивый конфиг отклоняется сразу с `ValueError`.
 
@@ -339,5 +340,5 @@ grader_data/<split>/<name>/      ← закрыто: агент не видит
 
 - Презентация: `docs/presentation/AuditGym_TechJacket.pdf`. Фон слайдов — фото «Kite» от Risto
   Saukonpää из набора обоев KDE Plasma (LGPLv3).
-- Демо-видео (около 2 минут): лежит в папке сдачи на Google Диске. Его содержимое можно
+- Демо-видео (1:39): лежит в папке сдачи на Google Диске. Его содержимое можно
   воспроизвести командами `python -m auditgym demo` и `python -m auditgym check`.

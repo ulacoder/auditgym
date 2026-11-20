@@ -40,8 +40,9 @@ def main(policy_name: str) -> None:
                 policy = make_policy(policy_name, lambda eid: truth["value"])
                 policy.reset(req["observation"], req["info"])
                 resp = {"ok": True}
-            except BaseException:         # в т.ч. SystemExit/KeyboardInterrupt из кода политики
-                resp = {"ok": False}
+            except BaseException as e:    # в т.ч. SystemExit/KeyboardInterrupt из кода политики
+                policy = None
+                resp = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:300]}"}
         elif op == "act":
             try:
                 action = policy.act(req["observation"])
@@ -153,7 +154,12 @@ class RemotePolicy:
         if self._truth is not None:
             req["truth"] = self._truth
         r = self._call(req, deadline)
-        return TIMEOUT if r is TIMEOUT else None
+        if r is TIMEOUT:
+            return TIMEOUT
+        self.last_error = (r or {}).get("error") if not (r or {}).get("ok", False) else None
+        if r is None:
+            self.last_error = "policy process exited during reset"
+        return None
 
     def act(self, observation, deadline=None):
         r = self._call({"op": "act", "observation": observation}, deadline)

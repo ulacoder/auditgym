@@ -94,6 +94,7 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                              "evaluate as root with a user 'auditgym-policy' (the Docker image does this).\n")
     digest = package_digest()
     out = {}
+    reported_errors: set[str] = set()
     for name in policy_names:
         rows = []
         grader_only = name in oracle_policies
@@ -120,6 +121,12 @@ def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies
                     deadline = time.monotonic() + time_limit_s + TIME_GRACE_S
                     pol.set_truth(env.oracle_truth() if grader_only else None)
                     timed_out = pol.reset(obs, info, deadline) is TIMEOUT
+                    if getattr(pol, "last_error", None) and name not in reported_errors:
+                        # ошибку загрузки или reset политики показываем, а не прячем за «неверной отправкой»
+                        reported_errors.add(name)
+                        sys.stderr.write(f"auditgym: policy {name!r} failed in reset: {pol.last_error}. "
+                                         "Its episodes are scored as invalid submissions (-1). Check the "
+                                         "module path and that --policy-path is readable by the policy user.\n")
                     res = None
                 else:
                     ep = generate(e["seed"], e["config"])

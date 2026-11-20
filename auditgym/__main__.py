@@ -254,8 +254,14 @@ def cmd_check(args):
     report["ok"] = bool(ok_all)
     report["elapsed_s"] = round(time.time() - t0, 2)
     out = Path(args.report_dir)
-    out.mkdir(parents=True, exist_ok=True)
-    (out / "check_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
+    try:
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "check_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
+    except OSError:
+        # каталог только для чтения (docker run --read-only / --user): отчёт уходит во временный каталог
+        import tempfile
+        out = Path(tempfile.mkdtemp(prefix="auditgym-report-"))
+        (out / "check_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
     md = [f"# Check report\n", f"Overall: **{'PASS' if ok_all else 'FAIL'}** ({report['elapsed_s']} s)\n",
           "## Validation\n"] + [f"- {k}: {v['passed']}/{v['total']}" for k, v in val.items()] + \
          ["\n## Baselines (holdout_example, 20 episodes)\n", _table(res), "\n## Failure reasons (unmatched findings)\n"] + \
