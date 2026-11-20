@@ -42,14 +42,14 @@
       "issue_id": "ISS-03",
       "type": "fx_conversion",
       "affected_ids": [
-        "PAY-96A58DAE"
+        "PAY-3C6CA5FC"
       ],
-      "expected_amount_minor": 1025262,
+      "expected_amount_minor": 5699152,
       "currency": "KZT",
       "evidence_sets": [
         [
-          "D-5EAA6469",
-          "L-42589DD3",
+          "D-C49B0796",
+          "L-70CA9233",
           "2026-07-31:CNY:KZT"
         ]
       ],
@@ -59,18 +59,18 @@
       "issue_id": "ISS-04",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-96A58DAE",
-        "INV-E57D4868"
+        "PAY-3C6CA5FC",
+        "INV-E2E87871"
       ],
-      "expected_amount_minor": 338699686,
+      "expected_amount_minor": 836578912,
       "currency": "KZT",
       "evidence_sets": [
         [
-          "D-5EAA6469",
-          "D-127F9004",
-          "L-3BC84C42",
-          "L-5105FB7B",
-          "2026-07-24:CNY:KZT"
+          "D-C49B0796",
+          "D-0BEFB432",
+          "L-BBF910A5",
+          "L-0530D987",
+          "2026-07-06:CNY:KZT"
         ]
       ],
       "interaction": "partial_fx_payment_at_boundary"
@@ -79,17 +79,17 @@
       "issue_id": "ISS-05",
       "type": "payment_allocation",
       "affected_ids": [
-        "PAY-F450D619",
-        "INV-0768E95F"
+        "PAY-31FE74D5",
+        "INV-C3DFE4DD"
       ],
       "expected_amount_minor": 280993533,
       "currency": "KZT",
       "evidence_sets": [
         [
-          "D-9FBBB5E5",
-          "D-B184C9ED",
-          "L-8305BE72",
-          "L-8FCEEAF2"
+          "D-8969EEAB",
+          "D-DAD8C1C7",
+          "L-C7468E74",
+          "L-A659FCEC"
         ]
       ],
       "interaction": null

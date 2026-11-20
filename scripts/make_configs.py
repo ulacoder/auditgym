@@ -4,6 +4,7 @@ import random
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+ENV_VERSION = (ROOT / "auditgym" / "version.py").read_text().split('ENV_VERSION = "')[1].split('"')[0]
 Z = {"duplicate_invoice": 0, "payment_allocation": 0, "fx_conversion": 0, "period_cutoff": 0}
 ZI = {"fx_invoice_with_partial_payment": 0, "partial_fx_payment_at_boundary": 0}
 
@@ -67,7 +68,7 @@ for k in range(10, 20):
 
 for name, eps, ver in (("train", train, "train-v1"), ("dev", dev, "dev-v1"), ("holdout_example", hold, "holdout-example-v1")):
     (ROOT / "configs" / f"{name}.json").write_text(json.dumps(
-        {"config_version": ver, "env_version": "1.0.0",
+        {"config_version": ver, "env_version": ENV_VERSION,
          "note": "holdout_example imitates the jury's closed set (5 clean, 5 interacting); real hidden seeds are not here"
          if name == "holdout_example" else f"open {name} split",
          "episodes": eps}, indent=2, ensure_ascii=False) + "\n")

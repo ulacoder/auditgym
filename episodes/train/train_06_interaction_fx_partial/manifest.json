@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-4D05913B73C0",
-  "company": "Arman Media LLP",
+  "company": "Cirvane Media LLP",
   "base_currency": "EUR",
   "currency_exponents": {
     "EUR": 2,

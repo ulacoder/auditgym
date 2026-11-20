@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-9AC2DFDC0492",
-  "company": "Vega Pharma LLP",
+  "company": "Mirelux Pharma LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "EUR": 2,
@@ -14,11 +14,11 @@
   "period_end_exclusive": true,
   "timezone": "+00:00",
   "counts": {
-    "ledger_rows": 459,
-    "invoices": 70,
-    "payments": 64,
+    "ledger_rows": 359,
+    "invoices": 50,
+    "payments": 44,
     "fx_rates": 76,
-    "documents": 134
+    "documents": 94
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-D0E2AF428537",
-  "company": "Quartz Logistics LLP",
+  "company": "Tarkhel Logistics LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "CHF": 2,

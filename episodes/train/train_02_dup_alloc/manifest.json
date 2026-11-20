@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-BEE90841A3A8",
-  "company": "Zenit Build LLP",
+  "company": "Noralin Build LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "GBP": 2,

@@ -27,9 +27,10 @@ def test_interaction_scenarios_produce_linked_pairs(name):
         assert validate_episode(ep)["ok"]
 
 
-def test_boundary_scenario_payment_is_on_last_day_of_period():
+def test_boundary_scenario_payment_is_on_last_business_day_of_period():
+    from datetime import timedelta
     from auditgym.money import parse_iso, tz_from_str
-    for seed in range(5):
+    for seed in range(12):
         ep = generate(seed, {"interactions": {"partial_fx_payment_at_boundary": 1}})
         m = ep.manifest
         pid = [t for t in ep.truth["issues"] if t["type"] == "fx_conversion"][0]["affected_ids"][0]
@@ -37,8 +38,13 @@ def test_boundary_scenario_payment_is_on_last_day_of_period():
         tz = tz_from_str(m["timezone"])
         local = parse_iso(p["timestamp"]).astimezone(tz)
         end = parse_iso(m["period_end"])
-        assert 0 < (end - local).total_seconds() <= 86400
+        last = end - timedelta(days=1)
+        while last.astimezone(tz).weekday() >= 5:      # в выходные курсов нет — последний рабочий день
+            last -= timedelta(days=1)
+        assert last <= local < last + timedelta(days=1)
         assert p["currency"] != m["base_currency"]
+        # платёж «на бумаге» датирован предыдущим днём (ловушка naive_date)
+        assert parse_iso(p["timestamp"]).date() < local.date()
 
 
 def test_clean_company_has_no_issues_and_no_discrepancies():

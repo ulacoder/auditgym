@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-70D4C1995817",
-  "company": "Tengri Agro LLP",
+  "company": "Tengrava Agro LLP",
   "base_currency": "KZT",
   "currency_exponents": {
     "CHF": 2,

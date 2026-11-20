@@ -40,8 +40,9 @@ CATALOG = [
     ("SKU-MNT", "Maintenance package"), ("SKU-DSG", "Design sprint"),
     ("SKU-LOG", "Logistics service"), ("SKU-DAT", "Data processing batch"),
 ]
-NAMES_A = ["Altyn", "Nord", "Steppe", "Blue", "Silk", "Vega", "Orion", "Tengri", "Kite", "Polar",
-           "Aral", "Saryarka", "Lumen", "Delta", "Quartz", "Maple", "Zenit", "Arman"]
+# Придуманные слова: сочетания не должны совпадать с названиями реальных компаний
+NAMES_A = ["Velmora", "Krastel", "Zunari", "Orvexa", "Taldrin", "Mirelux", "Sarnova", "Tengrava", "Quorvik",
+           "Belvast", "Lumetra", "Darvolin", "Kestrova", "Ylvaro", "Tarkhel", "Vexmund", "Noralin", "Cirvane"]
 NAMES_B = ["Logistics", "Foods", "Systems", "Trading", "Labs", "Textiles", "Energy", "Retail",
            "Media", "Build", "Agro", "Pharma", "Motors", "Studio"]
 EXPENSE_ACCOUNTS = ["rent_expense", "payroll_expense", "software_expense", "utilities_expense",
@@ -51,6 +52,12 @@ MIN_MATERIAL_MINOR = 100
 
 
 DEFAULT_SECRET = "auditgym-open-v1"
+
+
+def has_private_secret() -> bool:
+    """Закрытый прогон: AUDITGYM_SECRET задан и не равен публичному значению по умолчанию."""
+    v = os.environ.get("AUDITGYM_SECRET")
+    return bool(v) and v != DEFAULT_SECRET
 
 
 def grader_secret() -> str:
@@ -472,7 +479,10 @@ class _Gen:
                 cand = [d for d in dates if d > correct_d]
                 wd = cand[0] if cand else None
             elif kind == "due_date":
-                wd = self.fx.rate_on_or_before(cur, self.base, due.astimezone(self.tz).date())[0] if due else None
+                dd = due.astimezone(self.tz).date() if due else None
+                # курс «на дату оплаты» есть, только если эта дата внутри таблицы курсов
+                wd = (self.fx.rate_on_or_before(cur, self.base, dd)[0]
+                      if dd is not None and dd.isoformat() <= dates[-1].isoformat() else None)
             elif kind == "naive_date":
                 nd = disp.date()   # дата «как написано» в смещении документа
                 wd = self.fx.rate_on_or_before(cur, self.base, nd)[0] if nd != instant.astimezone(self.tz).date() else None
@@ -504,7 +514,8 @@ class _Gen:
                 if ok:
                     break
             else:
-                raise RuntimeError(f"could not inject {name}#{i}")
+                raise ValueError(f"config cannot be realized: could not inject {name}#{i} "
+                                 f"(error_options too restrictive for this company)")
 
     # -- отдельные типы
     def _inject_duplicate_invoice(self, R, opts, attempt, interaction=None):
@@ -702,13 +713,22 @@ class _Gen:
         """Частичный платёж в иностранной валюте в последний день периода; смещение
         документа сдвигает «дату на бумаге» на предыдущий день, и курс взят по ней."""
         name = "partial_fx_payment_at_boundary"
+        # последний РАБОЧИЙ день периода: в выходные курсов нет, и «дата на бумаге»
+        # (предыдущий день) дала бы тот же курс пятницы — ловушка была бы невозможна
         last_day = self.end - timedelta(days=1)
-        pw = (last_day + timedelta(minutes=5), last_day + timedelta(hours=10))
+        while last_day.astimezone(self.tz).weekday() >= 5:
+            last_day -= timedelta(days=1)
+        # «дата на бумаге» уходит на предыдущий день, только если платёж сделан раньше, чем
+        # разница между поясом компании и самым западным смещением документа
+        gap = self.tz.utcoffset(None) - min(tz_from_str(o).utcoffset(None) for o in DOC_OFFSETS)
+        naive_ok = gap > timedelta(minutes=30)
+        hi = min(gap - timedelta(minutes=10), timedelta(hours=10)) if naive_ok else timedelta(hours=10)
+        pw = (last_day + timedelta(minutes=5), last_day + hi)
         _, inv, p = self._alloc_target(R, foreign=True, big=True, pay_window=pw,
                                        inv_window=(self.start, self.end - timedelta(days=5)), pay_shift=True)
         snap = (dict(self.ov.pay_rate), len(self.issues), len(self.changes))
-        if not self._apply_fx_payment(R, p, ["naive_date"] if attempt < 20 else ["naive_date", "prev_business_day"],
-                                      interaction=name):
+        kinds = ["naive_date"] if naive_ok and attempt < 20 else ["naive_date", "prev_business_day"]
+        if not self._apply_fx_payment(R, p, kinds, interaction=name):
             self._retract_invoice(inv, p)
             return False
         if not self._apply_alloc(R, p, inv, "partial", interaction=name):

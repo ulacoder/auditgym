@@ -1,9 +1,9 @@
 {
-  "started": "2026-11-19T23:16:25",
+  "started": "2026-11-20T08:21:13",
   "sections": {
     "tests": {
       "ok": true,
-      "summary": "126 passed in 5.14s"
+      "summary": "157 passed, 1 skipped in 13.48s"
     },
     "validation": {
       "train": {
@@ -298,8 +298,8 @@
             "interactions": [
               "partial_fx_payment_at_boundary"
             ],
-            "ledger_rows": 459,
-            "documents": 134,
+            "ledger_rows": 359,
+            "documents": 94,
             "name": "train_07_interaction_boundary"
           },
           {
@@ -703,8 +703,8 @@
             "interactions": [
               "partial_fx_payment_at_boundary"
             ],
-            "ledger_rows": 453,
-            "documents": 142,
+            "ledger_rows": 423,
+            "documents": 130,
             "name": "dev_08_interaction_boundary"
           },
           {
@@ -955,8 +955,8 @@
             "interactions": [
               "partial_fx_payment_at_boundary"
             ],
-            "ledger_rows": 459,
-            "documents": 147,
+            "ledger_rows": 359,
+            "documents": 107,
             "name": "hold_05_interaction"
           },
           {
@@ -1034,8 +1034,8 @@
             "interactions": [
               "partial_fx_payment_at_boundary"
             ],
-            "ledger_rows": 492,
-            "documents": 168,
+            "ledger_rows": 392,
+            "documents": 128,
             "name": "hold_07_interaction"
           },
           {
@@ -1492,7 +1492,7 @@
       "summary": "20/20 episodes PASS"
     },
     "fingerprint": {
-      "value": "4ba3f209e8189e178b242936733f7f0299475f841247895a80c2fc8a3ce6f4da",
+      "value": "2f176c8bc894dd2198b7999eefa8cea60227b73f1b6a980d9e726565ec2a7b4b",
       "ok": true
     },
     "baselines": {
@@ -1503,7 +1503,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 28,
-              "time_s": 0.07776339699998402,
+              "time_s": 0.04871826300001203,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1532,6 +1532,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -1539,7 +1540,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 33,
-              "time_s": 0.02374460400000089,
+              "time_s": 0.014699819999975716,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1586,6 +1587,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -1593,7 +1595,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 11,
-              "time_s": 0.015383228999979792,
+              "time_s": 0.009665362000021105,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1622,6 +1624,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -1629,7 +1632,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 15,
-              "time_s": 0.017811678000015263,
+              "time_s": 0.011030220999998619,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1667,6 +1670,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -1674,7 +1678,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 33,
-              "time_s": 0.018752111999987164,
+              "time_s": 0.012269089000028544,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1703,6 +1707,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -1710,7 +1715,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 21,
-              "time_s": 0.02436337099999264,
+              "time_s": 0.012012486999992689,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1727,7 +1732,7 @@
                 "unmatched_findings": [
                   {
                     "finding_index": 0,
-                    "type": "period_cutoff",
+                    "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
                       "INV-B2BF8EDD"
@@ -1736,10 +1741,10 @@
                   },
                   {
                     "finding_index": 1,
-                    "type": "payment_allocation",
+                    "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-690386B6"
+                      "INV-9C4A8F6E"
                     ],
                     "attribution": "clean_record"
                   },
@@ -1748,7 +1753,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-69824948"
+                      "INV-7CF896F1"
                     ],
                     "attribution": "clean_record"
                   }
@@ -1772,6 +1777,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -1785,7 +1791,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 6,
-              "time_s": 0.018575005999991845,
+              "time_s": 0.012931997000009687,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1842,6 +1848,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -1856,7 +1863,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 15,
-              "time_s": 0.026751330999985612,
+              "time_s": 0.013676408999970135,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1877,9 +1884,9 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-672F7E09"
+                      "INV-361AF6C0"
                     ],
-                    "attribution": "distractor:split_payment"
+                    "attribution": "clean_record"
                   }
                 ],
                 "precision": 0.0,
@@ -1902,6 +1909,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -1916,7 +1924,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 31,
-              "time_s": 0.02962165299999242,
+              "time_s": 0.01612616700003855,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -1954,6 +1962,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -1968,7 +1977,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 28,
-              "time_s": 0.02226347999999234,
+              "time_s": 0.013673350000033224,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2023,6 +2032,7 @@
                   "ISS-02": "fx_invoice_with_partial_payment"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -2037,7 +2047,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 18,
-              "time_s": 0.027165518000003885,
+              "time_s": 0.016563969999992878,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2066,6 +2076,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2078,7 +2089,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 15,
-              "time_s": 0.016853265000008832,
+              "time_s": 0.011103168000033747,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2101,6 +2112,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 1,
               "issue_types": {
                 "ISS-01": "payment_allocation"
@@ -2110,7 +2122,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 31,
-              "time_s": 0.01936972999999398,
+              "time_s": 0.011040335000018331,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2147,6 +2159,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 3,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2158,7 +2171,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 30,
-              "time_s": 0.03424376300000631,
+              "time_s": 0.015036645999998655,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2189,6 +2202,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2202,7 +2216,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 38,
-              "time_s": 0.05515242200002035,
+              "time_s": 0.019020089000036933,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2233,6 +2247,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2246,7 +2261,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 28,
-              "time_s": 0.0483796620000021,
+              "time_s": 0.016226760999984435,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2275,6 +2290,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2287,7 +2303,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 10,
-              "time_s": 0.02962821799999915,
+              "time_s": 0.01107179000001679,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2335,6 +2351,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2347,7 +2364,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 25,
-              "time_s": 0.041490148000008276,
+              "time_s": 0.014054921000024478,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2397,6 +2414,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2410,7 +2428,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 27,
-              "time_s": 0.031643612000010535,
+              "time_s": 0.013120782000044073,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2439,6 +2457,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2451,7 +2470,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 34,
-              "time_s": 0.043666593000011744,
+              "time_s": 0.016902190999985578,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2501,6 +2520,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -2519,24 +2539,23 @@
             "micro_f1": 0.0,
             "mean_return": -1.0,
             "mean_steps": 23.85,
-            "mean_time_s": 0.031131139599999358,
+            "mean_time_s": 0.01544719090001081,
             "tp": 0,
             "fp": 23,
             "fn": 69,
             "invalid_submissions": 0,
             "failure_reasons": {
-              "clean_record": 13,
+              "clean_record": 14,
               "distractor:recurring_amount": 4,
               "distractor:legit_partial_payment": 2,
               "distractor:tz_boundary_invoice": 2,
-              "distractor:split_payment": 1,
               "distractor:next_period_unposted_invoice": 1
             },
             "per_type": {
               "duplicate_invoice": {
                 "found": 0,
                 "total": 18,
-                "fp": 6
+                "fp": 7
               },
               "fx_conversion": {
                 "found": 0,
@@ -2546,7 +2565,7 @@
               "payment_allocation": {
                 "found": 0,
                 "total": 18,
-                "fp": 3
+                "fp": 2
               },
               "period_cutoff": {
                 "found": 0,
@@ -2562,7 +2581,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 16,
-              "time_s": 0.10525998500000355,
+              "time_s": 0.05689375600002222,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2726,6 +2745,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -2733,7 +2753,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 16,
-              "time_s": 0.03594187399997395,
+              "time_s": 0.01739801799999441,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2843,6 +2863,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -2850,7 +2871,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 12,
-              "time_s": 0.027220395999989933,
+              "time_s": 0.016313436000018555,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -2996,6 +3017,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -3003,7 +3025,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 16,
-              "time_s": 0.02928387499997598,
+              "time_s": 0.016949689999989914,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -3113,6 +3135,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -3120,7 +3143,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 14,
-              "time_s": 0.025358167999996795,
+              "time_s": 0.013563017999956628,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -3248,32 +3271,36 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
             {
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
-              "steps": 16,
-              "time_s": 0.048453231999985746,
+              "steps": 13,
+              "time_s": 0.016131561000008787,
               "result": {
                 "valid": true,
-                "tp": 2,
-                "fp": 12,
-                "fn": 3,
+                "tp": 3,
+                "fp": 7,
+                "fn": 2,
                 "pairs": [
                   {
-                    "finding_index": 6,
+                    "finding_index": 4,
                     "issue_id": "ISS-03"
                   },
                   {
-                    "finding_index": 10,
+                    "finding_index": 6,
+                    "issue_id": "ISS-02"
+                  },
+                  {
+                    "finding_index": 9,
                     "issue_id": "ISS-04"
                   }
                 ],
                 "missed_issue_ids": [
                   "ISS-01",
-                  "ISS-02",
                   "ISS-05"
                 ],
                 "unmatched_findings": [
@@ -3297,15 +3324,6 @@
                   },
                   {
                     "finding_index": 2,
-                    "type": "fx_conversion",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "INV-DDB10C58"
-                    ],
-                    "attribution": "clean_record"
-                  },
-                  {
-                    "finding_index": 3,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3314,7 +3332,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 4,
+                    "finding_index": 3,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3324,33 +3342,6 @@
                   },
                   {
                     "finding_index": 5,
-                    "type": "fx_conversion",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "INV-3D04B256"
-                    ],
-                    "attribution": "clean_record"
-                  },
-                  {
-                    "finding_index": 7,
-                    "type": "fx_conversion",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "INV-F4ED5100"
-                    ],
-                    "attribution": "clean_record"
-                  },
-                  {
-                    "finding_index": 8,
-                    "type": "fx_conversion",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "INV-7F0F25E5"
-                    ],
-                    "attribution": "clean_record"
-                  },
-                  {
-                    "finding_index": 9,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3359,7 +3350,7 @@
                     "attribution": "distractor:tz_boundary_invoice"
                   },
                   {
-                    "finding_index": 11,
+                    "finding_index": 7,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3368,17 +3359,7 @@
                     "attribution": "distractor:unreferenced_payment"
                   },
                   {
-                    "finding_index": 12,
-                    "type": "payment_allocation",
-                    "reason": "evidence",
-                    "affected_ids": [
-                      "PAY-55F8BC21",
-                      "INV-44155DE6"
-                    ],
-                    "attribution": "real_issue_wrong_details"
-                  },
-                  {
-                    "finding_index": 13,
+                    "finding_index": 8,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3387,11 +3368,11 @@
                     "attribution": "distractor:unreferenced_payment"
                   }
                 ],
-                "precision": 0.14285714285714285,
-                "recall": 0.4,
-                "f1": 0.21052631578947367,
-                "reward": -0.6089473684210527,
-                "inspection_steps": 15,
+                "precision": 0.3,
+                "recall": 0.6,
+                "f1": 0.4,
+                "reward": -0.224,
+                "inspection_steps": 12,
                 "outcome": "submitted",
                 "episode_id": "EP-89953818EEB6",
                 "issue_types": {
@@ -3406,6 +3387,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -3419,7 +3401,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 17,
-              "time_s": 0.03599184599997329,
+              "time_s": 0.02200472599997738,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -3592,6 +3574,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -3605,29 +3588,29 @@
             {
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
-              "steps": 17,
-              "time_s": 0.04392872400001124,
+              "steps": 15,
+              "time_s": 0.019080572000007123,
               "result": {
                 "valid": true,
                 "tp": 4,
-                "fp": 20,
+                "fp": 19,
                 "fn": 2,
                 "pairs": [
                   {
-                    "finding_index": 13,
+                    "finding_index": 12,
                     "issue_id": "ISS-04"
                   },
                   {
-                    "finding_index": 14,
+                    "finding_index": 13,
                     "issue_id": "ISS-03"
                   },
                   {
-                    "finding_index": 17,
-                    "issue_id": "ISS-02"
+                    "finding_index": 16,
+                    "issue_id": "ISS-05"
                   },
                   {
-                    "finding_index": 22,
-                    "issue_id": "ISS-05"
+                    "finding_index": 18,
+                    "issue_id": "ISS-02"
                   }
                 ],
                 "missed_issue_ids": [
@@ -3685,21 +3668,12 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-1AC04F7C"
-                    ],
-                    "attribution": "clean_record"
-                  },
-                  {
-                    "finding_index": 6,
-                    "type": "fx_conversion",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
                       "INV-99E9A06D"
                     ],
                     "attribution": "clean_record"
                   },
                   {
-                    "finding_index": 7,
+                    "finding_index": 6,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3708,7 +3682,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 8,
+                    "finding_index": 7,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3717,7 +3691,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 9,
+                    "finding_index": 8,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3726,7 +3700,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 10,
+                    "finding_index": 9,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3735,7 +3709,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 11,
+                    "finding_index": 10,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3744,7 +3718,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 12,
+                    "finding_index": 11,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3753,7 +3727,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 15,
+                    "finding_index": 14,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3762,7 +3736,7 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 16,
+                    "finding_index": 15,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -3771,11 +3745,11 @@
                     "attribution": "distractor:recurring_amount"
                   },
                   {
-                    "finding_index": 18,
+                    "finding_index": 17,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-2A3A918B"
+                      "PAY-08F8448F"
                     ],
                     "attribution": "distractor:unreferenced_payment"
                   },
@@ -3793,7 +3767,7 @@
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-08F8448F"
+                      "PAY-2A3A918B"
                     ],
                     "attribution": "distractor:unreferenced_payment"
                   },
@@ -3802,25 +3776,25 @@
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-335BFB64"
+                      "PAY-F381FD53"
                     ],
                     "attribution": "distractor:unreferenced_payment"
                   },
                   {
-                    "finding_index": 23,
+                    "finding_index": 22,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-F381FD53"
+                      "PAY-335BFB64"
                     ],
                     "attribution": "distractor:unreferenced_payment"
                   }
                 ],
-                "precision": 0.16666666666666666,
+                "precision": 0.17391304347826086,
                 "recall": 0.6666666666666666,
-                "f1": 0.26666666666666666,
-                "reward": -0.4986666666666667,
-                "inspection_steps": 16,
+                "f1": 0.27586206896551724,
+                "reward": -0.4762758620689655,
+                "inspection_steps": 14,
                 "outcome": "submitted",
                 "episode_id": "EP-0E9D77D95215",
                 "issue_types": {
@@ -3836,6 +3810,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -3850,7 +3825,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 16,
-              "time_s": 0.03395582299998523,
+              "time_s": 0.018799459000035768,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4048,6 +4023,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -4062,7 +4038,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 15,
-              "time_s": 0.03368368899998586,
+              "time_s": 0.017810245999953622,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -4243,7 +4219,7 @@
                 "precision": 0.23809523809523808,
                 "recall": 0.8333333333333334,
                 "f1": 0.37037037037037035,
-                "reward": -0.2872592592592593,
+                "reward": -0.28725925925925927,
                 "inspection_steps": 14,
                 "outcome": "submitted",
                 "episode_id": "EP-189E8CDBC131",
@@ -4260,6 +4236,7 @@
                   "ISS-02": "fx_invoice_with_partial_payment"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -4274,7 +4251,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 16,
-              "time_s": 0.04686574799998766,
+              "time_s": 0.019703845999970326,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4416,6 +4393,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -4428,7 +4406,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 13,
-              "time_s": 0.037774452999997266,
+              "time_s": 0.01537494099994774,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -4545,6 +4523,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 1,
               "issue_types": {
                 "ISS-01": "payment_allocation"
@@ -4554,7 +4533,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 12,
-              "time_s": 0.024290702999991254,
+              "time_s": 0.014814376000003904,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -4706,6 +4685,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 3,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -4717,7 +4697,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 15,
-              "time_s": 0.027977786999997534,
+              "time_s": 0.02447465799997417,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -4867,6 +4847,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -4880,7 +4861,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 17,
-              "time_s": 0.04028116300000306,
+              "time_s": 0.026262214999974276,
               "result": {
                 "valid": true,
                 "tp": 2,
@@ -5045,6 +5026,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -5058,7 +5040,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 14,
-              "time_s": 0.03772556000001259,
+              "time_s": 0.01912359400000696,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -5212,7 +5194,7 @@
                 "precision": 0.17647058823529413,
                 "recall": 0.75,
                 "f1": 0.2857142857142857,
-                "reward": -0.4545714285714286,
+                "reward": -0.45457142857142857,
                 "inspection_steps": 13,
                 "outcome": "submitted",
                 "episode_id": "EP-B0BB9DD33104",
@@ -5224,6 +5206,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -5236,7 +5219,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 15,
-              "time_s": 0.038023073999994494,
+              "time_s": 0.02012625399999024,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -5449,6 +5432,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -5461,7 +5445,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 13,
-              "time_s": 0.03179810199998201,
+              "time_s": 0.01777551099996799,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -5605,6 +5589,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -5618,7 +5603,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 12,
-              "time_s": 0.02972065799997381,
+              "time_s": 0.0157797620000224,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -5754,7 +5739,7 @@
                 "precision": 0.2,
                 "recall": 0.75,
                 "f1": 0.3157894736842105,
-                "reward": -0.390421052631579,
+                "reward": -0.39042105263157895,
                 "inspection_steps": 11,
                 "outcome": "submitted",
                 "episode_id": "EP-BE8FED44F796",
@@ -5766,6 +5751,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -5778,7 +5764,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 16,
-              "time_s": 0.04606621799999289,
+              "time_s": 0.02028871199996729,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -5991,6 +5977,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -6003,23 +5990,23 @@
           ],
           "summary": {
             "episodes": 20,
-            "mean_precision": 0.11538770195419812,
-            "mean_recall": 0.4608333333333333,
-            "mean_f1": 0.18148746420418246,
-            "micro_f1": 0.20725388601036268,
-            "mean_return": -0.657925071591635,
-            "mean_steps": 14.9,
-            "mean_time_s": 0.03898005389999071,
-            "tp": 40,
-            "fp": 277,
-            "fn": 29,
+            "mean_precision": 0.12360716365192069,
+            "mean_recall": 0.4708333333333333,
+            "mean_f1": 0.19142091852965132,
+            "micro_f1": 0.2152230971128609,
+            "mean_return": -0.6375581629406973,
+            "mean_steps": 14.65,
+            "mean_time_s": 0.020433417549989487,
+            "tp": 41,
+            "fp": 271,
+            "fn": 28,
             "invalid_submissions": 0,
             "failure_reasons": {
               "distractor:recurring_amount": 113,
               "distractor:unreferenced_payment": 76,
               "distractor:tz_boundary_invoice": 52,
-              "clean_record": 27,
-              "real_issue_wrong_details": 5,
+              "clean_record": 22,
+              "real_issue_wrong_details": 4,
               "distractor:split_payment": 3,
               "distractor:legit_partial_payment": 1
             },
@@ -6032,12 +6019,12 @@
               "fx_conversion": {
                 "found": 5,
                 "total": 19,
-                "fp": 45
+                "fp": 40
               },
               "payment_allocation": {
-                "found": 13,
+                "found": 14,
                 "total": 18,
-                "fp": 81
+                "fp": 80
               },
               "period_cutoff": {
                 "found": 4,
@@ -6053,7 +6040,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 3,
-              "time_s": 0.09434739799999647,
+              "time_s": 0.06064532599998529,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6353,6 +6340,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -6360,7 +6348,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 3,
-              "time_s": 0.02228191000000379,
+              "time_s": 0.012666512000009789,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6660,6 +6648,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -6667,7 +6656,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 3,
-              "time_s": 0.026832866999995986,
+              "time_s": 0.012420043000020087,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -6967,6 +6956,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -6974,7 +6964,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 3,
-              "time_s": 0.031599732000017866,
+              "time_s": 0.013534009000011338,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7274,6 +7264,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -7281,7 +7272,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 3,
-              "time_s": 0.01789114999999697,
+              "time_s": 0.016114029999982904,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7581,6 +7572,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -7588,7 +7580,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 3,
-              "time_s": 0.026388743000012482,
+              "time_s": 0.014031684999963545,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -7608,7 +7600,7 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-2A109C2A"
+                      "INV-69824948"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7617,7 +7609,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-3135661F"
+                      "INV-CDDADFD2"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7626,16 +7618,16 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-976138C5"
+                      "INV-70E98F6E"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 3,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-B44FF5DA"
+                      "INV-026EEFF3"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7644,7 +7636,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-3CA3D5DB"
+                      "INV-DE10B6C8"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7653,88 +7645,88 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-FE2C2477"
+                      "INV-DB547DB4"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 6,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-70E98F6E"
+                      "INV-139AAF79"
                     ],
-                    "attribution": "distractor:split_payment"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 7,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-595AA5FA"
+                      "INV-1454EAA6"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:recurring_amount"
                   },
                   {
                     "finding_index": 8,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-2AB5C93E"
+                      "INV-9C349559"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:tz_boundary_invoice"
                   },
                   {
                     "finding_index": 9,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-71ED9E7B"
+                      "INV-46DDBC4E"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:next_period_unposted_invoice"
                   },
                   {
                     "finding_index": 10,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-DFD127ED"
+                      "INV-AA648DAF"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:tz_boundary_invoice"
                   },
                   {
                     "finding_index": 11,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-577C52D5"
+                      "INV-9FDEEF72"
                     ],
-                    "attribution": "distractor:recurring_amount"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 12,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-DB547DB4"
+                      "INV-94A84026"
                     ],
-                    "attribution": "distractor:split_payment"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 13,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-24C3BEAD"
+                      "INV-90A031A9"
                     ],
-                    "attribution": "distractor:split_payment"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 14,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-3FF9F77F"
+                      "INV-976138C5"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7743,16 +7735,16 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-9C349559"
+                      "INV-FA2615B5"
                     ],
-                    "attribution": "distractor:tz_boundary_invoice"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 16,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-4FFFF4FE"
+                      "INV-D94623F4"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7761,16 +7753,16 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-1454EAA6"
+                      "INV-8B64F575"
                     ],
-                    "attribution": "distractor:recurring_amount"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 18,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-5F1D0A5F"
+                      "INV-3135661F"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7779,7 +7771,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-F5726308"
+                      "INV-A07405DC"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7788,38 +7780,38 @@
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-08B73D6B",
-                      "INV-8B64F575"
+                      "PAY-6A619C35",
+                      "INV-026EEFF3"
                     ],
                     "attribution": "clean_record"
                   },
                   {
                     "finding_index": 21,
                     "type": "payment_allocation",
-                    "reason": "amount",
+                    "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-55F8BC21",
-                      "INV-44155DE6"
+                      "PAY-29D8C9E3",
+                      "INV-69824948"
                     ],
-                    "attribution": "real_issue_wrong_details"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 22,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-301010B7",
-                      "INV-2AB5C93E"
+                      "PAY-9EDDFD61",
+                      "INV-1454EAA6"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 23,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-41B13CBC",
-                      "INV-F4B1B9DD"
+                      "PAY-422EE857",
+                      "INV-3FF9F77F"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7828,18 +7820,18 @@
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-788BB9DE",
-                      "INV-DFD127ED"
+                      "PAY-16E03F87",
+                      "INV-A133E188"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 25,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-BD7FB36D",
-                      "INV-3CA3D5DB"
+                      "PAY-D330EBBE",
+                      "INV-B2BF8EDD"
                     ],
                     "attribution": "clean_record"
                   },
@@ -7848,38 +7840,38 @@
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-88D596F3",
-                      "INV-690386B6"
+                      "PAY-5718F215",
+                      "INV-866EC2FD"
                     ],
                     "attribution": "clean_record"
                   },
                   {
                     "finding_index": 27,
                     "type": "payment_allocation",
-                    "reason": "no_issue_with_these_ids",
+                    "reason": "amount",
                     "affected_ids": [
-                      "PAY-7A0CD281",
-                      "INV-32E660C4"
+                      "PAY-DCA062ED",
+                      "INV-90A031A9"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "real_issue_wrong_details"
                   },
                   {
                     "finding_index": 28,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-F3E62F5D",
-                      "INV-7CF896F1"
+                      "PAY-A4F93B99",
+                      "INV-AC28680A"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:multi_invoice_payment"
                   },
                   {
                     "finding_index": 29,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-9EDDFD61",
-                      "INV-1454EAA6"
+                      "PAY-A0746004",
+                      "INV-24C3BEAD"
                     ],
                     "attribution": "distractor:split_payment"
                   }
@@ -7903,6 +7895,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -7916,7 +7909,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 3,
-              "time_s": 0.026360326999991912,
+              "time_s": 0.02157467600000018,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8235,6 +8228,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -8249,7 +8243,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 3,
-              "time_s": 0.030958345000016152,
+              "time_s": 0.024870153999984268,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8270,34 +8264,34 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-1A0ACC57"
+                      "INV-2613E411"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 1,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-8C27E87E"
+                      "INV-CD0CB6AD"
                     ],
-                    "attribution": "distractor:recurring_amount"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 2,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-8E3F128B"
+                      "INV-80211131"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:legit_partial_payment"
                   },
                   {
                     "finding_index": 3,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-94F36AAE"
+                      "INV-8E3F128B"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8306,7 +8300,7 @@
                     "type": "fx_conversion",
                     "reason": "amount",
                     "affected_ids": [
-                      "INV-408D6712"
+                      "INV-30B82D4D"
                     ],
                     "attribution": "real_issue_wrong_details"
                   },
@@ -8315,7 +8309,7 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-1BB6F7EA"
+                      "INV-5CD0D00C"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8324,7 +8318,7 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-A690697E"
+                      "INV-A6508945"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8333,7 +8327,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-A6508945"
+                      "INV-D6BCD78F"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8342,16 +8336,16 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-49B0F3BB"
+                      "INV-361AF6C0"
                     ],
-                    "attribution": "distractor:recurring_amount"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 9,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-A0AE8AB3"
+                      "INV-99E9A06D"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8360,25 +8354,25 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-AF25C03F"
+                      "INV-E677DC69"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:split_payment"
                   },
                   {
                     "finding_index": 11,
                     "type": "period_cutoff",
-                    "reason": "no_issue_with_these_ids",
+                    "reason": "evidence",
                     "affected_ids": [
-                      "INV-9686F63F"
+                      "INV-462BD14F"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "real_issue_wrong_details"
                   },
                   {
                     "finding_index": 12,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-59B1C91E"
+                      "INV-77CCB3CC"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8387,7 +8381,7 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-786C29F0"
+                      "INV-E88093F5"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8396,34 +8390,34 @@
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-6195107F"
+                      "INV-A3CE92FC"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:legit_partial_payment"
                   },
                   {
                     "finding_index": 15,
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-CB01E702"
+                      "INV-0C7B12D0"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:recurring_amount"
                   },
                   {
                     "finding_index": 16,
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-2E5B2379"
+                      "INV-486DCE8D"
                     ],
-                    "attribution": "distractor:recurring_amount"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 17,
                     "type": "period_cutoff",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-2526AD54"
+                      "INV-A3D9D296"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8432,7 +8426,7 @@
                     "type": "duplicate_invoice",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-56088A79"
+                      "INV-97CF3233"
                     ],
                     "attribution": "clean_record"
                   },
@@ -8441,22 +8435,62 @@
                     "type": "fx_conversion",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "INV-E677DC69"
+                      "INV-8048409C"
                     ],
-                    "attribution": "distractor:split_payment"
+                    "attribution": "clean_record"
                   },
                   {
                     "finding_index": 20,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-DE95EDF4",
-                      "INV-254A9415"
+                      "PAY-E85DD792",
+                      "INV-94854E8F"
+                    ],
+                    "attribution": "distractor:split_payment"
+                  },
+                  {
+                    "finding_index": 21,
+                    "type": "payment_allocation",
+                    "reason": "no_issue_with_these_ids",
+                    "affected_ids": [
+                      "PAY-5636251E",
+                      "INV-94854E8F"
+                    ],
+                    "attribution": "distractor:split_payment"
+                  },
+                  {
+                    "finding_index": 22,
+                    "type": "payment_allocation",
+                    "reason": "no_issue_with_these_ids",
+                    "affected_ids": [
+                      "PAY-6C558CB4",
+                      "INV-2A5B515A"
+                    ],
+                    "attribution": "distractor:legit_partial_payment"
+                  },
+                  {
+                    "finding_index": 23,
+                    "type": "payment_allocation",
+                    "reason": "no_issue_with_these_ids",
+                    "affected_ids": [
+                      "PAY-FE413D6D",
+                      "INV-AD36372C"
                     ],
                     "attribution": "clean_record"
                   },
                   {
-                    "finding_index": 21,
+                    "finding_index": 24,
+                    "type": "payment_allocation",
+                    "reason": "no_issue_with_these_ids",
+                    "affected_ids": [
+                      "PAY-58F5967C",
+                      "INV-2526AD54"
+                    ],
+                    "attribution": "distractor:multi_invoice_payment"
+                  },
+                  {
+                    "finding_index": 25,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
@@ -8466,84 +8500,44 @@
                     "attribution": "clean_record"
                   },
                   {
-                    "finding_index": 22,
-                    "type": "payment_allocation",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "PAY-A06F21F6",
-                      "INV-D6BCD78F"
-                    ],
-                    "attribution": "distractor:multi_invoice_payment"
-                  },
-                  {
-                    "finding_index": 23,
-                    "type": "payment_allocation",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "PAY-6833BFD4",
-                      "INV-51F88086"
-                    ],
-                    "attribution": "distractor:recurring_amount"
-                  },
-                  {
-                    "finding_index": 24,
-                    "type": "payment_allocation",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "PAY-C002EE98",
-                      "INV-11064D23"
-                    ],
-                    "attribution": "distractor:tz_boundary_invoice"
-                  },
-                  {
-                    "finding_index": 25,
-                    "type": "payment_allocation",
-                    "reason": "no_issue_with_these_ids",
-                    "affected_ids": [
-                      "PAY-F9F30315",
-                      "INV-49B0F3BB"
-                    ],
-                    "attribution": "distractor:legit_partial_payment"
-                  },
-                  {
                     "finding_index": 26,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-2DA5FD57",
-                      "INV-FC6013B0"
+                      "PAY-689D4145",
+                      "INV-A3CE92FC"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:legit_partial_payment"
                   },
                   {
                     "finding_index": 27,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-41A39336",
-                      "INV-408D6712"
+                      "PAY-2DC6ECE6",
+                      "INV-9C185614"
                     ],
-                    "attribution": "clean_record"
+                    "attribution": "distractor:recurring_amount"
                   },
                   {
                     "finding_index": 28,
                     "type": "payment_allocation",
                     "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-DC1ECE38",
-                      "INV-56088A79"
+                      "PAY-D49E15DD",
+                      "INV-ED77362E"
                     ],
                     "attribution": "clean_record"
                   },
                   {
                     "finding_index": 29,
                     "type": "payment_allocation",
-                    "reason": "amount",
+                    "reason": "no_issue_with_these_ids",
                     "affected_ids": [
-                      "PAY-6411FE3F",
-                      "INV-1A0ACC57"
+                      "PAY-217211CC",
+                      "INV-1BB6F7EA"
                     ],
-                    "attribution": "real_issue_wrong_details"
+                    "attribution": "clean_record"
                   }
                 ],
                 "precision": 0.0,
@@ -8566,6 +8560,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -8580,7 +8575,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 3,
-              "time_s": 0.022950645999998187,
+              "time_s": 0.022997029999999086,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -8899,6 +8894,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -8913,7 +8909,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 3,
-              "time_s": 0.017341148000014073,
+              "time_s": 0.014989859000024808,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9230,6 +9226,7 @@
                   "ISS-02": "fx_invoice_with_partial_payment"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -9244,7 +9241,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 3,
-              "time_s": 0.021816788000023735,
+              "time_s": 0.019356737000009616,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9554,6 +9551,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -9566,7 +9564,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 3,
-              "time_s": 0.017135019000022567,
+              "time_s": 0.019611491000034675,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -9870,6 +9868,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 1,
               "issue_types": {
                 "ISS-01": "payment_allocation"
@@ -9879,7 +9878,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 3,
-              "time_s": 0.017892925000012383,
+              "time_s": 0.011191236000001936,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10187,6 +10186,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 3,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -10198,7 +10198,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 3,
-              "time_s": 0.023553914000018494,
+              "time_s": 0.013109486000018933,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10510,6 +10510,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -10523,7 +10524,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 3,
-              "time_s": 0.022012351999990187,
+              "time_s": 0.014852667000013753,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -10835,6 +10836,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -10848,7 +10850,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 3,
-              "time_s": 0.029463212999985444,
+              "time_s": 0.013933571999984906,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11158,6 +11160,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -11170,7 +11173,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 3,
-              "time_s": 0.0262586130000102,
+              "time_s": 0.013060709000001225,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11480,6 +11483,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -11492,7 +11496,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 3,
-              "time_s": 0.02825651999998513,
+              "time_s": 0.01220266000001402,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -11804,6 +11808,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -11817,7 +11822,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 3,
-              "time_s": 0.02634134000001609,
+              "time_s": 0.011721136000005572,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12127,6 +12132,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -12139,7 +12145,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 3,
-              "time_s": 0.03284805699999538,
+              "time_s": 0.01462379399998781,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12451,6 +12457,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -12469,19 +12476,19 @@
             "micro_f1": 0.0,
             "mean_return": -1.0,
             "mean_steps": 3,
-            "mean_time_s": 0.028126550350005174,
+            "mean_time_s": 0.017875340600002686,
             "tp": 0,
             "fp": 600,
             "fn": 69,
             "invalid_submissions": 0,
             "failure_reasons": {
-              "clean_record": 336,
-              "distractor:recurring_amount": 86,
-              "distractor:split_payment": 84,
-              "distractor:legit_partial_payment": 39,
+              "clean_record": 330,
+              "distractor:split_payment": 88,
+              "distractor:recurring_amount": 83,
+              "distractor:legit_partial_payment": 42,
               "distractor:tz_boundary_invoice": 27,
-              "distractor:multi_invoice_payment": 12,
-              "distractor:next_period_unposted_invoice": 8,
+              "distractor:multi_invoice_payment": 13,
+              "distractor:next_period_unposted_invoice": 9,
               "real_issue_wrong_details": 8
             },
             "per_type": {
@@ -12514,7 +12521,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 1,
-              "time_s": 0.08518446599998697,
+              "time_s": 0.060645013999987896,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12533,6 +12540,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -12540,7 +12548,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 1,
-              "time_s": 0.01669845500001088,
+              "time_s": 0.010475868000014543,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12559,6 +12567,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -12566,7 +12575,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 1,
-              "time_s": 0.013087869999992563,
+              "time_s": 0.00945164099999829,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12585,6 +12594,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -12592,7 +12602,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 1,
-              "time_s": 0.015432957999991004,
+              "time_s": 0.010580624999988686,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12611,6 +12621,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -12618,7 +12629,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 1,
-              "time_s": 0.014370347000010497,
+              "time_s": 0.007677359000012984,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -12637,6 +12648,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -12644,7 +12656,7 @@
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
               "steps": 1,
-              "time_s": 0.019591988999991372,
+              "time_s": 0.01312464400001545,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -12693,6 +12705,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -12706,7 +12719,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 1,
-              "time_s": 0.021555118999998513,
+              "time_s": 0.012610888000040177,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12762,6 +12775,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -12776,7 +12790,7 @@
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
               "steps": 1,
-              "time_s": 0.02636462799998185,
+              "time_s": 0.012555221000013717,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12830,6 +12844,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -12844,7 +12859,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 1,
-              "time_s": 0.020801210999991326,
+              "time_s": 0.012217163000002529,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12900,6 +12915,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -12914,7 +12930,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 1,
-              "time_s": 0.02253983700001072,
+              "time_s": 0.010508985000001303,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -12968,6 +12984,7 @@
                   "ISS-02": "fx_invoice_with_partial_payment"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -12982,7 +12999,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 1,
-              "time_s": 0.026176717000026883,
+              "time_s": 0.012705544000027658,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13023,6 +13040,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13035,7 +13053,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 1,
-              "time_s": 0.017341641000001573,
+              "time_s": 0.009247565000009672,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -13061,6 +13079,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 1,
               "issue_types": {
                 "ISS-01": "payment_allocation"
@@ -13070,7 +13089,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 1,
-              "time_s": 0.010345094999991034,
+              "time_s": 0.007475069999998141,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -13106,6 +13125,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 3,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13117,7 +13137,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 1,
-              "time_s": 0.014331153999989965,
+              "time_s": 0.010171364999962407,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13163,6 +13183,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13176,7 +13197,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 1,
-              "time_s": 0.016339561999984653,
+              "time_s": 0.011899369999980536,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13222,6 +13243,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13235,7 +13257,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 1,
-              "time_s": 0.015314094999979488,
+              "time_s": 0.017107294000027196,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13276,6 +13298,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13288,7 +13311,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 1,
-              "time_s": 0.013415010000016991,
+              "time_s": 0.01585183899999265,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13329,6 +13352,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13341,7 +13365,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 1,
-              "time_s": 0.013658378999991783,
+              "time_s": 0.01339589399998431,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13387,6 +13411,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13400,7 +13425,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 1,
-              "time_s": 0.012695855999993455,
+              "time_s": 0.012338560999978654,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -13441,6 +13466,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13453,7 +13479,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 1,
-              "time_s": 0.01684001400002444,
+              "time_s": 0.013829576000034649,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13499,6 +13525,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -13517,7 +13544,7 @@
             "micro_f1": 1.0,
             "mean_return": 1.0,
             "mean_steps": 1,
-            "mean_time_s": 0.020604220149998298,
+            "mean_time_s": 0.014193474300003572,
             "tp": 69,
             "fp": 0,
             "fn": 0,
@@ -13553,7 +13580,7 @@
               "name": "hold_00_clean",
               "episode_id": "EP-8F391F412BD0",
               "steps": 16,
-              "time_s": 0.10157668899998384,
+              "time_s": 0.07580210100002205,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13572,6 +13599,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -13579,7 +13607,7 @@
               "name": "hold_01_clean",
               "episode_id": "EP-73C5E36BE45D",
               "steps": 16,
-              "time_s": 0.033732742000012195,
+              "time_s": 0.024502917999996043,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13598,6 +13626,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -13605,7 +13634,7 @@
               "name": "hold_02_clean",
               "episode_id": "EP-DDFB7DABA203",
               "steps": 12,
-              "time_s": 0.029427771000001712,
+              "time_s": 0.021665573999996468,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13624,6 +13653,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -13631,7 +13661,7 @@
               "name": "hold_03_clean",
               "episode_id": "EP-3A7653F0251A",
               "steps": 16,
-              "time_s": 0.03006131600000117,
+              "time_s": 0.018501051999976426,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13650,6 +13680,7 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
@@ -13657,7 +13688,7 @@
               "name": "hold_04_clean",
               "episode_id": "EP-FB6E5E7E3226",
               "steps": 14,
-              "time_s": 0.03166616699999736,
+              "time_s": 0.013738616000011916,
               "result": {
                 "valid": true,
                 "tp": 0,
@@ -13676,14 +13707,15 @@
                 "issue_types": {},
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 0,
               "issue_types": {}
             },
             {
               "name": "hold_05_interaction",
               "episode_id": "EP-89953818EEB6",
-              "steps": 16,
-              "time_s": 0.04954562800000417,
+              "steps": 13,
+              "time_s": 0.015946506999966914,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -13700,15 +13732,15 @@
                   },
                   {
                     "finding_index": 2,
-                    "issue_id": "ISS-01"
+                    "issue_id": "ISS-04"
                   },
                   {
                     "finding_index": 3,
-                    "issue_id": "ISS-02"
+                    "issue_id": "ISS-01"
                   },
                   {
                     "finding_index": 4,
-                    "issue_id": "ISS-04"
+                    "issue_id": "ISS-02"
                   }
                 ],
                 "missed_issue_ids": [],
@@ -13716,8 +13748,8 @@
                 "precision": 1.0,
                 "recall": 1.0,
                 "f1": 1.0,
-                "reward": 0.97,
-                "inspection_steps": 15,
+                "reward": 0.976,
+                "inspection_steps": 12,
                 "outcome": "submitted",
                 "episode_id": "EP-89953818EEB6",
                 "issue_types": {
@@ -13732,6 +13764,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -13745,7 +13778,7 @@
               "name": "hold_06_interaction",
               "episode_id": "EP-927BAC40C659",
               "steps": 17,
-              "time_s": 0.039768640999994886,
+              "time_s": 0.02046784800000978,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13801,6 +13834,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -13814,8 +13848,8 @@
             {
               "name": "hold_07_interaction",
               "episode_id": "EP-0E9D77D95215",
-              "steps": 17,
-              "time_s": 0.05578387700001031,
+              "steps": 15,
+              "time_s": 0.01924742599999263,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13824,15 +13858,15 @@
                 "pairs": [
                   {
                     "finding_index": 0,
-                    "issue_id": "ISS-06"
+                    "issue_id": "ISS-04"
                   },
                   {
                     "finding_index": 1,
-                    "issue_id": "ISS-03"
+                    "issue_id": "ISS-06"
                   },
                   {
                     "finding_index": 2,
-                    "issue_id": "ISS-04"
+                    "issue_id": "ISS-03"
                   },
                   {
                     "finding_index": 3,
@@ -13852,8 +13886,8 @@
                 "precision": 1.0,
                 "recall": 1.0,
                 "f1": 1.0,
-                "reward": 0.968,
-                "inspection_steps": 16,
+                "reward": 0.972,
+                "inspection_steps": 14,
                 "outcome": "submitted",
                 "episode_id": "EP-0E9D77D95215",
                 "issue_types": {
@@ -13869,6 +13903,7 @@
                   "ISS-02": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -13883,7 +13918,7 @@
               "name": "hold_08_interaction",
               "episode_id": "EP-E6292CADE0C1",
               "steps": 16,
-              "time_s": 0.04358307800001171,
+              "time_s": 0.0309094109999819,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -13939,6 +13974,7 @@
                   "ISS-04": "partial_fx_payment_at_boundary"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -13953,7 +13989,7 @@
               "name": "hold_09_interaction",
               "episode_id": "EP-189E8CDBC131",
               "steps": 15,
-              "time_s": 0.04164846599999805,
+              "time_s": 0.02866747800004532,
               "result": {
                 "valid": true,
                 "tp": 6,
@@ -14007,6 +14043,7 @@
                   "ISS-02": "fx_invoice_with_partial_payment"
                 }
               },
+              "policy_timeout": false,
               "n_issues": 6,
               "issue_types": {
                 "ISS-01": "fx_conversion",
@@ -14021,7 +14058,7 @@
               "name": "hold_10_mixed",
               "episode_id": "EP-0BA5395B8C08",
               "steps": 16,
-              "time_s": 0.05306537500001696,
+              "time_s": 0.022277086999963558,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14062,6 +14099,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14074,7 +14112,7 @@
               "name": "hold_11_mixed",
               "episode_id": "EP-6FE2AB62A470",
               "steps": 13,
-              "time_s": 0.0447791390000134,
+              "time_s": 0.01871073699999215,
               "result": {
                 "valid": true,
                 "tp": 1,
@@ -14100,6 +14138,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 1,
               "issue_types": {
                 "ISS-01": "payment_allocation"
@@ -14109,7 +14148,7 @@
               "name": "hold_12_mixed",
               "episode_id": "EP-F4EFA96F2663",
               "steps": 12,
-              "time_s": 0.030374817999984316,
+              "time_s": 0.017436999999972613,
               "result": {
                 "valid": true,
                 "tp": 3,
@@ -14145,6 +14184,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 3,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14156,7 +14196,7 @@
               "name": "hold_13_mixed",
               "episode_id": "EP-88BAD16B8A0F",
               "steps": 15,
-              "time_s": 0.029751771999997345,
+              "time_s": 0.019726970000021993,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14202,6 +14242,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14215,7 +14256,7 @@
               "name": "hold_14_mixed",
               "episode_id": "EP-7C9665A9CA4B",
               "steps": 17,
-              "time_s": 0.04299704599998222,
+              "time_s": 0.030914913999993132,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14261,6 +14302,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14274,7 +14316,7 @@
               "name": "hold_15_mixed",
               "episode_id": "EP-B0BB9DD33104",
               "steps": 14,
-              "time_s": 0.03387951199999861,
+              "time_s": 0.023480140000003757,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14315,6 +14357,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14327,7 +14370,7 @@
               "name": "hold_16_mixed",
               "episode_id": "EP-BD6837BDD461",
               "steps": 15,
-              "time_s": 0.036826786000005995,
+              "time_s": 0.026048186000025453,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14368,6 +14411,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14380,7 +14424,7 @@
               "name": "hold_17_mixed",
               "episode_id": "EP-DED01729AE23",
               "steps": 13,
-              "time_s": 0.03221910999997135,
+              "time_s": 0.02982962599998018,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14426,6 +14470,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14439,7 +14484,7 @@
               "name": "hold_18_mixed",
               "episode_id": "EP-BE8FED44F796",
               "steps": 12,
-              "time_s": 0.026975308999965364,
+              "time_s": 0.02044388199999503,
               "result": {
                 "valid": true,
                 "tp": 4,
@@ -14480,6 +14525,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 4,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14492,7 +14538,7 @@
               "name": "hold_19_mixed",
               "episode_id": "EP-A4D52773526B",
               "steps": 16,
-              "time_s": 0.03509911700001567,
+              "time_s": 0.022818862000008266,
               "result": {
                 "valid": true,
                 "tp": 5,
@@ -14538,6 +14584,7 @@
                 },
                 "interactions": {}
               },
+              "policy_timeout": false,
               "n_issues": 5,
               "issue_types": {
                 "ISS-01": "duplicate_invoice",
@@ -14554,9 +14601,9 @@
             "mean_recall": 0.75,
             "mean_f1": 1.0,
             "micro_f1": 1.0,
-            "mean_return": 0.9722,
-            "mean_steps": 14.9,
-            "mean_time_s": 0.04113811794999833,
+            "mean_return": 0.9727,
+            "mean_steps": 14.65,
+            "mean_time_s": 0.02505681674999778,
             "tp": 69,
             "fp": 0,
             "fn": 0,
@@ -14683,9 +14730,9 @@
           "reward_invariant": true,
           "rewards": {
             "oracle_orig": 1.0,
-            "scripted_auditor_orig": 0.97,
+            "scripted_auditor_orig": 0.976,
             "oracle_transformed": 1.0,
-            "scripted_auditor_transformed": 0.97
+            "scripted_auditor_transformed": 0.976
           },
           "ok": true
         },
@@ -14713,9 +14760,9 @@
           "reward_invariant": true,
           "rewards": {
             "oracle_orig": 1.0,
-            "scripted_auditor_orig": 0.968,
+            "scripted_auditor_orig": 0.972,
             "oracle_transformed": 1.0,
-            "scripted_auditor_transformed": 0.968
+            "scripted_auditor_transformed": 0.972
           },
           "ok": true
         },
@@ -14903,5 +14950,5 @@
     }
   },
   "ok": true,
-  "elapsed_s": 15.13
+  "elapsed_s": 19.72
 }

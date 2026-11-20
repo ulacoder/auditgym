@@ -48,6 +48,15 @@ def _fx_id(r):
     return f"{r['date']}:{r['source_currency']}:{r['target_currency']}"
 
 
+def _is_submit(action) -> bool:
+    if isinstance(action, str):
+        try:
+            action = json.loads(action)
+        except (ValueError, RecursionError):
+            return False
+    return isinstance(action, dict) and action.get("tool") == "submit"
+
+
 class AuditEnv:
     metadata = {"env_version": ENV_VERSION, "schema_version": SCHEMA_VERSION}
 
@@ -87,10 +96,11 @@ class AuditEnv:
         if self._done:
             obs = self._obs(None, None, ToolError("episode_finished", "episode already finished; call reset()"))
             return obs, 0.0, self._terminated, self._truncated, {}
-        self._steps += 1
         tool = None
+        # время проверяется до счёта шага: действие после тайм-аута не выполняется и шагом не считается
         if self.time_limit_s is not None and self._clock() - self._t0 > self.time_limit_s:
             return self._finish_truncated(action, "time_limit")
+        self._steps += 1
         try:
             tool, args = self._parse(action)
             if tool == "submit":
@@ -98,12 +108,23 @@ class AuditEnv:
             result = self._dispatch(tool, args)
             err = None
         except ToolError as e:
+            if _is_submit(action):
+                # submit с неверной структурой действия = неверная отправка: эпизод завершается, награда −1
+                return self._submit(action, {"findings": None})
             result, err = None, e
         if self._steps >= self.max_steps:
             return self._finish_truncated(action, "step_limit", tool, result, err)
         obs = self._obs(tool, result, err)
         self._record(action, obs, 0.0, False, False)
         return obs, 0.0, False, False, {}
+
+    def abandon(self, why: str = "abandoned"):
+        """Для оценщика: незавершённый эпизод закрывается как truncated с пустым ответом,
+        все сделанные шаги учитываются. Ничего не делает, если эпизод уже завершён."""
+        if self._ep is None or self._done:
+            return None
+        self._finish_truncated(None, why)
+        return self.grader_result()
 
     def grader_result(self) -> dict | None:
         """Только для оценщика/харнесса: итог оценки последнего эпизода."""
@@ -236,8 +257,9 @@ class AuditEnv:
         self._diagnose(res)
         self._result = res
         self._done, self._truncated = True, True
-        if why == "time_limit":
-            tool, result, err = None, None, ToolError("time_limit", "episode time limit exceeded")
+        if why in ("time_limit", "abandoned"):
+            tool, result, err = None, None, ToolError(why, "episode time limit exceeded" if why == "time_limit"
+                                                      else "episode abandoned before submit")
         obs = self._obs(tool, result, err)
         reward, info = self._reward_info(res)
         self._record(action, obs, reward, False, True)

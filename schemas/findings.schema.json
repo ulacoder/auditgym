@@ -40,11 +40,11 @@
           "affected_ids": {
             "type": "array",
             "minItems": 1,
-            "maxItems": 10,
+            "maxItems": 30,
             "items": {
               "type": "string"
             },
-            "description": "compared as a set after strip+upper"
+            "description": "compared as a set after ASCII strip+upper; non-ASCII strings are never normalized"
           },
           "claimed_amount_minor": {
             "type": "integer",

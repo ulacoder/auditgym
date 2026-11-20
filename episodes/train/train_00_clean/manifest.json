@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-76AD995FB47C",
-  "company": "Polar Textiles LLP",
+  "company": "Belvast Textiles LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "CNY": 2,

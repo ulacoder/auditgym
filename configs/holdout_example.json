@@ -1,6 +1,6 @@
 {
   "config_version": "holdout-example-v1",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "note": "holdout_example imitates the jury's closed set (5 clean, 5 interacting); real hidden seeds are not here",
   "episodes": [
     {

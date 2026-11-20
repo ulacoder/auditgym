@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-A93C64BEE889",
-  "company": "Kite Motors LLP",
+  "company": "Quorvik Motors LLP",
   "base_currency": "KZT",
   "currency_exponents": {
     "CHF": 2,

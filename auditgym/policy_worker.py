@@ -10,18 +10,28 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
+import time
 
 INVALID = {"tool": "submit", "args": {"findings": None}}
+TIMEOUT = object()   # политика не ответила до крайнего срока эпизода
 
 
 def main(policy_name: str) -> None:
+    # Протокол идёт по отдельной копии stdout; print() внутри политики уходит в stderr
+    # и не может сломать обмен с харнессом.
+    proto = os.fdopen(os.dup(1), "w", encoding="utf-8")
+    os.dup2(2, 1)
+    sys.stdout = sys.stderr
     from .policies import make_policy
     truth = {"value": None}
-    policy = make_policy(policy_name, lambda eid: truth["value"])
-    out = sys.stdout
+    policy = None
     for line in sys.stdin:
-        req = json.loads(line)
+        try:
+            req = json.loads(line)
+        except ValueError:
+            continue
         op = req.get("op")
         if op == "reset":
             truth["value"] = req.get("truth")
@@ -29,54 +39,108 @@ def main(policy_name: str) -> None:
                 policy = make_policy(policy_name, lambda eid: truth["value"])
                 policy.reset(req["observation"], req["info"])
                 resp = {"ok": True}
-            except Exception:
+            except BaseException:         # в т.ч. SystemExit/KeyboardInterrupt из кода политики
                 resp = {"ok": False}
         elif op == "act":
             try:
                 action = policy.act(req["observation"])
                 json.dumps(action)
-            except Exception:
+            except BaseException:
                 action = INVALID          # упавшая политика = неверная структура ответа
             resp = {"action": action}
         elif op == "close":
             break
         else:
             resp = {"error": "unknown op"}
-        out.write(json.dumps(resp, ensure_ascii=False) + "\n")
-        out.flush()
+        try:
+            data = json.dumps(resp, ensure_ascii=False)
+        except Exception:
+            data = json.dumps({"action": INVALID})
+        proto.write(data + "\n")
+        proto.flush()
 
 
 class RemotePolicy:
-    """Клиент к процессу политики: тот же интерфейс reset/act."""
+    """Клиент к процессу политики: тот же интерфейс reset/act, но с крайним сроком.
+
+    Если политика не ответила до deadline (time.monotonic()), процесс убивается и вызов
+    возвращает TIMEOUT; для следующего эпизода процесс запускается заново. Упавший процесс
+    (EOF, мусор вместо JSON) даёт неверную отправку (INVALID), как исключение в политике.
+    """
 
     def __init__(self, policy_name: str, env: dict):
-        import subprocess
-        self.p = subprocess.Popen([sys.executable, "-m", "auditgym", "policy-worker", "--policy", policy_name],
-                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True, bufsize=1, env=env)
+        self.policy_name, self.env = policy_name, env
         self._truth = None
+        self.p = None
+        self._spawn()
+
+    def _spawn(self):
+        import subprocess
+        from ._secure import LineReader
+        self.p = subprocess.Popen([sys.executable, "-m", "auditgym", "policy-worker", "--policy", self.policy_name],
+                                  stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=self.env)
+        self.reader = LineReader(self.p.stdout.fileno())
+        self.dead = False
+
+    def _kill(self):
+        if self.p is not None and self.p.poll() is None:
+            self.p.kill()
+        if self.p is not None:
+            self.p.wait()
+        self.dead = True
+
+    def ensure_alive(self):
+        if self.dead or self.p.poll() is not None:
+            self._kill()
+            self._spawn()
 
     def set_truth(self, truth):
         self._truth = truth
 
-    def _call(self, req):
-        self.p.stdin.write(json.dumps(req, ensure_ascii=False) + "\n")
-        self.p.stdin.flush()
-        line = self.p.stdout.readline()
-        return json.loads(line) if line else {"action": INVALID}
+    def _call(self, req, deadline=None):
+        from ._secure import Timeout
+        if self.dead:
+            return None
+        try:
+            self.p.stdin.write((json.dumps(req, ensure_ascii=False) + "\n").encode("utf-8"))
+            self.p.stdin.flush()
+            line = self.reader.readline(deadline)
+        except Timeout:
+            self._kill()
+            return TIMEOUT
+        except (OSError, ValueError):
+            self._kill()
+            return None
+        if line is None:
+            self._kill()
+            return None
+        try:
+            r = json.loads(line)
+            return r if isinstance(r, dict) else None
+        except ValueError:
+            self._kill()
+            return None
 
-    def reset(self, observation, info):
+    def reset(self, observation, info, deadline=None):
+        self.ensure_alive()
         req = {"op": "reset", "observation": observation, "info": info}
         if self._truth is not None:
             req["truth"] = self._truth
-        self._call(req)
+        r = self._call(req, deadline)
+        return TIMEOUT if r is TIMEOUT else None
 
-    def act(self, observation):
-        return self._call({"op": "act", "observation": observation}).get("action", INVALID)
+    def act(self, observation, deadline=None):
+        r = self._call({"op": "act", "observation": observation}, deadline)
+        if r is TIMEOUT:
+            return TIMEOUT
+        return (r or {}).get("action", INVALID)
 
     def close(self):
         try:
-            self.p.stdin.write(json.dumps({"op": "close"}) + "\n")
-            self.p.stdin.flush()
+            if not self.dead and self.p.poll() is None:
+                self.p.stdin.write(b'{"op": "close"}\n')
+                self.p.stdin.flush()
+                self.p.wait(timeout=10)
         except Exception:
             pass
-        self.p.wait(timeout=10)
+        self._kill()

@@ -1,6 +1,6 @@
 {
   "seed": 1010,
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "config": {
     "config_version": "train-v1",
     "base_currency": null,
@@ -151,13 +151,13 @@
     {
       "type": "fx_conversion",
       "interaction": null,
-      "cause": "invoice converted at wrong rate (due_date)",
-      "kind": "due_date",
+      "cause": "invoice converted at wrong rate (prev_business_day)",
+      "kind": "prev_business_day",
       "invoice": "INV-A725B8FA",
-      "wrong_rate_date": "2025-09-11",
-      "wrong_rate": "513.17222242",
+      "wrong_rate_date": "2025-08-19",
+      "wrong_rate": "524.72430309",
       "correct_rate_date": "2025-08-20",
-      "posted_minor": 1878056382,
+      "posted_minor": 1920333532,
       "correct_minor": 1912196366,
       "rows_before": [
         {
@@ -186,7 +186,7 @@
         {
           "row_id": "L-4A15FE94",
           "account": "accounts_receivable",
-          "debit_minor": 1878056382,
+          "debit_minor": 1920333532,
           "credit_minor": 0,
           "timestamp": "2025-08-20T01:36:00-05:00"
         },
@@ -194,7 +194,7 @@
           "row_id": "L-EEAB26D5",
           "account": "revenue",
           "debit_minor": 0,
-          "credit_minor": 1878056382,
+          "credit_minor": 1920333532,
           "timestamp": "2025-08-20T01:36:00-05:00"
         },
         {

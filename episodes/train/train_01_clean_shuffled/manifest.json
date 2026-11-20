@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-7D018C2F4029",
-  "company": "Blue Retail LLP",
+  "company": "Orvexa Retail LLP",
   "base_currency": "EUR",
   "currency_exponents": {
     "CNY": 2,

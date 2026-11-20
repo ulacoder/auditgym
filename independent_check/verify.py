@@ -5,7 +5,7 @@ Written from the case text (docs/CASE_FINTECH_RU.md, sections 03/05/10) and the
 files on disk only.  It does NOT import or read anything from the `auditgym`
 package.  Stdlib only, Python 3.11+.
 
-For every exported episode (episodes/{train,dev}/<name>) it:
+For every exported episode (episodes/<split>/<name>, any split; --root DIR for another tree) it:
   1. parses the public files strictly (schema check);
   2. checks accounting equalities (global, per journal, invoice lines, payment refs,
      referential integrity);
@@ -1106,7 +1106,10 @@ def main(argv):
     verbose = "-v" in argv
     names = [a for a in argv if not a.startswith("-")]
     eps = []
-    for split in ("train", "dev"):
+    root_eps = os.path.join(REPO, "episodes")
+    splits = sorted(x for x in os.listdir(root_eps) if os.path.isdir(os.path.join(root_eps, x))) \
+        if os.path.isdir(root_eps) else []
+    for split in splits:          # любые сплиты: train, dev или экспорт жюри (export --split ...)
         d = os.path.join(REPO, "episodes", split)
         if not os.path.isdir(d):
             continue

@@ -1,6 +1,6 @@
 {
   "seed": 1008,
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "config": {
     "config_version": "train-v1",
     "base_currency": null,
@@ -87,8 +87,8 @@
     "period_end": "2026-06-01T00:00:00+00:00"
   },
   "history": {
-    "invoices": 69,
-    "payments": 64,
+    "invoices": 49,
+    "payments": 44,
     "expenses": 81,
     "unposted_next_period": 2
   },
@@ -96,64 +96,64 @@
     {
       "type": "fx_conversion",
       "interaction": "partial_fx_payment_at_boundary",
-      "cause": "payment converted at wrong rate (prev_business_day)",
-      "kind": "prev_business_day",
-      "payment": "PAY-4F56E97F",
+      "cause": "payment converted at wrong rate (naive_date)",
+      "kind": "naive_date",
+      "payment": "PAY-6982CE5D",
       "wrong_rate_date": "2026-05-28",
-      "wrong_rate": "0.00174721",
-      "posted_minor": 3692210,
-      "correct_minor": 3685364,
+      "wrong_rate": "0.83260063",
+      "posted_minor": 4953391,
+      "correct_minor": 4936205,
       "rows_before": [
         {
-          "row_id": "L-285DBFC2",
+          "row_id": "L-F31075E6",
           "account": "accounts_receivable",
           "debit_minor": 0,
-          "credit_minor": 3627927,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 5017541,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-1095EF7C",
+          "row_id": "L-F5509B94",
           "account": "cash",
-          "debit_minor": 3685364,
+          "debit_minor": 4936205,
           "credit_minor": 0,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-9A987AAD",
+          "row_id": "L-9806B66A",
           "account": "fx_gain_loss",
-          "debit_minor": 0,
-          "credit_minor": 57437,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "debit_minor": 81336,
+          "credit_minor": 0,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         }
       ],
       "rows_after": [
         {
-          "row_id": "L-285DBFC2",
+          "row_id": "L-F31075E6",
           "account": "accounts_receivable",
           "debit_minor": 0,
-          "credit_minor": 1356043,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 2864675,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-1095EF7C",
+          "row_id": "L-F5509B94",
           "account": "cash",
-          "debit_minor": 3692210,
+          "debit_minor": 4953391,
           "credit_minor": 0,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-9A987AAD",
+          "row_id": "L-9806B66A",
           "account": "fx_gain_loss",
-          "debit_minor": 0,
-          "credit_minor": 64283,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "debit_minor": 64150,
+          "credit_minor": 0,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-D45E041A",
+          "row_id": "L-51CCE98C",
           "account": "unapplied_cash",
           "debit_minor": 0,
-          "credit_minor": 2271884,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 2152866,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         }
       ],
       "issue_id": "ISS-01"
@@ -163,89 +163,89 @@
       "interaction": "partial_fx_payment_at_boundary",
       "cause": "partial allocation: part of AR credit posted to unapplied_cash",
       "mode": "partial",
-      "payment": "PAY-4F56E97F",
-      "invoice": "INV-727BAF36",
-      "expected_ar_credit": 3627927,
-      "posted_ar_credit": 1356043,
+      "payment": "PAY-6982CE5D",
+      "invoice": "INV-C77B8575",
+      "expected_ar_credit": 5017541,
+      "posted_ar_credit": 2864675,
       "rows_before": [
         {
-          "row_id": "L-E3F5C8CB",
+          "row_id": "L-0B9A28A3",
           "account": "accounts_receivable",
-          "debit_minor": 3627927,
+          "debit_minor": 5017541,
           "credit_minor": 0,
-          "timestamp": "2026-05-24T07:10:32+00:00"
+          "timestamp": "2026-05-07T14:48:16+00:00"
         },
         {
-          "row_id": "L-39967AB9",
+          "row_id": "L-77CBC4B5",
           "account": "revenue",
           "debit_minor": 0,
-          "credit_minor": 3627927,
-          "timestamp": "2026-05-24T07:10:32+00:00"
+          "credit_minor": 5017541,
+          "timestamp": "2026-05-07T14:48:16+00:00"
         },
         {
-          "row_id": "L-285DBFC2",
+          "row_id": "L-F31075E6",
           "account": "accounts_receivable",
           "debit_minor": 0,
-          "credit_minor": 3627927,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 5017541,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-1095EF7C",
+          "row_id": "L-F5509B94",
           "account": "cash",
-          "debit_minor": 3685364,
+          "debit_minor": 4936205,
           "credit_minor": 0,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-9A987AAD",
+          "row_id": "L-9806B66A",
           "account": "fx_gain_loss",
-          "debit_minor": 0,
-          "credit_minor": 57437,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "debit_minor": 81336,
+          "credit_minor": 0,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         }
       ],
       "rows_after": [
         {
-          "row_id": "L-E3F5C8CB",
+          "row_id": "L-0B9A28A3",
           "account": "accounts_receivable",
-          "debit_minor": 3627927,
+          "debit_minor": 5017541,
           "credit_minor": 0,
-          "timestamp": "2026-05-24T07:10:32+00:00"
+          "timestamp": "2026-05-07T14:48:16+00:00"
         },
         {
-          "row_id": "L-39967AB9",
+          "row_id": "L-77CBC4B5",
           "account": "revenue",
           "debit_minor": 0,
-          "credit_minor": 3627927,
-          "timestamp": "2026-05-24T07:10:32+00:00"
+          "credit_minor": 5017541,
+          "timestamp": "2026-05-07T14:48:16+00:00"
         },
         {
-          "row_id": "L-285DBFC2",
+          "row_id": "L-F31075E6",
           "account": "accounts_receivable",
           "debit_minor": 0,
-          "credit_minor": 1356043,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 2864675,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-1095EF7C",
+          "row_id": "L-F5509B94",
           "account": "cash",
-          "debit_minor": 3692210,
+          "debit_minor": 4953391,
           "credit_minor": 0,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-9A987AAD",
+          "row_id": "L-9806B66A",
           "account": "fx_gain_loss",
-          "debit_minor": 0,
-          "credit_minor": 64283,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "debit_minor": 64150,
+          "credit_minor": 0,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         },
         {
-          "row_id": "L-D45E041A",
+          "row_id": "L-51CCE98C",
           "account": "unapplied_cash",
           "debit_minor": 0,
-          "credit_minor": 2271884,
-          "timestamp": "2026-05-31T08:09:32+00:00"
+          "credit_minor": 2152866,
+          "timestamp": "2026-05-29T01:19:20+00:00"
         }
       ],
       "issue_id": "ISS-02"
@@ -254,21 +254,21 @@
       "type": "period_cutoff",
       "interaction": null,
       "cause": "next-period invoice backdated into period",
-      "invoice": "INV-4E615D2B",
+      "invoice": "INV-5769DC76",
       "tz_trap": false,
       "document_instant": "2026-06-01T15:17:56+00:00",
       "ledger_timestamp": "2026-05-31T20:16:28+00:00",
       "rows_before": [],
       "rows_after": [
         {
-          "row_id": "L-7C779DAE",
+          "row_id": "L-F280AA98",
           "account": "accounts_receivable",
           "debit_minor": 346700,
           "credit_minor": 0,
           "timestamp": "2026-05-31T20:16:28+00:00"
         },
         {
-          "row_id": "L-E678276B",
+          "row_id": "L-E9176A05",
           "account": "revenue",
           "debit_minor": 0,
           "credit_minor": 346700,

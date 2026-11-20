@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-13EAFF569DD2",
-  "company": "Steppe Retail LLP",
+  "company": "Zunari Retail LLP",
   "base_currency": "KZT",
   "currency_exponents": {
     "CNY": 2,
@@ -13,11 +13,11 @@
   "period_end_exclusive": true,
   "timezone": "-05:00",
   "counts": {
-    "ledger_rows": 453,
-    "invoices": 70,
-    "payments": 72,
+    "ledger_rows": 423,
+    "invoices": 64,
+    "payments": 66,
     "fx_rates": 37,
-    "documents": 142
+    "documents": 130
   },
   "rounding": {
     "mode": "ROUND_HALF_UP",

@@ -66,12 +66,21 @@ def _table(res):
 
 
 def cmd_evaluate(args):
-    res = evaluate(args.policies, _split(args.split), isolated=not args.in_process,
-                   oracle_policies=frozenset(args.oracle_policies),
-                   allow_public_secret=args.allow_public_secret or args.split in SPLITS)
+    try:
+        res = _evaluate_cli(args)
+    except RuntimeError as e:
+        sys.stderr.write(f"auditgym evaluate: {e}\n")
+        raise SystemExit(3)
     print(_table(res))
     if args.json:
         Path(args.json).write_text(json.dumps(res, indent=2, ensure_ascii=False))
+
+
+def _evaluate_cli(args):
+    return evaluate(args.policies, _split(args.split), isolated=not args.in_process,
+                   oracle_policies=frozenset(args.oracle_policies),
+                   allow_public_secret=args.allow_public_secret or args.split in SPLITS,
+                   time_limit_s=args.time_limit)
 
 
 def cmd_grade(args):
@@ -86,7 +95,12 @@ def cmd_grade(args):
 
 
 def cmd_run(args):
-    """Один эпизод любой политикой (встроенной или внешней "module:Class") с записью траектории."""
+    """Один эпизод любой политикой (встроенной или внешней "module:Class") с записью траектории.
+
+    Эпизод задаётся одним из способов: --seed [+ --config/--config-file]; --split NAME --index K
+    (те же seed/config/config_version, что у экспортированных эпизодов, поэтому episode_id совпадает);
+    или --config '{"episode_dir": ..., "grader_dir": ...}' (эпизод с диска).
+    Эталон получает только политика из --oracle-policies (по умолчанию встроенный oracle)."""
     from .env import AuditEnv
     from .generator import generate
     from .harness import run_episode
@@ -94,11 +108,25 @@ def cmd_run(args):
     cfg = json.loads(args.config) if args.config else {}
     if args.config_file:
         cfg = {**json.loads(Path(args.config_file).read_text()), **cfg}
+    seed = args.seed
+    if args.split is not None:
+        if args.index is None:
+            raise SystemExit("--split needs --index")
+        e = _split(args.split)[args.index]
+        seed, cfg = e["seed"], {**e["config"], **cfg}
+    if "episode_dir" in cfg:
+        from .episode_io import load_episode
+        ep = load_episode(cfg["episode_dir"], cfg.get("grader_dir") or cfg["episode_dir"])
+    else:
+        if seed is None:
+            raise SystemExit("give --seed, --split/--index or an episode_dir config")
+        ep = generate(seed, cfg)
     buf = []
     env = AuditEnv(mode=args.mode, recorder=buf.append)
-    ep = generate(args.seed, cfg)
-    pol = make_policy(args.policy, {ep.episode_id: ep.truth}.__getitem__)
-    eid, steps, ret, dt, info = run_episode(env, pol, args.seed, cfg)
+    truth = {ep.episode_id: ep.truth}
+    allowed = args.policy in set(args.oracle_policies)
+    pol = make_policy(args.policy, (lambda eid: truth.get(eid)) if allowed else (lambda eid: None))
+    eid, steps, ret, dt, info = run_episode(env, pol, episode=ep)
     if args.trajectories:
         with open(args.trajectories, "a", encoding="utf-8") as fh:
             for d in buf:
@@ -265,6 +293,7 @@ def main(argv=None):
                    help="run without AUDITGYM_SECRET (only for open splits)")
     p.add_argument("--oracle-policies", nargs="*", default=["oracle"],
                    help="policies the grader may give truth to (e.g. your own pkg.mod:Oracle)")
+    p.add_argument("--time-limit", type=float, default=60.0, help="seconds per episode (default 60)")
     p.add_argument("--json")
     p.set_defaults(fn=cmd_evaluate)
     p = sub.add_parser("grade")
@@ -274,11 +303,15 @@ def main(argv=None):
     p.set_defaults(fn=cmd_grade)
     p = sub.add_parser("run")
     p.add_argument("--policy", required=True, help="builtin name or package.module:ClassName")
-    p.add_argument("--seed", type=int, required=True)
-    p.add_argument("--config", help="JSON string with config overrides")
+    p.add_argument("--seed", type=int)
+    p.add_argument("--config", help="JSON string with config overrides (or {\"episode_dir\":..,\"grader_dir\":..})")
     p.add_argument("--config-file")
+    p.add_argument("--split", help="take seed/config from a split (train, dev, holdout_example or a path)")
+    p.add_argument("--index", type=int, help="episode index in --split")
     p.add_argument("--mode", default="eval", choices=["train", "eval"])
     p.add_argument("--trajectories", help="append trajectory records to this .jsonl")
+    p.add_argument("--oracle-policies", nargs="*", default=["oracle"],
+                   help="policies allowed to receive the truth (a self-declared grader_only attribute is not enough)")
     p.set_defaults(fn=cmd_run)
     p = sub.add_parser("demo")
     p.add_argument("--split", default="train")
@@ -293,9 +326,12 @@ def main(argv=None):
     p.add_argument("--episodes", help="split JSON with hidden seeds/configs; reset then only by index")
     p.add_argument("--allow-oracle", action="store_true", help="enable the grader-only oracle_truth op")
     p.add_argument("--allow-public-secret", action="store_true", help="allow --episodes without AUDITGYM_SECRET")
+    p.add_argument("--episodes-fd", type=int, help=argparse.SUPPRESS)   # канал от харнесса (без файла)
+    p.add_argument("--grader-fd", type=int, help=argparse.SUPPRESS)     # канал итогов в харнесс (без файла)
     p.set_defaults(fn=lambda a: __import__("auditgym.server", fromlist=["serve"]).serve(
         a.mode, a.grader_log, a.max_steps, None if a.no_time_limit else a.time_limit,
-        episodes=a.episodes, allow_oracle=a.allow_oracle, allow_public_secret=a.allow_public_secret))
+        episodes=a.episodes, allow_oracle=a.allow_oracle, allow_public_secret=a.allow_public_secret,
+        episodes_fd=a.episodes_fd, grader_fd=a.grader_fd))
     p = sub.add_parser("policy-worker")
     p.add_argument("--policy", required=True)
     p.set_defaults(fn=lambda a: __import__("auditgym.policy_worker", fromlist=["main"]).main(a.policy))

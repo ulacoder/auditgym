@@ -21,7 +21,7 @@ configs:
 	$(PY) scripts/make_configs.py
 
 docker-build:
-	docker build -t auditgym:1.0.0 .
+	docker build -t auditgym:1.1.0 .
 
 docker-check: docker-build
-	docker run --rm --network none --cpus 2 --memory 4g auditgym:1.0.0
+	docker run --rm --network none --cpus 2 --memory 4g auditgym:1.1.0

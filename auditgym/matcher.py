@@ -16,6 +16,7 @@
 from __future__ import annotations
 
 import math
+from fractions import Fraction
 from decimal import Decimal
 
 from .config import ERROR_TYPES
@@ -33,12 +34,25 @@ class InvalidSubmission(ValueError):
     pass
 
 
+_ASCII_WS = " \t\r\n"
+
+
+def _canon(x: str, case: str = "upper") -> str:
+    """Нормализация только ASCII: обрезка ASCII-пробелов и смена регистра.
+    Строки с не-ASCII символами не нормализуются (ı, ſ, NBSP не превращаются в
+    канонические ID/коды) и поэтому ни с чем не совпадут."""
+    y = x.strip(_ASCII_WS)
+    if not y.isascii():
+        return y
+    return y.upper() if case == "upper" else y.lower()
+
+
 def _ids(v, field, limit):
     if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
         raise InvalidSubmission(f"{field} must be a list of strings")
     if len(v) > limit:
         raise InvalidSubmission(f"{field} exceeds {limit}")
-    return [x.strip().upper() for x in v]
+    return [_canon(x) for x in v]
 
 
 def validate_submission(sub, episode_id: str) -> list[dict]:
@@ -60,22 +74,25 @@ def validate_submission(sub, episode_id: str) -> list[dict]:
         if not isinstance(f, dict) or set(f) != keys:
             raise InvalidSubmission("finding must have exactly keys " + ",".join(sorted(keys)))
         t = f["type"]
-        if not isinstance(t, str) or t.strip().lower() not in ERROR_TYPES:
+        if not isinstance(t, str) or _canon(t, "lower") not in ERROR_TYPES:
             raise InvalidSubmission("unknown finding type")
         amt = f["claimed_amount_minor"]
+        # JSON Schema считает 1000.0 целым числом — принимаем так же (только конечные целые значения)
+        if isinstance(amt, float) and math.isfinite(amt) and amt.is_integer():
+            amt = int(amt)
         if not isinstance(amt, int) or isinstance(amt, bool):
             raise InvalidSubmission("claimed_amount_minor must be an integer")
         cur = f["currency"]
-        if not isinstance(cur, str) or len(cur.strip()) != 3:
-            raise InvalidSubmission("currency must be a 3-letter code")
+        if not isinstance(cur, str) or len(_canon(cur)) != 3 or not _canon(cur).isascii():
+            raise InvalidSubmission("currency must be a 3-letter ASCII code")
         ex = f["explanation"]
         if not isinstance(ex, str) or len(ex) > MAX_EXPLANATION:
             raise InvalidSubmission(f"explanation must be a string <= {MAX_EXPLANATION} chars")
         aff = _ids(f["affected_ids"], "affected_ids", MAX_AFFECTED)
         if not aff:
             raise InvalidSubmission("affected_ids must be non-empty")
-        out.append({"type": t.strip().lower(), "affected_ids": aff, "claimed_amount_minor": amt,
-                    "currency": cur.strip().upper(),
+        out.append({"type": _canon(t, "lower"), "affected_ids": aff, "claimed_amount_minor": amt,
+                    "currency": _canon(cur),
                     "evidence_ids": _ids(f["evidence_ids"], "evidence_ids", MAX_EVIDENCE),
                     "explanation": ex})
     return out
@@ -152,9 +169,16 @@ def metrics(tp: int, fp: int, fn: int) -> dict:
     return {"precision": p, "recall": r, "f1": f1}
 
 
-def terminal_reward(f1: float, inspection_steps: int) -> float:
-    v = Decimal(str(f1)) * 2 - 1 - STEP_COST * inspection_steps
-    return float(min(Decimal(1), max(Decimal(-1), v)))
+def terminal_reward(f1, inspection_steps: int) -> float:
+    """clip(2*F1 - 1 - 0.002*steps, -1, 1), посчитано точно (Fraction) и округлено один раз.
+    f1 может быть Fraction (точное значение из TP/FP/FN) или float."""
+    f = f1 if isinstance(f1, Fraction) else Fraction(Decimal(str(f1)))
+    v = 2 * f - 1 - Fraction(STEP_COST) * inspection_steps
+    return float(min(Fraction(1), max(Fraction(-1), v)))
+
+
+def exact_f1(tp: int, fp: int, fn: int) -> Fraction:
+    return Fraction(1) if tp + fp + fn == 0 else Fraction(2 * tp, 2 * tp + fp + fn)
 
 
 def grade(submission, truth: dict, inspection_steps: int) -> dict:
@@ -167,5 +191,5 @@ def grade(submission, truth: dict, inspection_steps: int) -> dict:
                 "inspection_steps": inspection_steps}
     m = match(fs, truth["issues"])
     mt = metrics(m["tp"], m["fp"], m["fn"])
-    return {"valid": True, **m, **mt, "reward": terminal_reward(mt["f1"], inspection_steps),
+    return {"valid": True, **m, **mt, "reward": terminal_reward(exact_f1(m["tp"], m["fp"], m["fn"]), inspection_steps),
             "inspection_steps": inspection_steps}

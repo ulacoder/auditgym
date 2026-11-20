@@ -1,6 +1,6 @@
 {
   "config_version": "train-v1",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "note": "open train split",
   "episodes": [
     {

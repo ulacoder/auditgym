@@ -1,3 +1,6 @@
+> **Исторический снимок** аудита первой версии (74 теста). Все пункты «NOT MET» с тех пор закрыты;
+> актуальное состояние — `reports/check_report.md`, `README.md` и `DESIGN.md` §7.
+
 # Jury compliance audit (FinTech case, sections 03-07, 09, 10, 12)
 
 Auditor stance: strict. Evidence = file:function or command output. Verified on 2026-11-19 with

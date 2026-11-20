@@ -4,7 +4,6 @@ from __future__ import annotations
 import json
 import os
 import statistics
-import tempfile
 import time
 from pathlib import Path
 
@@ -17,16 +16,28 @@ from .server import RemoteEnv
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def load_split(path) -> list[dict]:
-    with open(path, encoding="utf-8") as fh:
-        data = json.load(fh)
+def split_from_dict(data: dict) -> list[dict]:
+    from .env import ENV_VERSION
+    ev = data.get("env_version")
+    if ev is not None and ev != ENV_VERSION:
+        raise ValueError(f"split was made for env_version {ev}, this environment is {ENV_VERSION}")
     return [{**e, "config": {**e.get("config", {}), "config_version": data["config_version"]}}
             for e in data["episodes"]]
 
 
-def run_episode(env, policy, seed=None, config=None, max_steps=100, index=None):
+def load_split(path) -> list[dict]:
+    with open(path, encoding="utf-8") as fh:
+        return split_from_dict(json.load(fh))
+
+
+def run_episode(env, policy, seed=None, config=None, max_steps=100, index=None, episode=None):
     t0 = time.perf_counter()
-    obs, info = env.reset(index=index) if index is not None else env.reset(seed, config)
+    if episode is not None:
+        obs, info = env.reset_episode(episode)
+    elif index is not None:
+        obs, info = env.reset(index=index)
+    else:
+        obs, info = env.reset(seed, config)
     policy.reset(obs, info)
     done, steps, ret = False, 0, 0.0
     while not done:
@@ -47,78 +58,143 @@ def run_episode(env, policy, seed=None, config=None, max_steps=100, index=None):
 ORACLE_POLICIES = frozenset({"oracle"})
 
 
+TIME_GRACE_S = 1.0
+_PROBE = {"tool": "list_records", "args": {"table": "invoices", "limit": 1}}
+
+
 def evaluate(policy_names, episodes, isolated=True, mode="eval", oracle_policies=ORACLE_POLICIES,
-             allow_public_secret=False) -> dict:
+             allow_public_secret=False, time_limit_s: float = 60.0) -> dict:
     """Одинаковые политики на одних эпизодах; награда берётся у оценщика.
 
-    isolated=True — три процесса: оценщик со средой (serve --episodes), политика (policy-worker)
-    и этот харнесс, который пересылает наблюдения и действия. Seed, config и секрет оценщика
-    в процесс политики не попадают; эталон получает только политика из oracle_policies.
+    isolated=True — три процесса: оценщик со средой (serve), политика (policy-worker) и этот
+    харнесс, который пересылает наблюдения и действия.
+      * seed/config закрытых эпизодов идут оценщику по анонимному каналу (не файлом и не в argv);
+      * итоги оценщика возвращаются по отдельному каналу прямо в харнесс (файла журнала нет);
+      * харнесс и оценщик недампируемы (PR_SET_DUMPABLE=0): /proc/<pid>/environ, mem и fd
+        недоступны процессу политики, поэтому секрет оценщика ему не виден;
+      * у политики крайний срок time_limit_s на эпизод: зависшая политика убивается, эпизод
+        завершается как truncated(time_limit) с пустым ответом, следующий эпизод идёт с новым процессом;
+      * код пакета auditgym хешируется до запуска и проверяется после каждой политики.
+    Эталон получает только политика из oracle_policies.
     """
-    if isolated and not os.environ.get("AUDITGYM_SECRET") and not allow_public_secret:
-        raise SystemExit("AUDITGYM_SECRET is not set: a closed run needs a grader secret "
+    from .generator import has_private_secret
+    if not has_private_secret() and not allow_public_secret:
+        raise SystemExit("AUDITGYM_SECRET is not set (or equals the public default): a closed run needs a grader secret "
                          "(or pass allow_public_secret / --allow-public-secret for open splits)")
-    from .policy_worker import RemotePolicy
+    from ._secure import harden, package_digest
+    from .policy_worker import TIMEOUT, RemotePolicy
+    if isolated:
+        harden()
+    digest = package_digest()
     out = {}
     for name in policy_names:
         rows = []
         grader_only = name in oracle_policies
-        log = tempfile.NamedTemporaryFile(prefix="grader_", suffix=".jsonl", delete=False).name
         if isolated:
-            split = tempfile.NamedTemporaryFile(prefix="split_", suffix=".json", delete=False, mode="w")
-            json.dump({"config_version": "eval-run", "episodes": episodes}, split)
-            split.close()
-            env = RemoteEnv(mode=mode, grader_log=log, episodes=split.name, allow_oracle=grader_only,
-                            allow_public_secret=allow_public_secret)
+            env = RemoteEnv(mode=mode, episodes_data={"config_version": "eval-run", "episodes": episodes},
+                            collect_results=True, allow_oracle=grader_only,
+                            allow_public_secret=allow_public_secret, time_limit_s=time_limit_s)
             policy_env = {k: v for k, v in os.environ.items() if k != "AUDITGYM_SECRET"}
             pol = RemotePolicy(name, policy_env)
         else:
-            env = AuditEnv(mode=mode)
+            env = AuditEnv(mode=mode, time_limit_s=time_limit_s)
+        grader_died = False
         try:
             for k, e in enumerate(episodes):
                 t0 = time.perf_counter()
+                if isolated and grader_died:
+                    break
                 if isolated:
-                    obs, info = env.reset(index=k)
+                    try:
+                        obs, info = env.reset(index=k)
+                    except RuntimeError:
+                        grader_died = True      # процесс оценщика убит (например, политикой)
+                        break
+                    deadline = time.monotonic() + time_limit_s + TIME_GRACE_S
                     pol.set_truth(env.oracle_truth() if grader_only else None)
-                    policy = pol
+                    timed_out = pol.reset(obs, info, deadline) is TIMEOUT
                     res = None
                 else:
                     ep = generate(e["seed"], e["config"])
                     obs, info = env.reset_episode(ep)
                     policy = make_policy(name, (lambda eid, t=ep.truth: t) if grader_only else (lambda eid: None))
-                policy.reset(obs, info)
+                    policy.reset(obs, info)
+                    timed_out = False
                 done, steps = False, 0
                 while not done:
+                    if isolated:
+                        action = _PROBE if timed_out else pol.act(obs, deadline)
+                        if action is TIMEOUT:
+                            timed_out, action = True, _PROBE
+                        if timed_out:
+                            # срок оценщика истёк раньше нашего (он стартовал до reset): шаг даст truncated
+                            while time.monotonic() < deadline:
+                                time.sleep(0.05)
+                    else:
+                        try:
+                            action = policy.act(obs)
+                        except Exception:
+                            action = {"tool": "submit", "args": {"findings": None}}
                     try:
-                        action = policy.act(obs)
-                    except Exception:
-                        action = {"tool": "submit", "args": {"findings": None}}
-                    obs, r, te, tr, _ = env.step(action)
+                        obs, r, te, tr, _ = env.step(action)
+                    except RuntimeError:
+                        if not isolated:
+                            raise
+                        grader_died = True
+                        break
                     steps += 1
                     done = te or tr
+                    if steps > 1000:
+                        raise RuntimeError("environment did not terminate")
+                if grader_died:
+                    break
                 if not isolated:
                     res = env.grader_result()
                 rows.append({"name": e["name"], "episode_id": info["episode_id"], "steps": steps,
-                             "time_s": time.perf_counter() - t0, "result": res})
+                             "time_s": time.perf_counter() - t0, "result": res, "policy_timeout": timed_out})
         finally:
             if isolated:
                 pol.close()
                 env.close()
-                os.unlink(split.name)
         if isolated:
-            with open(log, encoding="utf-8") as fh:
-                by_id = {}
-                for line in fh:
-                    d = json.loads(line)
-                    by_id.setdefault(d["episode_id"], d["result"])
+            by_id = {}
+            for d in env.results():
+                by_id.setdefault(d["episode_id"], d["result"])
+            if grader_died:
+                # оценщик убит до конца прогона: каждый эпизод без итога засчитывается как неверная отправка
+                done_ids = {r["episode_id"] for r in rows}
+                for e in episodes[len(rows):]:
+                    ep = generate(e["seed"], e["config"])
+                    rows.append({"name": e["name"], "episode_id": ep.episode_id, "steps": 0, "time_s": 0.0,
+                                 "result": None, "policy_timeout": False})
+                for r, e in zip(rows, episodes):
+                    if r["episode_id"] not in by_id:
+                        by_id[r["episode_id"]] = _invalid_result(generate(e["seed"], e["config"]), "grader_killed")
+                del done_ids
+            missing = [r["episode_id"] for r in rows if r["episode_id"] not in by_id]
+            if missing:
+                raise RuntimeError(f"grader returned no result for {missing}")
             for r in rows:
                 r["result"] = by_id[r["episode_id"]]
-        os.unlink(log)
+                if grader_died:
+                    r["grader_killed"] = True
+        if package_digest() != digest:
+            raise RuntimeError(f"auditgym package files changed while running policy {name!r}: run aborted")
         for r in rows:
             r["n_issues"] = len(r["result"].get("issue_types", {}))
             r["issue_types"] = r["result"].get("issue_types", {})
         out[name] = {"episodes": rows, "summary": summarize(rows)}
     return out
+
+
+def _invalid_result(ep, why: str) -> dict:
+    from .matcher import grade
+    res = grade(None, ep.truth, 0)
+    res.update(outcome=why, episode_id=ep.episode_id,
+               issue_types={t["issue_id"]: t["type"] for t in ep.truth["issues"]},
+               interactions={t["issue_id"]: t["interaction"] for t in ep.truth["issues"] if t.get("interaction")},
+               unmatched_findings=[], missed_issue_ids=[t["issue_id"] for t in ep.truth["issues"]])
+    return res
 
 
 def summarize(rows) -> dict:

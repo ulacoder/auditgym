@@ -143,7 +143,15 @@
           ],
           "properties": {
             "findings": {
-              "$ref": "findings.schema.json"
+              "oneOf": [
+                {
+                  "$ref": "findings.schema.json"
+                },
+                {
+                  "type": "string",
+                  "description": "the same object serialized as a JSON string"
+                }
+              ]
             }
           }
         }

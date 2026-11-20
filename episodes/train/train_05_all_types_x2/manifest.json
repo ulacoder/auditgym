@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-9269A20E1FB5",
-  "company": "Lumen Pharma LLP",
+  "company": "Kestrova Pharma LLP",
   "base_currency": "GBP",
   "currency_exponents": {
     "EUR": 2,

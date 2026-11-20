@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-0A2D0D4F4650",
-  "company": "Zenit Studio LLP",
+  "company": "Noralin Studio LLP",
   "base_currency": "USD",
   "currency_exponents": {
     "KWD": 3,

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "env_version": "1.0.0",
+  "env_version": "1.1.0",
   "episode_id": "EP-33159D6DFFC9",
-  "company": "Saryarka Retail LLP",
+  "company": "Darvolin Retail LLP",
   "base_currency": "KZT",
   "currency_exponents": {
     "KZT": 2,
