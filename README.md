@@ -26,7 +26,7 @@ docker run --rm --network none --cpus 2 --memory 4g auditgym:1.1.0
 # docker run --rm --network none -e AUDITGYM_SECRET=... -v $PWD/jury:/jury:ro \
 #   auditgym:1.1.0 python -m auditgym evaluate --split /jury/hidden.json --policy-path /jury/policies --policies mypkg.mod:MyPolicy
 
-# или локально (Python 3.11+)
+# или локально (Linux или macOS, Python 3.11+; на Windows — через Docker или WSL)
 pip install -r requirements.txt
 python -m auditgym check
 ```
