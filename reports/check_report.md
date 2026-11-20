@@ -1,6 +1,6 @@
 # Check report
 
-Overall: **PASS** (19.72 s)
+Overall: **PASS** (21.31 s)
 
 ## Validation
 
@@ -12,10 +12,10 @@ Overall: **PASS** (19.72 s)
 
 | policy | episodes | P | R | F1 (mean) | F1 (micro) | return | steps | time, s | invalid |
 |---|---|---|---|---|---|---|---|---|---|
-| random_explorer | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 23.9 | 0.015 | 0 |
-| naive_reconciler | 20 | 0.124 | 0.471 | 0.191 | 0.215 | -0.638 | 14.7 | 0.020 | 0 |
+| random_explorer | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 23.9 | 0.019 | 0 |
+| naive_reconciler | 20 | 0.124 | 0.471 | 0.191 | 0.215 | -0.638 | 14.7 | 0.023 | 0 |
 | flag_all | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 3.0 | 0.018 | 0 |
-| oracle | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +1.000 | 1.0 | 0.014 | 0 |
+| oracle | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +1.000 | 1.0 | 0.016 | 0 |
 | scripted_auditor | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +0.973 | 14.7 | 0.025 | 0 |
 
 ## Failure reasons (unmatched findings)
