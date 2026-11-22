@@ -19,6 +19,8 @@
 ## Запуск одной командой
 
 ```bash
+git clone https://github.com/ulacoder/auditgym && cd auditgym
+
 # Docker (официальная проверка без сети)
 docker build -t auditgym:1.1.0 .
 docker run --rm --network none --cpus 2 --memory 4g auditgym:1.1.0
