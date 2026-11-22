@@ -29,13 +29,14 @@
         ],
         "properties": {
           "type": {
-            "enum": [
+            "type": "string",
+            "description": "exact match to one of the documented types (case- and whitespace-sensitive); an unknown string type is unmatched (FP)",
+            "examples": [
               "duplicate_invoice",
               "payment_allocation",
               "fx_conversion",
               "period_cutoff"
-            ],
-            "description": "case-insensitive, surrounding spaces ignored"
+            ]
           },
           "affected_ids": {
             "type": "array",
@@ -44,17 +45,15 @@
             "items": {
               "type": "string"
             },
-            "description": "compared as a set after ASCII strip+upper; non-ASCII strings are never normalized"
+            "description": "exact set of ids (case- and whitespace-sensitive); order and repeats inside the list are ignored"
           },
           "claimed_amount_minor": {
             "type": "integer",
-            "description": "absolute misstatement in base-currency minor units; sign ignored"
+            "description": "absolute misstatement in base-currency minor units (positive JSON integer); |claimed - true| <= policy.tolerance.amount_minor (0)"
           },
           "currency": {
             "type": "string",
-            "minLength": 3,
-            "maxLength": 3,
-            "pattern": "^[A-Za-z]{3}$"
+            "description": "exact match to the base currency code in manifest/policy (no case change or trimming); a different value is unmatched (FP)"
           },
           "evidence_ids": {
             "type": "array",
