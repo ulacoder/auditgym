@@ -1,6 +1,6 @@
 # Check report
 
-Overall: **PASS** (21.45 s)
+Overall: **PASS** (28.6 s)
 
 ## Validation
 
@@ -12,16 +12,16 @@ Overall: **PASS** (21.45 s)
 
 | policy | episodes | P | R | F1 (mean) | F1 (micro) | return | steps | time, s | invalid |
 |---|---|---|---|---|---|---|---|---|---|
-| random_explorer | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 25.0 | 0.019 | 0 |
-| naive_reconciler | 20 | 0.124 | 0.471 | 0.191 | 0.215 | -0.638 | 14.7 | 0.021 | 0 |
-| flag_all | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 3.0 | 0.016 | 0 |
-| oracle | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +1.000 | 1.0 | 0.014 | 0 |
-| scripted_auditor | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +0.973 | 14.7 | 0.022 | 0 |
+| random_explorer | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 25.0 | 0.027 | 0 |
+| naive_reconciler | 20 | 0.124 | 0.471 | 0.191 | 0.215 | -0.638 | 14.7 | 0.039 | 0 |
+| flag_all | 20 | 0.000 | 0.000 | 0.000 | 0.000 | -1.000 | 3.0 | 0.027 | 0 |
+| oracle | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +1.000 | 1.0 | 0.020 | 0 |
+| scripted_auditor | 20 | 0.750 | 0.750 | 1.000 | 1.000 | +0.973 | 14.7 | 0.036 | 0 |
 
 ## Failure reasons (unmatched findings)
 
 - random_explorer: {'clean_record': 17, 'distractor:recurring_amount': 6, 'distractor:split_payment': 1, 'distractor:tz_boundary_invoice': 1, 'distractor:legit_partial_payment': 1}
-- naive_reconciler: {'distractor:recurring_amount': 113, 'distractor:unreferenced_payment': 76, 'distractor:tz_boundary_invoice': 52, 'clean_record': 22, 'real_issue_wrong_details': 4, 'distractor:split_payment': 3, 'distractor:legit_partial_payment': 1}
+- naive_reconciler: {'distractor:recurring_amount': 113, 'distractor:unreferenced_payment': 76, 'distractor:tz_boundary_invoice': 52, 'clean_record': 26, 'distractor:split_payment': 3, 'distractor:legit_partial_payment': 1}
 - flag_all: {'clean_record': 330, 'distractor:split_payment': 88, 'distractor:recurring_amount': 83, 'distractor:legit_partial_payment': 42, 'distractor:tz_boundary_invoice': 27, 'distractor:multi_invoice_payment': 13, 'distractor:next_period_unposted_invoice': 9, 'real_issue_wrong_details': 8}
 - oracle: {}
 - scripted_auditor: {}
