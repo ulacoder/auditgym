@@ -144,12 +144,12 @@ def test_time_limit_does_not_count_the_rejected_action():
 
 # ---------------------------------------------------------------- оценщик
 
-def test_integral_float_amount_is_accepted_like_json_schema_integer():
+def test_float_amount_is_a_structural_error_like_jury_rules():
     ep = generate(7, ALL)
     f = oracle_findings(ep)
-    for x in f:
-        x["claimed_amount_minor"] = float(x["claimed_amount_minor"])
-    assert grade(sub(ep, f), ep.truth, 0)["f1"] == 1.0
+    f[0]["claimed_amount_minor"] = float(f[0]["claimed_amount_minor"])
+    g = grade(sub(ep, f), ep.truth, 0)
+    assert not g["valid"] and g["reward"] == -1.0
 
 
 def test_unicode_lookalikes_are_not_normalized():

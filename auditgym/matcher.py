@@ -1,28 +1,28 @@
-"""Общий matcher и терминальная награда (открытый код).
+"""Общий matcher и терминальная награда (открытый код). Правила совпадают с опубликованными
+правилами жюри FinTech (genesis-exe.com/fintech-checks.html, 20.11.2026).
 
-Нормализация
-  * type: strip + lower;  ID и валюта: strip + upper;
-  * affected_ids сравниваются как множества (порядок и повторы не важны);
-  * claimed_amount_minor сравнивается по модулю.
-Допуск суммы: |claimed| - expected| <= max(AMOUNT_ABS_TOL, ceil(expected * AMOUNT_REL_TOL)).
-Доказательства: множество evidence_ids должно содержать хотя бы один ПОЛНЫЙ допустимый набор.
-Совместимость пары (вывод, эталон) = совпали type, affected_ids, currency, сумма в допуске
-и доказательства.
-Неоднозначность: максимальное взаимно однозначное паросочетание (алгоритм Куна);
-выводы обходятся в порядке отправки, эталонные ошибки — в порядке issue_id, поэтому
-при равных вариантах выигрывает более ранний вывод. Несопоставленные и повторные
-выводы — FP, несопоставленные эталонные ошибки — FN.
+Сравнение — точное, без нормализации:
+  * ID, type и currency сравниваются как строки, с учётом регистра и пробелов;
+  * affected_ids — точное множество (порядок и повторы внутри списка не важны);
+  * claimed_amount_minor — целое JSON-число (не bool, не строка, не дробь);
+  * допуск суммы tau = 0 по умолчанию: |claimed - expected| <= tau
+    (tau публикуется в policy.json, ключ tolerance.amount_minor; у всех эпизодов 0).
+Доказательства: evidence_ids — множество; в нём должен быть хотя бы один ПОЛНЫЙ допустимый набор,
+а каждый ID должен существовать в эпизоде (недоступный ID делает вывод FP, ничего не раскрывая).
+Структурные ошибки (отправка целиком, награда -1): не объект, лишние/недостающие ключи, чужой
+episode_id, больше 30 выводов, больше 10 evidence_ids или 30 affected_ids (до удаления повторов),
+explanation длиннее 1000 кодовых точек, сумма не целое число, поля не тех типов.
+Хорошо сформированный, но неверный вывод — FP.
+Неоднозначность: паросочетание максимальной мощности (алгоритм Куна); среди равных выбирается
+лексикографически наименьшая последовательность пар (issue_id, индекс вывода) — правило жюри. Несопоставленные и
+повторные выводы — FP, несопоставленные эталонные ошибки — FN.
 """
 from __future__ import annotations
 
-import math
 from fractions import Fraction
 from decimal import Decimal
 
-from .config import ERROR_TYPES
-
-AMOUNT_ABS_TOL = 1
-AMOUNT_REL_TOL = Decimal("0.0005")
+DEFAULT_TAU = 0
 MAX_FINDINGS = 30
 MAX_EVIDENCE = 10
 MAX_AFFECTED = 30
@@ -34,33 +34,20 @@ class InvalidSubmission(ValueError):
     pass
 
 
-_ASCII_WS = " \t\r\n"
-
-
-def _canon(x: str, case: str = "upper") -> str:
-    """Нормализация только ASCII: обрезка ASCII-пробелов и смена регистра.
-    Строки с не-ASCII символами не нормализуются (ı, ſ, NBSP не превращаются в
-    канонические ID/коды) и поэтому ни с чем не совпадут."""
-    y = x.strip(_ASCII_WS)
-    if not y.isascii():
-        return y
-    return y.upper() if case == "upper" else y.lower()
-
-
 def _ids(v, field, limit):
     if not isinstance(v, list) or not all(isinstance(x, str) for x in v):
         raise InvalidSubmission(f"{field} must be a list of strings")
-    if len(v) > limit:
+    if len(v) > limit:          # лимит проверяется до удаления повторов
         raise InvalidSubmission(f"{field} exceeds {limit}")
-    return [_canon(x) for x in v]
+    return list(v)
 
 
 def validate_submission(sub, episode_id: str) -> list[dict]:
     """Проверка структуры findings.json. Любая ошибка -> InvalidSubmission."""
     if not isinstance(sub, dict):
         raise InvalidSubmission("submission must be an object")
-    if set(sub) - {"episode_id", "findings"}:
-        raise InvalidSubmission("unexpected top-level keys")
+    if set(sub) != {"episode_id", "findings"}:
+        raise InvalidSubmission("submission must have exactly keys episode_id, findings")
     if sub.get("episode_id") != episode_id:
         raise InvalidSubmission("episode_id mismatch")
     fs = sub.get("findings")
@@ -73,70 +60,84 @@ def validate_submission(sub, episode_id: str) -> list[dict]:
     for f in fs:
         if not isinstance(f, dict) or set(f) != keys:
             raise InvalidSubmission("finding must have exactly keys " + ",".join(sorted(keys)))
-        t = f["type"]
-        if not isinstance(t, str) or _canon(t, "lower") not in ERROR_TYPES:
-            raise InvalidSubmission("unknown finding type")
+        if not isinstance(f["type"], str):
+            raise InvalidSubmission("type must be a string")
         amt = f["claimed_amount_minor"]
-        # JSON Schema считает 1000.0 целым числом — принимаем так же (только конечные целые значения)
-        if isinstance(amt, float) and math.isfinite(amt) and amt.is_integer():
-            amt = int(amt)
         if not isinstance(amt, int) or isinstance(amt, bool):
-            raise InvalidSubmission("claimed_amount_minor must be an integer")
-        cur = f["currency"]
-        if not isinstance(cur, str) or len(_canon(cur)) != 3 or not _canon(cur).isascii():
-            raise InvalidSubmission("currency must be a 3-letter ASCII code")
+            raise InvalidSubmission("claimed_amount_minor must be a JSON integer")
+        if not isinstance(f["currency"], str):
+            raise InvalidSubmission("currency must be a string")
         ex = f["explanation"]
         if not isinstance(ex, str) or len(ex) > MAX_EXPLANATION:
-            raise InvalidSubmission(f"explanation must be a string <= {MAX_EXPLANATION} chars")
+            raise InvalidSubmission(f"explanation must be a string of at most {MAX_EXPLANATION} code points")
         aff = _ids(f["affected_ids"], "affected_ids", MAX_AFFECTED)
         if not aff:
             raise InvalidSubmission("affected_ids must be non-empty")
-        out.append({"type": _canon(t, "lower"), "affected_ids": aff, "claimed_amount_minor": amt,
-                    "currency": _canon(cur),
+        out.append({"type": f["type"], "affected_ids": aff, "claimed_amount_minor": amt,
+                    "currency": f["currency"],
                     "evidence_ids": _ids(f["evidence_ids"], "evidence_ids", MAX_EVIDENCE),
                     "explanation": ex})
     return out
 
 
-def amount_ok(claimed: int, expected: int) -> bool:
-    tol = max(AMOUNT_ABS_TOL, math.ceil(Decimal(abs(expected)) * AMOUNT_REL_TOL))
-    return abs(abs(claimed) - abs(expected)) <= tol
+def amount_ok(claimed: int, expected: int, tau: int = DEFAULT_TAU) -> bool:
+    return abs(claimed - expected) <= tau
 
 
-def compare(f: dict, t: dict) -> str | None:
+def compare(f: dict, t: dict, visible: set | None = None, tau: int = DEFAULT_TAU) -> str | None:
     """None если пара совместима, иначе код причины (для диагностики)."""
     if f["type"] != t["type"]:
         return "type"
-    if set(f["affected_ids"]) != {x.upper() for x in t["affected_ids"]}:
+    if set(f["affected_ids"]) != set(t["affected_ids"]):
         return "affected_ids"
-    if f["currency"] != t["currency"].upper():
+    if f["currency"] != t["currency"]:
         return "currency"
-    if not amount_ok(f["claimed_amount_minor"], t["expected_amount_minor"]):
+    if not amount_ok(f["claimed_amount_minor"], t["expected_amount_minor"], tau):
         return "amount"
     ev = set(f["evidence_ids"])
-    if not any({x.upper() for x in s} <= ev for s in t["evidence_sets"]):
+    if visible is not None and not ev <= visible:
+        return "evidence_unavailable"
+    if not any(set(s) <= ev for s in t["evidence_sets"]):
         return "evidence"
     return None
 
 
-def match(findings: list[dict], issues: list[dict]) -> dict:
+def match(findings: list[dict], issues: list[dict], visible: set | None = None, tau: int = DEFAULT_TAU) -> dict:
     issues = sorted(issues, key=lambda t: t["issue_id"])
-    adj = [[j for j, t in enumerate(issues) if compare(f, t) is None] for f in findings]
-    owner = [-1] * len(issues)
+    adj = [[j for j, t in enumerate(issues) if compare(f, t, visible, tau) is None] for f in findings]
 
-    def try_assign(i, seen):
-        for j in adj[i]:
-            if j in seen:
+    def max_card(banned_f: set, banned_i: set) -> int:
+        owner = {}
+
+        def aug(i, seen):
+            for j in adj[i]:
+                if j in banned_i or j in seen:
+                    continue
+                seen.add(j)
+                if j not in owner or aug(owner[j], seen):
+                    owner[j] = i
+                    return True
+            return False
+        return sum(aug(i, set()) for i in range(len(findings)) if i not in banned_f)
+
+    # максимальная мощность, затем детерминированный выбор (правило жюри): эталонные ошибки по
+    # возрастанию issue_id, каждой — наименьший индекс вывода, при котором мощность сохраняется
+    best = max_card(set(), set())
+    matched, used_f, done_i = {}, set(), set()
+    for j in range(len(issues)):
+        if len(matched) == best:
+            break
+        for i in range(len(findings)):
+            if i in used_f or j not in adj[i]:
                 continue
-            seen.add(j)
-            if owner[j] == -1 or try_assign(owner[j], seen):
-                owner[j] = i
-                return True
-        return False
-
-    for i in range(len(findings)):
-        try_assign(i, set())
-    matched = {owner[j]: j for j in range(len(issues)) if owner[j] != -1}
+            if len(matched) + 1 + max_card(used_f | {i}, done_i | {j}) == best:
+                matched[i] = j
+                used_f.add(i)
+                break
+        done_i.add(j)
+    owner = [-1] * len(issues)
+    for i, j in matched.items():
+        owner[j] = i
     tp = len(matched)
     fp = len(findings) - tp
     fn = len(issues) - tp
@@ -144,8 +145,8 @@ def match(findings: list[dict], issues: list[dict]) -> dict:
     for i, f in enumerate(findings):
         if i in matched:
             continue
-        reasons = [compare(f, t) for t in issues if f["type"] == t["type"]
-                   and set(f["affected_ids"]) == {x.upper() for x in t["affected_ids"]}]
+        reasons = [compare(f, t, visible, tau) for t in issues if f["type"] == t["type"]
+                   and set(f["affected_ids"]) == set(t["affected_ids"])]
         if not reasons:
             reason = "no_issue_with_these_ids"
         elif reasons[0] is None:
@@ -181,15 +182,32 @@ def exact_f1(tp: int, fp: int, fn: int) -> Fraction:
     return Fraction(1) if tp + fp + fn == 0 else Fraction(2 * tp, 2 * tp + fp + fn)
 
 
-def grade(submission, truth: dict, inspection_steps: int) -> dict:
-    """Полная оценка одной отправки. Неверная структура -> награда -1."""
+def visible_ids(tables: dict) -> set:
+    """ID, которые агент может получить инструментами: row_id проводок, doc_id документов,
+    ключи курсов DATE:SRC:TGT."""
+    ids = {r["row_id"] for r in tables.get("ledger", [])}
+    for t in ("invoices", "payments"):
+        ids |= {d["doc_id"] for d in tables.get(t, [])}
+    ids |= {f"{r['date']}:{r['source_currency']}:{r['target_currency']}" for r in tables.get("fx", [])}
+    return ids
+
+
+def tau_from_policy(policy: dict | None) -> int:
+    v = ((policy or {}).get("tolerance") or {}).get("amount_minor", DEFAULT_TAU)
+    return v if isinstance(v, int) and not isinstance(v, bool) and v >= 0 else DEFAULT_TAU
+
+
+def grade(submission, truth: dict, inspection_steps: int, visible: set | None = None,
+          tau: int = DEFAULT_TAU) -> dict:
+    """Полная оценка одной отправки. Неверная структура -> награда -1.
+    visible — ID, доступные агенту (недоступный evidence-ID делает вывод FP); tau — допуск суммы."""
     try:
         fs = validate_submission(submission, truth["episode_id"])
     except InvalidSubmission as e:
         return {"valid": False, "error": str(e), "tp": 0, "fp": 0, "fn": len(truth["issues"]),
                 "precision": 0.0, "recall": 0.0, "f1": 0.0, "reward": -1.0,
                 "inspection_steps": inspection_steps}
-    m = match(fs, truth["issues"])
+    m = match(fs, truth["issues"], visible, tau)
     mt = metrics(m["tp"], m["fp"], m["fn"])
     return {"valid": True, **m, **mt, "reward": terminal_reward(exact_f1(m["tp"], m["fp"], m["fn"]), inspection_steps),
             "inspection_steps": inspection_steps}

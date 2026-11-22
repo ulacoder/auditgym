@@ -20,7 +20,7 @@ import time
 
 from . import calculator
 from .generator import TASK_TEXT, Episode, generate
-from .matcher import grade
+from .matcher import grade, tau_from_policy, visible_ids
 from .version import ENV_VERSION, SCHEMA_VERSION
 
 TABLES = ("ledger", "invoices", "payments", "fx")
@@ -238,7 +238,8 @@ class AuditEnv:
                 sub = json.loads(sub)
             except (ValueError, RecursionError):
                 sub = None
-        res = grade(sub, self._ep.truth, inspection_steps=self._steps - 1)
+        res = grade(sub, self._ep.truth, inspection_steps=self._steps - 1,
+                    visible=visible_ids(self._ep.tables), tau=tau_from_policy(self._ep.policy))
         res["outcome"] = "submitted"
         self._diagnose(res)
         self._result = res
@@ -252,7 +253,8 @@ class AuditEnv:
 
     def _finish_truncated(self, action, why, tool=None, result=None, err=None):
         res = grade({"episode_id": self._ep.episode_id, "findings": []}, self._ep.truth,
-                    inspection_steps=self._steps)
+                    inspection_steps=self._steps, visible=visible_ids(self._ep.tables),
+                    tau=tau_from_policy(self._ep.policy))
         res["outcome"] = why
         self._diagnose(res)
         self._result = res

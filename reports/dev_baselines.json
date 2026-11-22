@@ -5,7 +5,7 @@
         "name": "dev_00_clean",
         "episode_id": "EP-5AACAF896384",
         "steps": 26,
-        "time_s": 0.047516180999991775,
+        "time_s": 0.06958263500018802,
         "result": {
           "valid": true,
           "tp": 0,
@@ -60,7 +60,7 @@
         "name": "dev_01_clean_eur",
         "episode_id": "EP-5A4816BEA552",
         "steps": 5,
-        "time_s": 0.009858125999926415,
+        "time_s": 0.011705757000072481,
         "result": {
           "valid": true,
           "tp": 0,
@@ -106,7 +106,7 @@
         "name": "dev_02_dup_only",
         "episode_id": "EP-0A2D0D4F4650",
         "steps": 18,
-        "time_s": 0.01302442299993345,
+        "time_s": 0.016349781999906554,
         "result": {
           "valid": true,
           "tp": 0,
@@ -142,7 +142,7 @@
         "name": "dev_03_alloc_only",
         "episode_id": "EP-84DD9099AB17",
         "steps": 11,
-        "time_s": 0.013210365000077218,
+        "time_s": 0.01711484699990251,
         "result": {
           "valid": true,
           "tp": 0,
@@ -191,7 +191,7 @@
         "name": "dev_04_fx_only",
         "episode_id": "EP-A93C64BEE889",
         "steps": 7,
-        "time_s": 0.009685577000027479,
+        "time_s": 0.01255680500003109,
         "result": {
           "valid": true,
           "tp": 0,
@@ -258,7 +258,7 @@
         "name": "dev_05_cutoff_only",
         "episode_id": "EP-D0E2AF428537",
         "steps": 26,
-        "time_s": 0.013171825999961584,
+        "time_s": 0.018866842000079487,
         "result": {
           "valid": true,
           "tp": 0,
@@ -294,7 +294,7 @@
         "name": "dev_06_mixed",
         "episode_id": "EP-109D2EF808C9",
         "steps": 27,
-        "time_s": 0.015455919000032736,
+        "time_s": 0.020334218000016335,
         "result": {
           "valid": true,
           "tp": 0,
@@ -339,7 +339,7 @@
         "name": "dev_07_interaction_fx_partial",
         "episode_id": "EP-550B04690C83",
         "steps": 17,
-        "time_s": 0.01181029800000033,
+        "time_s": 0.01589472399996339,
         "result": {
           "valid": true,
           "tp": 0,
@@ -417,7 +417,7 @@
         "name": "dev_08_interaction_boundary",
         "episode_id": "EP-13EAFF569DD2",
         "steps": 30,
-        "time_s": 0.01666084199996476,
+        "time_s": 0.020949779000147828,
         "result": {
           "valid": true,
           "tp": 0,
@@ -477,7 +477,7 @@
         "name": "dev_09_max_issues",
         "episode_id": "EP-33159D6DFFC9",
         "steps": 24,
-        "time_s": 0.01556417100005092,
+        "time_s": 0.02045170400015195,
         "result": {
           "valid": true,
           "tp": 0,
@@ -581,7 +581,7 @@
       "micro_f1": 0.0,
       "mean_return": -1.0,
       "mean_steps": 19.1,
-      "mean_time_s": 0.016595772799996668,
+      "mean_time_s": 0.022380709300045966,
       "tp": 0,
       "fp": 16,
       "fn": 37,
@@ -623,7 +623,7 @@
         "name": "dev_00_clean",
         "episode_id": "EP-5AACAF896384",
         "steps": 15,
-        "time_s": 0.06463928199991642,
+        "time_s": 0.07550915899992106,
         "result": {
           "valid": true,
           "tp": 0,
@@ -741,7 +741,7 @@
         "name": "dev_01_clean_eur",
         "episode_id": "EP-5A4816BEA552",
         "steps": 15,
-        "time_s": 0.019507504000102927,
+        "time_s": 0.019500884999843038,
         "result": {
           "valid": true,
           "tp": 0,
@@ -886,7 +886,7 @@
         "name": "dev_02_dup_only",
         "episode_id": "EP-0A2D0D4F4650",
         "steps": 15,
-        "time_s": 0.02056352399995376,
+        "time_s": 0.020506092000005083,
         "result": {
           "valid": true,
           "tp": 2,
@@ -992,7 +992,7 @@
         "name": "dev_03_alloc_only",
         "episode_id": "EP-84DD9099AB17",
         "steps": 15,
-        "time_s": 0.018937587999971583,
+        "time_s": 0.020454663999998957,
         "result": {
           "valid": true,
           "tp": 3,
@@ -1104,7 +1104,7 @@
         "name": "dev_04_fx_only",
         "episode_id": "EP-A93C64BEE889",
         "steps": 13,
-        "time_s": 0.01620241199998418,
+        "time_s": 0.017325440999911734,
         "result": {
           "valid": true,
           "tp": 0,
@@ -1243,7 +1243,7 @@
         "name": "dev_05_cutoff_only",
         "episode_id": "EP-D0E2AF428537",
         "steps": 14,
-        "time_s": 0.01719988399986505,
+        "time_s": 0.02214457299987771,
         "result": {
           "valid": true,
           "tp": 2,
@@ -1376,7 +1376,7 @@
         "name": "dev_06_mixed",
         "episode_id": "EP-109D2EF808C9",
         "steps": 16,
-        "time_s": 0.030430950999971174,
+        "time_s": 0.022795156000029237,
         "result": {
           "valid": true,
           "tp": 4,
@@ -1534,7 +1534,7 @@
         "name": "dev_07_interaction_fx_partial",
         "episode_id": "EP-550B04690C83",
         "steps": 17,
-        "time_s": 0.01718713300010677,
+        "time_s": 0.020511219999889363,
         "result": {
           "valid": true,
           "tp": 2,
@@ -1667,12 +1667,12 @@
             {
               "finding_index": 14,
               "type": "payment_allocation",
-              "reason": "evidence",
+              "reason": "evidence_unavailable",
               "affected_ids": [
                 "PAY-7CE83991",
                 "INV-B2904A31"
               ],
-              "attribution": "real_issue_wrong_details"
+              "attribution": "clean_record"
             }
           ],
           "precision": 0.13333333333333333,
@@ -1710,7 +1710,7 @@
         "name": "dev_08_interaction_boundary",
         "episode_id": "EP-13EAFF569DD2",
         "steps": 15,
-        "time_s": 0.0181331589999445,
+        "time_s": 0.021513927999876614,
         "result": {
           "valid": true,
           "tp": 3,
@@ -1879,7 +1879,7 @@
         "name": "dev_09_max_issues",
         "episode_id": "EP-33159D6DFFC9",
         "steps": 14,
-        "time_s": 0.01795338100009758,
+        "time_s": 0.021055250000017622,
         "result": {
           "valid": true,
           "tp": 9,
@@ -2065,7 +2065,7 @@
       "micro_f1": 0.30303030303030304,
       "mean_return": -0.4976221778221778,
       "mean_steps": 14.9,
-      "mean_time_s": 0.024075481799991395,
+      "mean_time_s": 0.02613163679993704,
       "tp": 25,
       "fp": 103,
       "fn": 12,
@@ -2074,10 +2074,9 @@
         "distractor:recurring_amount": 40,
         "distractor:unreferenced_payment": 31,
         "distractor:tz_boundary_invoice": 15,
-        "clean_record": 9,
+        "clean_record": 10,
         "distractor:split_payment": 5,
-        "distractor:legit_partial_payment": 2,
-        "real_issue_wrong_details": 1
+        "distractor:legit_partial_payment": 2
       },
       "per_type": {
         "duplicate_invoice": {
@@ -2109,7 +2108,7 @@
         "name": "dev_00_clean",
         "episode_id": "EP-5AACAF896384",
         "steps": 3,
-        "time_s": 0.05224455500001568,
+        "time_s": 0.07007619699993484,
         "result": {
           "valid": true,
           "tp": 0,
@@ -2417,7 +2416,7 @@
         "name": "dev_01_clean_eur",
         "episode_id": "EP-5A4816BEA552",
         "steps": 3,
-        "time_s": 0.012016414000072473,
+        "time_s": 0.014901173999987805,
         "result": {
           "valid": true,
           "tp": 0,
@@ -2725,7 +2724,7 @@
         "name": "dev_02_dup_only",
         "episode_id": "EP-0A2D0D4F4650",
         "steps": 3,
-        "time_s": 0.011774926000043706,
+        "time_s": 0.015163678000135405,
         "result": {
           "valid": true,
           "tp": 0,
@@ -3042,7 +3041,7 @@
         "name": "dev_03_alloc_only",
         "episode_id": "EP-84DD9099AB17",
         "steps": 3,
-        "time_s": 0.01215779700009989,
+        "time_s": 0.016061226999909195,
         "result": {
           "valid": true,
           "tp": 0,
@@ -3362,7 +3361,7 @@
         "name": "dev_04_fx_only",
         "episode_id": "EP-A93C64BEE889",
         "steps": 3,
-        "time_s": 0.011045408999962092,
+        "time_s": 0.01745980799978497,
         "result": {
           "valid": true,
           "tp": 0,
@@ -3682,7 +3681,7 @@
         "name": "dev_05_cutoff_only",
         "episode_id": "EP-D0E2AF428537",
         "steps": 3,
-        "time_s": 0.011338135999949372,
+        "time_s": 0.01572307600008571,
         "result": {
           "valid": true,
           "tp": 0,
@@ -3999,7 +3998,7 @@
         "name": "dev_06_mixed",
         "episode_id": "EP-109D2EF808C9",
         "steps": 3,
-        "time_s": 0.014196867999999085,
+        "time_s": 0.030409166000026744,
         "result": {
           "valid": true,
           "tp": 0,
@@ -4325,7 +4324,7 @@
         "name": "dev_07_interaction_fx_partial",
         "episode_id": "EP-550B04690C83",
         "steps": 3,
-        "time_s": 0.011623436000036236,
+        "time_s": 0.020469339000101172,
         "result": {
           "valid": true,
           "tp": 0,
@@ -4656,7 +4655,7 @@
         "name": "dev_08_interaction_boundary",
         "episode_id": "EP-13EAFF569DD2",
         "steps": 3,
-        "time_s": 0.013042030999940835,
+        "time_s": 0.026221237000072506,
         "result": {
           "valid": true,
           "tp": 0,
@@ -4987,7 +4986,7 @@
         "name": "dev_09_max_issues",
         "episode_id": "EP-33159D6DFFC9",
         "steps": 3,
-        "time_s": 0.013115191999986564,
+        "time_s": 0.017940314000043145,
         "result": {
           "valid": true,
           "tp": 0,
@@ -5344,7 +5343,7 @@
       "micro_f1": 0.0,
       "mean_return": -1.0,
       "mean_steps": 3,
-      "mean_time_s": 0.016255476400010592,
+      "mean_time_s": 0.02444252160000815,
       "tp": 0,
       "fp": 300,
       "fn": 37,
@@ -5388,7 +5387,7 @@
         "name": "dev_00_clean",
         "episode_id": "EP-5AACAF896384",
         "steps": 1,
-        "time_s": 0.05248475000007602,
+        "time_s": 0.07876110999995944,
         "result": {
           "valid": true,
           "tp": 0,
@@ -5415,7 +5414,7 @@
         "name": "dev_01_clean_eur",
         "episode_id": "EP-5A4816BEA552",
         "steps": 1,
-        "time_s": 0.00940062599988778,
+        "time_s": 0.017273351000085313,
         "result": {
           "valid": true,
           "tp": 0,
@@ -5442,7 +5441,7 @@
         "name": "dev_02_dup_only",
         "episode_id": "EP-0A2D0D4F4650",
         "steps": 1,
-        "time_s": 0.009849231999851327,
+        "time_s": 0.018975619000002553,
         "result": {
           "valid": true,
           "tp": 2,
@@ -5484,7 +5483,7 @@
         "name": "dev_03_alloc_only",
         "episode_id": "EP-84DD9099AB17",
         "steps": 1,
-        "time_s": 0.009768783000026815,
+        "time_s": 0.01711832199998753,
         "result": {
           "valid": true,
           "tp": 3,
@@ -5532,7 +5531,7 @@
         "name": "dev_04_fx_only",
         "episode_id": "EP-A93C64BEE889",
         "steps": 1,
-        "time_s": 0.009100348999936614,
+        "time_s": 0.017917400999976962,
         "result": {
           "valid": true,
           "tp": 3,
@@ -5580,7 +5579,7 @@
         "name": "dev_05_cutoff_only",
         "episode_id": "EP-D0E2AF428537",
         "steps": 1,
-        "time_s": 0.00907471000004989,
+        "time_s": 0.01766544699989936,
         "result": {
           "valid": true,
           "tp": 2,
@@ -5622,7 +5621,7 @@
         "name": "dev_06_mixed",
         "episode_id": "EP-109D2EF808C9",
         "steps": 1,
-        "time_s": 0.01086282400001437,
+        "time_s": 0.020455290999962017,
         "result": {
           "valid": true,
           "tp": 5,
@@ -5682,7 +5681,7 @@
         "name": "dev_07_interaction_fx_partial",
         "episode_id": "EP-550B04690C83",
         "steps": 1,
-        "time_s": 0.00892562000012731,
+        "time_s": 0.017604439000024286,
         "result": {
           "valid": true,
           "tp": 5,
@@ -5747,7 +5746,7 @@
         "name": "dev_08_interaction_boundary",
         "episode_id": "EP-13EAFF569DD2",
         "steps": 1,
-        "time_s": 0.010919591999936529,
+        "time_s": 0.013733707000028517,
         "result": {
           "valid": true,
           "tp": 5,
@@ -5812,7 +5811,7 @@
         "name": "dev_09_max_issues",
         "episode_id": "EP-33159D6DFFC9",
         "steps": 1,
-        "time_s": 0.010790826999937053,
+        "time_s": 0.014108740000210673,
         "result": {
           "valid": true,
           "tp": 12,
@@ -5924,7 +5923,7 @@
       "micro_f1": 1.0,
       "mean_return": 1.0,
       "mean_steps": 1,
-      "mean_time_s": 0.01411773129998437,
+      "mean_time_s": 0.023361342700013665,
       "tp": 37,
       "fp": 0,
       "fn": 0,
@@ -5960,7 +5959,7 @@
         "name": "dev_00_clean",
         "episode_id": "EP-5AACAF896384",
         "steps": 15,
-        "time_s": 0.05722883799990086,
+        "time_s": 0.09328929000002972,
         "result": {
           "valid": true,
           "tp": 0,
@@ -5987,7 +5986,7 @@
         "name": "dev_01_clean_eur",
         "episode_id": "EP-5A4816BEA552",
         "steps": 15,
-        "time_s": 0.01653965600007723,
+        "time_s": 0.025401191000128165,
         "result": {
           "valid": true,
           "tp": 0,
@@ -6014,7 +6013,7 @@
         "name": "dev_02_dup_only",
         "episode_id": "EP-0A2D0D4F4650",
         "steps": 15,
-        "time_s": 0.017248421999966013,
+        "time_s": 0.03430991499999436,
         "result": {
           "valid": true,
           "tp": 2,
@@ -6056,7 +6055,7 @@
         "name": "dev_03_alloc_only",
         "episode_id": "EP-84DD9099AB17",
         "steps": 15,
-        "time_s": 0.017860249000023032,
+        "time_s": 0.025574516999995467,
         "result": {
           "valid": true,
           "tp": 3,
@@ -6104,7 +6103,7 @@
         "name": "dev_04_fx_only",
         "episode_id": "EP-A93C64BEE889",
         "steps": 13,
-        "time_s": 0.015754592999883243,
+        "time_s": 0.021608576000062385,
         "result": {
           "valid": true,
           "tp": 3,
@@ -6152,7 +6151,7 @@
         "name": "dev_05_cutoff_only",
         "episode_id": "EP-D0E2AF428537",
         "steps": 14,
-        "time_s": 0.016062031000046773,
+        "time_s": 0.022493061999966812,
         "result": {
           "valid": true,
           "tp": 2,
@@ -6194,7 +6193,7 @@
         "name": "dev_06_mixed",
         "episode_id": "EP-109D2EF808C9",
         "steps": 16,
-        "time_s": 0.020516335999900548,
+        "time_s": 0.035999645000174496,
         "result": {
           "valid": true,
           "tp": 5,
@@ -6254,7 +6253,7 @@
         "name": "dev_07_interaction_fx_partial",
         "episode_id": "EP-550B04690C83",
         "steps": 17,
-        "time_s": 0.0187556250000398,
+        "time_s": 0.024362998000015068,
         "result": {
           "valid": true,
           "tp": 5,
@@ -6319,7 +6318,7 @@
         "name": "dev_08_interaction_boundary",
         "episode_id": "EP-13EAFF569DD2",
         "steps": 15,
-        "time_s": 0.02053451100005077,
+        "time_s": 0.02605596099988361,
         "result": {
           "valid": true,
           "tp": 5,
@@ -6384,7 +6383,7 @@
         "name": "dev_09_max_issues",
         "episode_id": "EP-33159D6DFFC9",
         "steps": 14,
-        "time_s": 0.018467081000153485,
+        "time_s": 0.02263982399995257,
         "result": {
           "valid": true,
           "tp": 12,
@@ -6496,7 +6495,7 @@
       "micro_f1": 1.0,
       "mean_return": 0.9722,
       "mean_steps": 14.9,
-      "mean_time_s": 0.021896734200004174,
+      "mean_time_s": 0.03317349790002026,
       "tp": 37,
       "fp": 0,
       "fn": 0,

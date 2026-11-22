@@ -833,7 +833,8 @@ def build_policy(g: _Gen | None = None) -> dict:
             },
             "evidence_ids": {
                 "rule": "ids of records that together prove the finding: doc_id, ledger row_id, "
-                        "fx rate key 'DATE:SRC:TGT' (the rate the policy prescribes); max 10; supersets are fine",
+                        "fx rate key 'DATE:SRC:TGT' (the rate the policy prescribes); max 10; supersets of existing ids are fine, "
+                        "an id that does not exist makes the finding unmatched",
                 "duplicate_invoice": "doc_id of the original + doc_id of the later copy + the copy's AR (or revenue) row_id",
                 "payment_allocation": "payment doc_id + invoice doc_id + the payment's unapplied_cash row_id "
                                       "+ the AR credit row_id if any part was credited "
@@ -843,7 +844,9 @@ def build_policy(g: _Gen | None = None) -> dict:
                 "period_cutoff": "invoice doc_id + its AR (or revenue) row_id",
             },
         },
-        "tolerance": {"amount_abs_minor": 1, "amount_rel": "0.0005"},
+        "tolerance": {"amount_minor": 0,
+                      "rule": "exact: |claimed - true amount| <= amount_minor (minor units); "
+                              "ids, type and currency are compared as exact strings; every evidence id must exist"},
     }
 
 

@@ -107,14 +107,26 @@ def test_wrong_currency_is_false_positive(ep_all):
     assert g["tp"] == 0 and {u["reason"] for u in g["unmatched_findings"]} == {"currency"}
 
 
-def test_amount_tolerance_and_normalization(ep_all):
+def test_exact_comparison_like_jury_rules(ep_all):
+    """Правила жюри: ID/type/currency — точные строки, tau=0, порядок и повторы affected_ids не важны."""
     fs = oracle_findings(ep_all)
     for f in fs:
-        f["claimed_amount_minor"] = -(f["claimed_amount_minor"] + 1)   # знак и 1 мин. единица допустимы
-        f["affected_ids"] = [x.lower() + " " for x in reversed(f["affected_ids"])]
-        f["type"] = f["type"].upper()
+        f["affected_ids"] = list(reversed(f["affected_ids"])) + f["affected_ids"][:1]   # порядок и повтор — ок
     assert R(ep_all, fs)["f1"] == 1.0
-    assert amount_ok(100050, 100000) and not amount_ok(100051, 100000)
+    n = len(fs)
+    for mutate in (lambda f: f.update(claimed_amount_minor=f["claimed_amount_minor"] + 1),
+                   lambda f: f.update(claimed_amount_minor=-f["claimed_amount_minor"]),
+                   lambda f: f.update(affected_ids=[x.lower() for x in f["affected_ids"]]),
+                   lambda f: f.update(affected_ids=[x + " " for x in f["affected_ids"]]),
+                   lambda f: f.update(type=f["type"].upper()),
+                   lambda f: f.update(type="fraud"),
+                   lambda f: f.update(currency=f["currency"].lower()),
+                   lambda f: f.update(currency=" " + f["currency"])):
+        bad = copy.deepcopy(fs)
+        mutate(bad[0])
+        g = R(ep_all, bad)
+        assert g["valid"] and g["tp"] == n - 1 and g["fp"] == 1 and g["fn"] == 1   # FP, не авария
+    assert amount_ok(10000, 10000) and not amount_ok(10001, 10000) and amount_ok(10001, 10000, tau=1)
 
 
 def test_explanation_text_does_not_affect_reward(ep_all):
@@ -134,7 +146,9 @@ def test_explanation_text_does_not_affect_reward(ep_all):
     lambda s: s.update(findings="all"),
     lambda s: s["findings"][0].update(claimed_amount_minor=1.5),
     lambda s: s["findings"][0].update(claimed_amount_minor=True),
-    lambda s: s["findings"][0].update(type="fraud"),
+    lambda s: s["findings"][0].update(type=7),
+    lambda s: s["findings"][0].update(claimed_amount_minor=10000.0),
+    lambda s: s["findings"][0].update(claimed_amount_minor="10000"),
     lambda s: s["findings"][0].update(evidence_ids=["x"] * 11),
     lambda s: s["findings"][0].update(explanation="x" * 1001),
     lambda s: s["findings"][0].pop("currency"),

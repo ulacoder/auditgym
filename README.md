@@ -35,7 +35,7 @@ python -m auditgym check
 
 Команда `check` завершается с кодом 0 только при полном успехе. Она выполняет четыре шага:
 
-1. **`pytest`.** 160 тестов: контракт, награда, генератор, изоляция, интерфейс для жюри,
+1. **`pytest`.** 178 тестов: контракт, награда, генератор, изоляция, адаптер и проверки жюри,
    независимый red-team набор атак и враждебные политики (зависание, вывод в stdout, выход,
    попытки прочитать секрет или подменить код оценщика). Из двух системных тестов изоляции
    выполняется тот, что подходит окружению: от root с пользователем `auditgym-policy` (Docker) —
@@ -68,6 +68,63 @@ python -m auditgym check
 | `python3 independent_check/verify.py` | независимая проверка выгруженных эпизодов (не импортирует пакет) |
 
 ---
+
+## Адаптер жюри: `judge_adapter.py`
+
+Единый способ подключения из «Определений проверок FinTech» (20.11.2026). Файл лежит в корне
+репозитория.
+
+- **Рабочая директория:** корень репозитория (в Docker-образе — `/app`).
+- **Команда запуска проверки:** `docker run --rm --network none auditgym:1.1.0` (или
+  `python -m auditgym check`). Отдельно проверки жюри через адаптер: `python -m pytest
+  tests/test_judge_adapter.py` (C01–C20, тесты matcher 1–20, M01–M12, парные проверки).
+- **Точки входа:**
+
+```python
+import judge_adapter as A
+A.generate_episode(seed, config, output_dir)        # config — ключи auditgym/config.py
+env = A.make_env()
+obs, info = env.reset(None, {"mode": "closed", "episode_dir": output_dir, "team_config": {}})
+obs, reward, terminated, truncated, info = env.step({"name": "list_records",
+                                                     "args": {"table": "ledger", "cursor": None, "limit": 50}})
+A.score_episode(output_dir, findings, inspection_steps)
+```
+
+- **Каталог эпизода** (пишет `generate_episode`, читают `reset` и `score_episode`): открытые
+  `manifest.json`, `policy.json`, `ledger.csv`, `invoices.jsonl`, `payments.jsonl`, `fx.csv` и
+  закрытые `truth.json`, `provenance.json`, `ledger_before.csv`. Схемы — `schemas/`.
+- **Режимы `reset`:** `mode="closed"` загружает именно переданный `episode_dir`, ничего не
+  генерирует и не меняет ID; награда политике всегда 0, `info` пуст. Повторный `reset` начинает
+  эпизод заново. `mode="train"` без `episode_dir` генерирует эпизод по `seed` и `team_config`
+  (с `episode_dir` — загружает его); терминальная награда и счётчики TP/FP/FN доступны политике.
+- **Схема результатов:** первое наблюдение `{"task", "manifest", "policy", "remaining_steps": 100}`,
+  далее `{"result", "error", "remaining_steps"}`.
+
+| действие | аргументы | `result` |
+|---|---|---|
+| `list_records` | `table`, `cursor` (первый — `null`), `limit` (1–50) | `{"records": [...], "next_cursor": str или null}` |
+| `get_record` | `table`, `id` | объект записи |
+| `get_document` | `doc_id` | объект документа (счёт или платёж) |
+| `calculator` | `expression` | десятичная строка, например `"0.3"` |
+| `submit` | `findings` (объект findings.json) | `{"accepted": true}` |
+
+  Таблицы: `ledger` (id — `row_id`), `invoices` и `payments` (id — `doc_id`), `fx` (id — ключ
+  `DATE:SRC:TGT`). Ошибка — `{"code", "message"}` без путей, seed и закрытых данных; коды:
+  `unknown_tool`, `invalid_action`, `invalid_args`, `unknown_table`, `unknown_id`,
+  `invalid_cursor`, `calculator_error`, `invalid_submission`, `episode_finished`, `time_limit`.
+  Каждый вызов, в том числе ошибочный, расходует шаг.
+- **`score_episode`** для валидного submit возвращает `{"tp", "fp", "fn", "precision", "recall",
+  "f1", "return"}`, для невалидного — `return = -1`, остальные поля `null`, причина пишется в
+  stderr.
+- **Соответствие четырёх типов ошибок** (значение `type`, канонические `affected_ids`,
+  минимальный набор доказательств — тот же текст лежит в `policy.reporting`):
+
+| ошибка из кейса | `type` | `affected_ids` | доказательства (`doc_id`, `row_id`, ключ курса) |
+|---|---|---|---|
+| двойной счёт | `duplicate_invoice` | `[invoice_id]` более поздней копии | оригинал, копия, строка AR/выручки копии |
+| пропущенное или частичное распределение платежа | `payment_allocation` | `[payment_id, invoice_id]` | платёж, счёт, строка `unapplied_cash` (+ строка кредита AR при частичном, + ключ курса для валютного счёта) |
+| неверная дата или курс конвертации | `fx_conversion` | `[invoice_id]` или `[payment_id]` | документ, его строка AR/выручки или денег, ключ курса по политике |
+| ошибка периода | `period_cutoff` | `[invoice_id]` | счёт, его строка AR/выручки |
 
 ## Результаты (holdout_example, 20 эпизодов, оценщик в отдельном процессе)
 
@@ -254,23 +311,29 @@ grader_data/<split>/<name>/      ← закрыто: агент не видит
 
 Код открыт в `auditgym/matcher.py`, формат ответа описан в `schemas/findings.schema.json`.
 
-- **Нормализация.** Только ASCII: тип — strip + lower, ID и валюта — strip + upper. Строки с
-  не-ASCII символами (ı, ſ, неразрывный пробел) не нормализуются и ни с чем не совпадают.
-  `affected_ids` сравниваются как множество, сумма по модулю. Сумма — целое число; `1000.0`
-  тоже принимается, как в JSON Schema.
-- **Допуск суммы:** `max(1, ceil(0.0005 × expected))` минимальных единиц.
-- **TP:** совпали тип, канонические ID, валюта и сумма в допуске, и в `evidence_ids` есть хотя
-  бы один полный допустимый набор.
-- **Неоднозначность:** максимальное паросочетание (алгоритм Куна); при равенстве побеждает
-  более ранний вывод. Повторы и несопоставленные выводы считаются FP, пропуски FN.
+Правила совпадают с «Определениями проверок FinTech» жюри (20.11.2026).
+
+- **Точное сравнение.** ID, `type` и `currency` сравниваются как строки, с учётом регистра и
+  пробелов, без нормализации. `affected_ids` — точное множество (порядок и повторы внутри списка
+  не важны). `claimed_amount_minor` — целое JSON-число (не bool, не строка, не дробь).
+- **Допуск суммы τ = 0:** `|claimed − expected| ≤ τ`. τ публикуется в `policy.json`
+  (`tolerance.amount_minor`); во всех наших эпизодах он равен 0, потому что суммы считаются по
+  одному документированному правилу округления.
+- **Доказательства:** `evidence_ids` — множество; должен быть хотя бы один полный допустимый набор,
+  а каждый ID должен существовать в эпизоде (недоступный ID делает вывод FP).
+- **TP:** совпали тип, `affected_ids`, валюта, сумма и доказательства.
+- **Неоднозначность:** паросочетание максимальной мощности (алгоритм Куна); среди равных —
+  лексикографически наименьшая последовательность пар (issue_id, индекс вывода). Повторы и
+  несопоставленные выводы — FP, пропуски — FN.
 - **Награда:** `clip(2·F1 − 1 − 0.002·inspection_steps, −1, 1)`, где inspection_steps — шаги до
-  отправки. Считается точно (дроби из TP/FP/FN) и округляется до float один раз. Текст
-  `explanation` на награду не влияет.
+  отправки (submit в них не входит). Считается точно (дроби из TP/FP/FN). Текст `explanation`
+  на награду не влияет.
 - **Неверная структура (−1, эпизод завершается):** `submit` с неверными аргументами действия,
-  не объект `{episode_id, findings}`, лишние ключи, чужой
-  episode_id, больше 30 выводов, у вывода не ровно 6 полей, неизвестный тип, сумма не целое,
-  валюта не из 3 символов, пустые или больше 30 `affected_ids`, больше 10 `evidence_ids`,
-  `explanation` длиннее 1000 символов.
+  не объект `{episode_id, findings}`, лишние или недостающие ключи, чужой episode_id, больше 30
+  выводов, у вывода не ровно 6 полей, поля не тех типов (сумма не целое, type/currency не строка),
+  пустые или больше 30 `affected_ids`, больше 10 `evidence_ids` (до удаления повторов),
+  `explanation` длиннее 1000 кодовых точек. Хорошо сформированный, но неверный вывод (в том числе
+  неизвестный тип или другая валюта) — FP.
 
 Тесты (`tests/test_reward.py`, `tests/test_redteam.py`) показывают все свойства из кейса:
 - полный ответ лучше молчания на ошибочных книгах;
@@ -307,7 +370,8 @@ grader_data/<split>/<name>/      ← закрыто: агент не видит
 | README, контейнер, единая команда | этот файл; `python -m auditgym check` |
 | matcher, награда, схемы, политики | `auditgym/matcher.py`, `schemas/*.schema.json`, `policy.json` в каждом эпизоде |
 | 10 train и 10 dev эпизодов | `episodes/`, `grader_data/`; конфигурации с версиями в `configs/*.json` |
-| тесты | `tests/` (160), `independent_check/` |
+| адаптер жюри | `judge_adapter.py`, `tests/test_judge_adapter.py` |
+| тесты | `tests/` (178), `independent_check/` |
 | 4 адаптера базовых политик | `auditgym/policies/__init__.py`; протокол в `docs/JURY.md` |
 | траектории | `trajectories/trajectories.jsonl` (episode_id, step, action, observation, reward, terminated, truncated, policy) |
 | записка о дизайне | `DESIGN.md` |
